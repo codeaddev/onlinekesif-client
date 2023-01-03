@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="85" height="89" viewBox="0 0 85 89">
+  <g id="Group_10052" data-name="Group 10052" transform="translate(-782 -4632)">
+    <g id="Rectangle_4885" data-name="Rectangle 4885" transform="translate(798 4663)" fill="#fff" stroke="#000" stroke-width="1.9">
+      <rect width="20" height="52" stroke="none"/>
+      <rect x="0.95" y="0.95" width="18.1" height="50.1" fill="none"/>
+    </g>
+    <g id="Rectangle_4886" data-name="Rectangle 4886" transform="translate(829 4694)" fill="#fff" stroke="#000" stroke-width="1.9">
+      <rect width="20" height="21" stroke="none"/>
+      <rect x="0.95" y="0.95" width="18.1" height="19.1" fill="none"/>
+    </g>
+    <g id="Rectangle_4884" data-name="Rectangle 4884" transform="translate(782 4713)" fill="#fff" stroke="#000" stroke-width="1.9">
+      <rect width="85" height="8" rx="4" stroke="none"/>
+      <rect x="0.95" y="0.95" width="83.1" height="6.1" rx="3.05" fill="none"/>
+    </g>
+    <g id="Ellipse_351" data-name="Ellipse 351" transform="translate(794 4632)" fill="#fff" stroke="#000" stroke-width="1.9">
+      <circle cx="14" cy="14" r="14" stroke="none"/>
+      <circle cx="14" cy="14" r="13.05" fill="none"/>
+    </g>
+    <g id="Ellipse_356" data-name="Ellipse 356" transform="translate(825 4663)" fill="#fff" stroke="#000" stroke-width="1.9">
+      <circle cx="14" cy="14" r="14" stroke="none"/>
+      <circle cx="14" cy="14" r="13.05" fill="none"/>
+    </g>
+    <circle id="Ellipse_352" data-name="Ellipse 352" cx="2" cy="2" r="2" transform="translate(801 4641)"/>
+    <circle id="Ellipse_355" data-name="Ellipse 355" cx="2" cy="2" r="2" transform="translate(832 4672)"/>
+    <circle id="Ellipse_353" data-name="Ellipse 353" cx="2" cy="2" r="2" transform="translate(811 4641)"/>
+    <circle id="Ellipse_354" data-name="Ellipse 354" cx="2" cy="2" r="2" transform="translate(842 4672)"/>
+    <path id="Path_9720" data-name="Path 9720" d="M8322.051,9471.72s6.657,8.98,14.036-.318" transform="translate(-7521 -4823)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.9"/>
+    <path id="Path_9721" data-name="Path 9721" d="M8322.051,9471.72s6.657,8.98,14.036-.318" transform="translate(9168.137 14155.02) rotate(180)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.9"/>
+  </g>
+</svg>

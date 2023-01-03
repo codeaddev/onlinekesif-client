@@ -1,0 +1,195 @@
+.blog{
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    .top-banner{
+       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       width: 100%;
+        img.sliderimg{width: 100%;
+            height: 300px;
+            object-fit: contain}
+    }
+    
+    .top-banner-item{
+        display: flex;
+        padding: 20px;
+    }
+    .blog-page-container{
+        display: flex;
+        max-width: 1800px;
+        padding: 3rem;
+        gap: 30px;
+        @media screen and (max-width:760px) {
+            max-width: 100%;
+            flex-direction: column;
+        }
+        .blog-container{
+            flex: 4;
+            //max-width: 767px;
+            min-height: 60vh;
+            max-height: 85vh;
+            overflow-y: auto;
+        
+            display: flex;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            &::-webkit-scrollbar {
+                display: none;
+              }
+            @media screen and (max-width:760px) {
+                flex-direction: column;
+                padding: 1rem;
+                
+            }
+            
+            .blog-main-body{
+                display: flex;
+                @media screen and (max-width:760px) {
+                    flex-direction: column;
+                    gap: 10px;
+                 
+                }
+                .blog-body{
+                    
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    padding: 20px;
+                    flex: 4;
+                    .link{
+                        text-decoration: none;
+                    }
+                    h1{
+                        color: var(--black);
+                        font-weight: 700; 
+                               
+                    }
+                    .filter-bar{
+                        
+                        padding: 20px 0px;
+                        display: flex;
+                        gap: 20px;
+                        label{
+                            font-weight: 600;
+                            font-size: 20px;
+                            cursor: pointer;
+                            
+                        }
+                    }
+                    .blog-card{
+                        cursor: pointer;
+                        box-sizing: border-box;
+                        display: flex;
+                        .left{
+                            flex:1;
+                            img{
+                                width: 100%;
+                                object-fit: contain;
+                            }
+                        }
+                        .right{
+                            box-sizing: border-box;
+                            flex:4;
+                            
+                            display: flex;
+                            flex-direction:column ;
+                            padding: 10px 2rem;
+                            gap: 10px;
+                            .top{
+                                flex:4;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                
+                                p.blog-path{
+                                    font-weight: 600;
+                                    color: var(--orange);
+                                    
+                                }
+                                p.content{
+                                    color: var(--black);
+                                }
+                            }
+                            .bottom{
+                                flex:1;
+                                
+                                display: flex;
+                                gap: 20px;
+                                align-items: center;
+                                label{
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 5px;
+                                }
+                            }
+                        
+                        }
+                        @media screen and (max-width:1470px) {
+                            
+                            .right{
+                                flex: 2;
+                            }
+                        }
+                        @media screen and (max-width:1000px) {
+                            
+                            .right{
+                                flex: 1;
+                            }
+                        }
+                        @media screen and (max-width:760px) {
+                            flex-direction: column;
+                            gap: 10px;
+                            .right{
+                                padding: 0;
+                            }
+                        }
+                        
+                    }
+                }
+               
+            }
+            
+        }
+    }
+    .side-banner{
+        flex: 1;
+        gap: 30px;
+        min-height: 60vh;
+        max-height: 85vh;
+        overflow-y: auto;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+          }
+          .banner-area{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            .ad-banner{
+                max-width: 350px;
+                //height: 360px;
+                background-color: lightgray;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: var(--black);
+                font-size: 1.5rem;
+                justify-content: center;
+                img{
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+          }
+        
+
+    }
+    
+}

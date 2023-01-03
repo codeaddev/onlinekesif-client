@@ -1,0 +1,91 @@
+.tedarikci-page{
+    padding: 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+
+.tedarikci-container{
+    width: 100%;
+    max-width: 1000px;
+    padding: 2rem;
+    box-sizing: border-box;
+    h2, h1{
+        width: 100%;
+        text-align: center;
+    }
+    
+    ol {
+        list-style-type: none;
+        counter-reset: item;
+        margin: 0;
+        padding: 0;
+    }
+    ol>li {
+        display: table;
+        counter-increment: item;
+        margin-bottom: 0.6em;
+    }
+    span {
+        font-weight: bolder;
+    }
+    ol>li:before {
+        content: counters(item, ".") ". ";
+        display: table-cell;
+        padding-right: 0.6em;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 75%;
+        align-self: center;
+        
+        
+        
+    }
+    td, th {
+        border: 1px solid #a2a2a2;
+        text-align: left;
+        padding: 25px;
+        font-size: 11px;
+        flex: 1;
+        box-sizing: border-box;
+        &.short{
+            flex: 0.7;
+        }
+    } 
+
+    tr{
+        display: flex;
+        &.high{
+            height: 100px;
+        }
+        &.witd{
+            height: 100px;
+            
+        }
+    }
+
+}
+
+.table-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-cont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+

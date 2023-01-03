@@ -1,0 +1,10 @@
+.loading{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-weight: 500;
+    }
+}
