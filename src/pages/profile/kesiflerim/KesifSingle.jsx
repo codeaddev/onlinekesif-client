@@ -26,15 +26,166 @@ import { AppModal } from '../../../components/Modal/Modal'
 import Loading from '../../../components/loading/Loading'
 import LaunchIcon from '@mui/icons-material/Launch';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-
+import emailjs from '@emailjs/browser';
 
 
 function KesifSingle() {
   const {state}=useLocation()
   const [updating,setUpdating]=useState(false)
-  const [willBeUpdated,setWillBeUpdated]=useState(state.Offers)  
+  const [willBeUpdated,setWillBeUpdated]=useState(state.Offers)
 
+  const sendConfirmEmailToUser = () => {
 
+    var params={
+      subject:state?.mainWish+" Servis İşi",
+      user_email:auth?.currentUser?.email,
+      user_name:"bilgi@onlinekesif.com",
+      message:`${state.mainWish} Servis Talebiniz için seçtiğiniz firma en yakın zamanda işe başlayacaktır. Ödemeniz Onlinekeşif güvencesi altındadır. İş sırasında meydana gelebilecek olumsuz durumları onlinekeşif ile paylaşmanız önemle tavsiye olunur.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendConfirmEmailToFirm = (item) => {
+
+    var params={
+      subject:state?.mainWish+" Servis Talebi Teklifiniz Hakkında",
+      user_email:item.email,
+      user_name:"bilgi@onlinekesif.com",
+      message:`${state.mainWish} Servis Talebi için yaptığınız teklif müşteri tarafından uygun görülüp kabul edilmiştir. Ödenen ücret iş bitiminde tarafınıza iletilecektir.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendConfirmEmailToAdmin = () => {
+
+    var params={
+      subject:state?.mainWish+" Servis Talebi İşi",
+      user_email:"onlinekesif.com@gmail.com",
+      user_name:"bilgi@onlinekesif.com",
+      message:`Müşteri ${auth?.currentUser?.email}, ${state.mainWish} Servis Talebi Teklifini kabul etti.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendCompleteEmailToUser = () => {
+
+    var params={
+      subject:state?.mainWish+" Servis İşi",
+      user_email:auth?.currentUser?.email,
+      user_name:"bilgi@onlinekesif.com",
+      message:`${state.mainWish} Servis Talebiniz tamamlanmıştır.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendCompleteEmailToFirm = (item) => {
+
+    var params={
+      subject:state?.mainWish+" Servis Talebi İşiniz Hakkında",
+      user_email:item.email,
+      user_name:"bilgi@onlinekesif.com",
+      message:`Müşteri ${state?.id} no'lu ${state.mainWish} Servis Talebi işinizi tamamladığınızı onaylamıştır. Tarafınıza ödeme yapılacaktır.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendCompleteEmailToAdmin = () => {
+
+    var params={
+      subject:state?.mainWish+" Servis Talebi İşi",
+      user_email:"onlinekesif.com@gmail.com",
+      user_name:"bilgi@onlinekesif.com",
+      message:`Müşteri ${auth?.currentUser?.email}, ${state.mainWish} Servis Talebi İşinin tamamlandığını onayladı.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendCancelEmailToUser = () => {
+
+    var params={
+      subject:state?.mainWish+" Servis Talebini İptali",
+      user_email:auth?.currentUser?.email,
+      user_name:"bilgi@onlinekesif.com",
+      message:`${state.mainWish} Servis Talebiniz iptal edilmiştir.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
+  const sendCancelEmailToAdmin = () => {
+
+    var params={
+      subject:"Servis Talebi İptali",
+      user_email:"onlinekesif.com@gmail.com",
+      user_name:"bilgi@onlinekesif.com",
+      message:`Müşteri ${auth?.currentUser?.email}, ${state.mainWish} Servis Talebini iptal etti.`
+      
+  
+    }
+  
+    emailjs.send('onlinekesif_support', 'template_fd5d0vb', params,"az39-SQ3JNFE4N2sA")
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      
+  };
 const [alertmessage,setAlertMessage]=useState({
   visible:false,
   isInfo:false,
@@ -81,6 +232,8 @@ function Row({row}) {
         handleFunction:"",
       })
     })
+    sendCancelEmailToAdmin()
+    sendCancelEmailToUser()
     
   }
 
@@ -115,6 +268,9 @@ function Row({row}) {
         handleFunction:"",
       })
     })
+    sendCompleteEmailToUser()
+    sendCompleteEmailToFirm(row)
+    sendCompleteEmailToAdmin()
   }
   const handleAccept=async(e,row)=>{
     e.preventDefault()
@@ -127,6 +283,7 @@ function Row({row}) {
         firm:row.firm,
         firmName:row.firmName,
         id:row.id,
+        email:row.email,
         logo:row.logo,
         refused:false,
         relatedProducts:row.relatedProducts,
@@ -157,6 +314,9 @@ function Row({row}) {
         handleFunction:"",
       })
     })
+    sendConfirmEmailToUser()
+    sendConfirmEmailToFirm(row)
+    sendConfirmEmailToAdmin()
   }
 
 

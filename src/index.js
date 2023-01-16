@@ -2,6 +2,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { Beforeunload } from 'react-beforeunload';
 import ReactDOM from 'react-dom/client';
+
 import App from './App';
 import LiveChat from './components/liveChat/LiveChat';
 import Navbar from './components/Navbar/Navbar';
@@ -25,6 +26,7 @@ root.render(
   <React.StrictMode>
     <AuthenticationProvider>
       <CloudProvider>
+    
        
           <App />
          

@@ -48,6 +48,7 @@ import {FaArrowUp} from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import Kosullar from "./pages/kosullar/Kosullar";
 import TagtPage from "./pages/import/tedarikci-aydınlatma-ve-gizlilik-taahhutnamesi/Tagt";
+import Payment from "./pages/payment/Payment";
 
 
 function App() {
@@ -117,6 +118,7 @@ useEffect(
     {show?<LiveChat/>:null}
     <Routes>
       <Route path="KVKK" element={<KvkkPage/>} />
+      <Route path="odeme" element={<Payment/>} />
       <Route path="KV-saklanmasi-ve-imha" element={<KvsiPage/>} />
       <Route path="uyelik-sozlesmesi" element={<Kosullar/>} />
       <Route path="Web-Sitesi-Gizlilik-Ve-Cerz-Politikasi" element={<WsgzpPage/>} />
