@@ -13,6 +13,41 @@
     
   }
 
+  $lnk-height:                 32px;
+$lnk-padding:                0 10px 0 20px;
+$lnk-first-and-last-padding: $lnk-height/2; 
+$lnk-after-before-border-width-1: $lnk-first-and-last-padding+1;
+$lnk-after-before-border-width-2: 10px;
+
+// dark-theme
+$dark-bd-col: 		            #2E3031;
+$dark-lnk-col: 		            #c6c6c6;
+$dark-lnk-bgcol: 	            #595B5B;
+$dark-lnk-textshadow: 	      0 -1px rgba(0,0,0,.7);
+$dark-lnk-boxshadow: 	        inset 0 1px 0 #727373;
+$dark-lnk-bd-left-col-1:      #595B5B;
+$dark-lnk-bd-left-col-2:      #2E3031;
+$dark-lnk-hover-bgcol:        #646666;
+$dark-lnk-hover-bd-left-col:  #646666;
+$dark-lnk-active-bd-left-col: #404141;
+$dark-lnk-last-bgcol:         #404141;
+$dark-lnk-last-boxshadow:     inset 0 1px 2px rgba(0,0,0,.2);
+
+
+// light theme
+$light-bd-col: 					#9C9E9E;
+$light-lnk-col: 				#454545;
+$light-lnk-bgcol: 				#e5e9e9;
+$light-lnk-textshadow: 			0 -1px rgba(255,255,255,.7);
+$light-lnk-boxshadow: 			inset 0 1px 0 #fff;
+$light-lnk-bd-left-col-1: 		#e5e9e9;
+$light-lnk-bd-left-col-2: 		#9C9E9E;
+$light-lnk-hover-bgcol: 		#EDF1F1;
+$light-lnk-hover-bd-left-col: 	#EDF1F1;
+$light-lnk-active-bd-left-col: 	#EDF1F1;
+$light-lnk-last-bgcol: 			#d3d7d7;
+$light-lnk-last-boxshadow: 		inset 0 1px 2px rgba(0,0,0,.2);
+
 html,body{
     background-color: var(--background);
     margin: 0px;
@@ -45,7 +80,6 @@ html,body{
     font-size: 3rem;
     display: flex;
     gap: 12px;
-    
     u{
         text-decoration-color: var(--yellow);
         
@@ -54,6 +88,19 @@ html,body{
         font-size: 1.3rem;
         gap: 6px;
     }
+    &.small{
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+    &.middle{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        
+    }
+
     
 }
 .section-header-text-mini{
@@ -139,36 +186,41 @@ html,body{
 
 
 
-.hidden {
-    display: none;
+.hiddenScrollButton {
+    //display: none;
+    display: block;
   }
   
-  .showButton {
+  .showScrollButton {
     position: fixed;
-    background:rgba($color: #fff, $alpha: 0.5);
+    background:rgba($color: #fff, $alpha: 0.7);
     border-radius: 50%;
-    padding: 1.2rem;
+    //padding: 1.2rem;
     right: -100px;
-    bottom: 50px;
-    font-size: 15px;
+    bottom: 35px;
+    
     margin-bottom: 5%;
-    color: grey;
+    color:black;
     cursor: pointer;
     transform: translateX(-150px);
     animation: slideLeft 1s;
-  
+    display: block;
+    .scrollTopIcon{
+        color: grey;
+        font-size: 32px;
+    }
     
     
     @media screen and (max-width:760px) {
         position: fixed;
         background:rgba($color: #fff, $alpha: 0.5);
         border-radius: 50%;
-        padding: 1.2rem;
+        
         right: -125px;
         bottom: 50px;
         font-size: 15px;
         margin-bottom: 15%;
-        color: gainsboro;
+        color: black;
         cursor: pointer;
         transform: translateX(-150px);
         animation: slideLeft 1s;   
@@ -188,7 +240,117 @@ html,body{
     }
   }
 
-  
+
+
+.breadcrumb{
+	list-style-type: none;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    
+  &, a,span {display: inline-block;}
+    .bread-crumb{
+        color: #1D1D1D;
+        margin: 0;
+        padding: 0;
+            text-rendering: optimizeLegibility;
+              text-decoration: none;
+            height: $lnk-height;
+            line-height: $lnk-height;
+            padding: $lnk-padding;
+              position: relative;
+            &:first-child {
+              padding-left: $lnk-first-and-last-padding;
+            }
+            &:last-child {
+              padding-right: $lnk-first-and-last-padding;
+              pointer-events: none;
+                    cursor: default;
+              &:after, &:before {
+                border: 0;
+              }
+            }
+            &:after, &:before {
+                content: " "; 
+                    display: block; 
+                    width: 0; 
+                    height: 0;
+                    border-top: $lnk-after-before-border-width-1 solid transparent;
+                    border-bottom: $lnk-after-before-border-width-1 solid transparent;
+              border-left: $lnk-after-before-border-width-2 solid transparent;
+                    position: absolute;
+              margin: auto;
+                    top: 0;
+              bottom: 0;
+                    left: 100%;
+                    z-index: 2;
+            }
+            &:before {
+              margin-left: 1px;
+                    z-index: 1;
+            }
+          
+    }
+   
+}
+.dark {
+    border-color: $dark-bd-col;
+    .bread-crumb{
+      color: $dark-lnk-col;
+      background-color: $dark-lnk-bgcol;
+      text-shadow: $dark-lnk-textshadow;
+      box-shadow: $dark-lnk-boxshadow;
+      &:after {
+        border-left-color: $dark-lnk-bd-left-col-1;
+      }
+      &:before {
+        border-left-color: $dark-lnk-bd-left-col-2;
+      }
+      &:hover, &:focus {
+        background: $dark-lnk-hover-bgcol;  
+        &:after {
+          border-left-color: $dark-lnk-hover-bd-left-col;
+        }
+      }
+      &:active:before {
+        border-left-color: $dark-lnk-active-bd-left-col;
+      }
+      &:last-child {
+        background-color: $dark-lnk-last-bgcol;
+        box-shadow: $dark-lnk-last-boxshadow;
+      }  
+    }
+  }
+  .light {
+    border-color: $light-bd-col;
+    .bread-crumb{
+      color: $light-lnk-col;
+      background-color: $light-lnk-bgcol;
+      text-shadow: $light-lnk-textshadow;
+      box-shadow: $light-lnk-boxshadow;
+      &:after {
+        border-left-color: $light-lnk-bd-left-col-1;
+      }
+      &:before {
+        border-left-color: $light-lnk-bd-left-col-2;
+      }
+      &:hover, &:focus {
+        background: $light-lnk-hover-bgcol;  
+        &:after {
+          border-left-color: $light-lnk-hover-bd-left-col;
+        }
+      }
+      &:active:before {
+        border-left-color: $light-lnk-active-bd-left-col;
+      }
+      &:last-child {
+        background-color: $light-lnk-last-bgcol;
+        //box-shadow: $light-lnk-last-boxshadow;
+      }  
+    }
+  }
   .progress_wrapper {
     position: fixed;
     top: 0;
@@ -211,4 +373,3 @@ html,body{
     color: black;
   }
 
-  

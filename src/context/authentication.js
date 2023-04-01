@@ -11,6 +11,7 @@ export const AuthenticationProvider=({children})=>{
     const [userData,setUserData]=useState({})
     const [errorLogin,setErrorLogin]=useState("")
     const [loggining,setLogining]=useState(false)
+    const [gettingUser,setGettingUser]=useState(false)
 
     onAuthStateChanged(auth,(currentUser)=>{
         setUser(currentUser)
@@ -104,16 +105,19 @@ export const AuthenticationProvider=({children})=>{
       }
 
       const getUserData=async()=>{
-
+        setGettingUser(true)
         try{
           const userRef=doc(db,"Users",user.uid)
           const docSnap=await getDoc(userRef)
           if(docSnap.exists())
-          {setUserData(docSnap.data())}
+          {setUserData({...docSnap.data(),userNameAuth:auth.currentUser.displayName})
+          setGettingUser(false)
+          }
           else{
           
           }  
         }catch(e){
+          setGettingUser(false)
           //console.log(e.message)
         }
       }
@@ -170,6 +174,7 @@ export const AuthenticationProvider=({children})=>{
             googlelogin,
             errorLogin,loggining,
             getUserData,
+            gettingUser
         }}
         >
             {children}

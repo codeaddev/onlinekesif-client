@@ -15,6 +15,7 @@ import LastJobs from '../../components/lastJobs/LastJobs';
 import MainSlider from '../../components/MainSlider/MainSlider';
 import MainSliderAlt from '../../components/MainSlider/MainSliderAlt';
 import Sitemap from '../sitemap/Sitemap';
+import JestServiceComponent from '../../components/JetService/JestServiceComponent';
 
 
 
@@ -65,6 +66,7 @@ return (
           setMainList={setMainList}
           />
      
+          <JestServiceComponent/>
           <WhatWeDo/>
           <HowWeDo/>
           <Advantages/>

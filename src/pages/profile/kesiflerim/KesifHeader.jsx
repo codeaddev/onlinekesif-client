@@ -18,19 +18,19 @@ const isSelected=(item)=>{
                     key={i.id}
                     onClick={()=>setSelectedList({label:i.label,list:i.data})}
                     className={`header-label ${isSelected(i)}`}>
-                        <h3>{i.label}</h3>
+                        <span>{i.label}</span>
                         <div className={`down-bar ${isSelected(i)}`}></div>
                     </div>
                     
                 )
             })}
         </div>
-        <div className="right">
+        
             <button
             onClick={onClick}
             className='add-new'
             >+ Yeni Teklif</button>
-        </div>
+        
     </div>
   )
 }

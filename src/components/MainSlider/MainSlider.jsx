@@ -83,7 +83,7 @@ const MainSlider = ({setMainList,questionData}) => {
         className:"slider",
         dots: true,
         infinite: true,
-        //centerMode: true,
+        centerMode: true,
         slidesToShow:decideSlideToShow(),
         slidesToScroll: decideSlideToShow(),
         //variableWidth: true,
@@ -123,8 +123,9 @@ const MainSlider = ({setMainList,questionData}) => {
   return (
     <div className="slider-section">
         <SectionHeader >Çözümlerimiz</SectionHeader>
-        <div style={{width:"80%",padding:0}} >
+        <div style={{width:"100%",padding:0}} >
           <Slider
+          arrows={false}
           {...settings}>
             {questionData.map(i=>{
               return(

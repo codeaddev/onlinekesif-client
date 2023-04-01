@@ -13,7 +13,7 @@ import { useRef } from 'react'
 import Select from 'react-select'
 import { Regions } from "../../../components/data/general"
 import EditPassword from './EditPassword'
-
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 function EditForm() {
 
     const { userData } = useContext(AuthenticationContext)
@@ -96,17 +96,25 @@ function EditForm() {
                 <form
                     onSubmit={handleSubmit}
                 >
-                    <div className="row imgContainer">
+                    <div className="imgContainer">
 
-                        <img
+                        {auth?.currentUser.photoURL?
+                            <img
+                        className='profil-photo'
                             //src={auth.currentUser?.photoURL} 
-                            src={file ? URL.createObjectURL(file) : auth.currentUser?.photoURL} alt="" />
+                            src={file ? URL.createObjectURL(file) : auth.currentUser?.photoURL} alt="" />:<label
+                            htmlFor="photo"
+                            className='no-image'
+                            >
+                                <AddPhotoAlternateIcon/>
+                                </label>}
 
 
-
+                        {auth.currentUser.photoURL&&<label htmlFor='photo'>Değiştir</label>}
                         <input
                             onChange={handleChange}
                             type="file"
+                            style={{display:"none"}}
                             id="photo"
                             accept="image/*"
                             aria-label="DEĞİŞTİR"

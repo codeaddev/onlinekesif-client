@@ -15,7 +15,7 @@ import {Container} from 'react-bootstrap'
 
 import applesvg from "./apple.svg";
 import googlesvg from "./google.svg";
-
+import paymentsvg from "./payment.svg";
 function Footer({ setMainList, setChanged, mainList }) {
   const { blogs, questionData } = useContext(CloudContext)
   const [alertMessage, setAlertMessage] = useState({
@@ -34,14 +34,14 @@ function Footer({ setMainList, setChanged, mainList }) {
     { id: "01", label: "KVKK", to: "/KVKK" },
     { id: "02", label: "Gizlilik Ayarları", to: "/KV-saklanmasi-ve-imha" },
     { id: "03", label: "Çerez Politikası", to: "/Web-Sitesi-Gizlilik-Ve-Cerz-Politikasi" },
-    { id: "04", label: "Koşullar", to: "/uyelik-sozlesmesi" },
+    { id: "04", label: "Üyelik Sözleşmesi", to: "/uyelik-sozlesmesi" },
     { id: "05", label: "Site Haritası", to: "/Site-haritasi" },
     //{ id: "06", label: "Tedarikçi Sözleşmesi", to: "/Tagt" },
   ]
   const bottomlinks = [
     { id: "01", label: "Online Keşif", class: "white", to: "/" },
     { id: "02", label: "Hakkımızda", class: "yellow", to: "/hakkimizda" },
-    // {id:"03",label:"Hizmetler",class:"yellow",to:"/hizmetler"},
+    {id:"03",label:"Blog",class:"yellow",to:"https://onlinekesif.com/blog/",a:true},
     { id: "04", label: "İletişim", class: "yellow", to: "/iletisim" },
     { id: "05", label: "Yardım", class: "yellow", to: "/yardim-ve-islem-rehberi"}]
 
@@ -76,10 +76,11 @@ function Footer({ setMainList, setChanged, mainList }) {
         state={alertMessage}
         setState={setAlertMessage}
       />
-      <div className="top">
+      <div className="footer-top">
         <div className="col one">
           <div className="centered">
             <p className='logo-title'>ONLİNE KEŞİF</p>
+            <p> Mühendislik ve Danışmanlık Hizmetleri Anonim Şirketi </p>
             <p>Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor.</p>
             <div className="contact-area">
             <div className="link line">
@@ -100,17 +101,20 @@ function Footer({ setMainList, setChanged, mainList }) {
               <img src={applesvg} alt="apple.store.svg" className='apple' height={50} align="left" />
               <img src={googlesvg} alt="google.play.svg" className='google' height={50} />
             </div>
-            
+            <img src={paymentsvg} className="bank" />
+        
           </div>
         </div>
-
-        <div className="col two">
+        
+        <div className="col four">
           <div className="centered center">
-            <h3>Hizmetler</h3>
-            <div className="buttons">
+           
+            <h3 className='col-title'>Hizmetler</h3>
+            <div className="right">
               {questionData.map(i => {
                 return (
-                  <div
+                  <>
+                  {i.title!=="Doğalgaz Tesisatı"&&<div
                     key={i.id}
                     onClick={() => {
                       if (route === "/hizmet-olustur") {
@@ -129,11 +133,16 @@ function Footer({ setMainList, setChanged, mainList }) {
                       }
 
                     }}
-                    className="button">
+                    className="link">
                     {i.title}
-                  </div>
+                  </div>}
+                  </>
                 )
               })}
+              <div
+              onClick={()=>navigate("/jet-servisler")}
+              className='link'
+              >Jet Servisler</div>
 
             </div>
             {/* <div 
@@ -148,33 +157,43 @@ function Footer({ setMainList, setChanged, mainList }) {
  }}
  className="button-red">Daha Fazlası</div> */}
             
-
+            
           </div>
+          
         </div>
-
-
+       
+      
         <div className="col four">
           <div className="centered">
-          <h3>Online Keşif</h3>
+          <h3 className='col-title'>Online Keşif</h3>
             <div className="right">
               {bottomlinks.map(i => {
                 return (
-                  <NavLink
+                  <>
+                  {i.a
+                  ?<a 
+                    className={`link ${i.class}`}
+                    href={i.to}
+                    target="_blank"
+                  >Blog</a>
+                  :<NavLink
                     key={i.id}
                     className={`link ${i.class}`}
-                    to={i.to} >{i.label}</NavLink>
+                    to={i.to} >{i.label}
+                  </NavLink>}
+                  </>
                 )
               })}
+              
             </div>
-
           </div>
         </div>
-
-        <div className="small">
-        <div className="inner-small">
-        <h3 className='inner-th'>Bizi Takip Edin</h3>
         
-          <div className='social-media-icons'>
+        <div className="col four">
+        <div className="centered">
+        <h3 className='col-title'>Bizi Takip Edin</h3>
+        
+          <div className='right'>
           <a href="https://www.facebook.com/onlinekesifcom?mibextid=ZbWKwL" target="_blank"
           className='facebook social'> <span>Facebook</span>&nbsp;
              <FontAwesomeIcon icon={faFacebook} /> 
@@ -201,15 +220,17 @@ function Footer({ setMainList, setChanged, mainList }) {
               <FontAwesomeIcon icon={faYoutube} />
             </a> 
           </div>
-      
+         
        </div>
+       
         </div>
+        
       </div>
+      
       <div className="bottom">
-
         {/* sağ footerdan buraya iletişim */}
-        <div className="col three">
-          <div className="right ">
+        <div className="bottom-wrapper">
+          <div className="left ">
             {policyList.map(i => {
               return (
                 <div
@@ -227,11 +248,12 @@ function Footer({ setMainList, setChanged, mainList }) {
                 >{i.label}</div>
               )
             })}
-
+         
           </div>
-
+        
+          <div className="right">Onlinekesif.com bir Online Keşif A.Ş. Kuruluşudur</div>
         </div>
-        <div className="right">Onlinekesif.com bir Online Keşif A.Ş. Kuruluşudur</div>
+        
       </div>
     </footer>
   )

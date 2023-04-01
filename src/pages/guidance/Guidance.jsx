@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar'
 import "./Guidance.scss"
 import { Howto, SSS, Support } from '../../components/data/SSS'
 import GuidanceCard from './GuidanceCard'
 const Guidance = () => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+let navigate = useNavigate()
+  
   const [selectedSubject,setSelectedSubject]=useState({id:"01",label:"Bilgilendirme",state:"SSS"})
   const [selected,setSelected]=useState()
   const list=[

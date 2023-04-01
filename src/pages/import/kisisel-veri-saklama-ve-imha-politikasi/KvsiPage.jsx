@@ -5,7 +5,7 @@ function KvsiPage() {
     return (
       <div className='kvsi-page'>
         <div className="kvsi-container">
-        <h1>KİŞİSEL VERİ SAKLAMA ve İMHA POLİTİKASI</h1><br />
+        <h1 style={{textAlign: "center",fontSize:"25px"}}>KİŞİSEL VERİ SAKLAMA ve İMHA POLİTİKASI</h1><br />
        <h4>1.GİRİŞ</h4> <br />
        <ul>
        <h4>1.1.Amaç </h4></ul> 

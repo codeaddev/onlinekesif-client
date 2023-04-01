@@ -1,0 +1,137 @@
+.jet-page-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    .jet-services-page{
+        flex: 1;
+        
+        min-height: 70vh;
+        max-width: 1500px;
+        align-self: center;
+        padding: 3rem;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        form.forms{
+            
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+            //background-color: aqua;
+            @media screen and (max-width:800px) {
+                flex-direction: column;
+            }
+            .left,.right{
+                
+                
+                padding: 1rem;
+            }
+            .left{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                
+                box-sizing: border-box;
+                gap: 1rem;
+                align-items: center;
+                justify-content: flex-start;
+                .text-input{
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                    width: 100%;
+                    border: 1px solid gainsboro;
+                    border-radius: 0.3rem;
+                    max-width: 300px;
+                    &.area{
+                        resize: none;
+                        height: 90px;
+                    }
+
+                }
+                .select{
+                    width: 100%;
+                    max-width: 300px;
+                }
+            }
+            .right{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                
+                h3{
+                    text-align: center;
+                }
+                .choices{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .choice{
+                        text-overflow: inherit;
+                        border:1px solid gainsboro;
+                        border-radius: 0.5rem;
+                        width: 180px;
+                        height: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding: 1rem;
+                        box-sizing: border-box;
+                        transition: 0.3s ease-in-out;
+                        cursor: pointer;
+                        background-color: white;
+                        &:hover{
+                            border: none;
+                            -webkit-box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                            -moz-box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                            box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                        }
+                        &.selected{
+                            border: none;
+                            -webkit-box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                            -moz-box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                            box-shadow: 2px 2px 9px 1px rgba(0,0,0,0.5);
+                        }
+
+                    }
+                }
+                .iban-havale{
+                    
+                    width: 100%;
+                    margin: 0;
+                    align-items: center;
+                    .iban{
+                        width: max-content;
+                    }
+                    .havale{
+                        width: max-content;
+                    }
+
+                }
+                input[type=submit]{
+                    background-color: var(--yellow);
+                    border: none;
+                    padding: 1rem;
+                    width: 50%;
+                    font-weight: 600;
+                    transition: 0.3s ease-in-out;
+                    &:hover{
+                        opacity: 0.8;
+                    }
+
+                }
+            }
+        }
+    }
+
+}
+

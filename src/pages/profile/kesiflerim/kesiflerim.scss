@@ -2,6 +2,11 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    
+    .non-offered-prices{
+        text-align: center;
+        font-size: 0.8rem;
+    }
     .kesiflerim-container{
         display: flex;
         width: 100%;
@@ -85,6 +90,8 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            padding-bottom: 10vh;
+            overflow-y: auto;
             @media screen and (max-width:760px) {
               padding: 0.5rem;
               gap: 4px;
@@ -102,6 +109,7 @@
                 width: 90%;
                 padding: 0.5rem 1rem;
                 border-radius: 1rem;
+                margin: 8px 0;
                 font-weight: 600;
                 @media screen and (max-width:760px) {
                     padding: 0.1rem;
@@ -176,21 +184,31 @@
                 &:hover{
                     background-color: white;
                 }
+                margin: 0.5rem 0;
             }
             .kesif-header{
                 
                 display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                overflow-x: auto;
+                @media screen and (max-width:767px) {
+                    height: 100px;
+                }
                 .left{flex: 1;
                     display: flex;
                     align-items: center;
-                    gap: 1.5rem;
+                    flex-direction: row;
+                    gap: 1rem;
                     .header-label{
                         font-weight: 600;
                         color: #505050;
-                        height: 40px;
+                        height: max-content;
                         cursor: pointer;
                         padding: 0.5rem 0.25rem;
                         border-radius: 0.5rem;
+                        font-size: 1rem;
                         &:hover{
 
                             background-color: #ed3f2427;
@@ -224,10 +242,13 @@
                     
 
                 }
-                .right{flex: 1;
+                .right{
+                flex: 1;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
+                
+                }
                 .add-new{
                     background-color: var(--yellow);
                     padding: 0.5rem 2rem;
@@ -235,7 +256,11 @@
                     border-radius: 0.5rem;
                     color: var(--black);
                     font-weight: 600;
-                }
+                    @media screen and (max-width:767px) {
+                        padding: 0.5rem;
+                        min-width: 150px;
+                        margin-left: 1rem;
+                    }
                 }
             }        
         }

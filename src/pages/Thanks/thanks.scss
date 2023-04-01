@@ -1,0 +1,23 @@
+.thanks-page{
+    padding: 3rem;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./thanks.svg");
+    background-size: cover;
+    .splitted{
+        letter-spacing: 1rem;
+        font-weight: 600;
+    }
+    img.check-done{
+        width: 10%;
+        object-fit: contain;
+        
+    }
+    .message{
+        margin-top: 1rem;
+    }
+}

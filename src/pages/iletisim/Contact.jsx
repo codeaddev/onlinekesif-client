@@ -5,14 +5,15 @@
       import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
       import WhatsAppIcon from '@mui/icons-material/WhatsApp';
       import emailjs from "@emailjs/browser";
-      import { useNavigate } from 'react-router-dom';
+      import HomeIcon from '@mui/icons-material/Home';
+     
     
      
        const Contact = () => {
           useEffect(() => {
               window.scrollTo(0, 0)
             }, [])
-      let navigate = useNavigate()
+  
             
           const form = useRef();
           const  sendEmail = (e) => {
@@ -80,6 +81,9 @@
                       <EmailIcon className='icon mail'/>
                       <label><span>E-mail</span><h3>destek@onlinekesif.com</h3></label>
                     </a>
+                   <a className="link-row">
+                      <HomeIcon className='icon home'/>
+                      <label><span>Adres</span><h3>Üçeveler Mahallesi Tanay Caddesi No:19 Kat:2 D:4 Nilüfer-BURSA</h3></label></a>
                 </div>
                 </div>
                 

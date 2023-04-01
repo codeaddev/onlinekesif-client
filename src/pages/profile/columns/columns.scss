@@ -11,17 +11,19 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
-    min-height: 156px;
+    //min-height: 156px;
     cursor: pointer;
+      box-sizing: content-box;
+     border:3px solid white;
+     transition: 500ms ease-in-out;
     &:hover{
     background-color: #f7f7f7;
     border:3px solid grey;
-    box-sizing: content-box;
+  
     -webkit-box-shadow: 0;
     -moz-box-shadow: 0;
     box-shadow: 0;
-    transition: 500ms;
-
+    transition: 500ms ease-in-out;
     }
 
     .col-top{
@@ -57,7 +59,8 @@
     }
     .col-bottom{
         display: flex;
-        flex: 0.5;
+        //flex: 0.5;
+        //height: max-content;
         .col-bottom-left{
             flex: 1;
             display: flex;

@@ -3,7 +3,7 @@
     //overflow-y: auto;
     //display: flex;
     //flex-direction: column;
-    
+ 
    .wrapper{
     padding: 5rem;
    } 
@@ -15,7 +15,6 @@
         align-items: center;
         p{width: 60%;}
     }
-  
     .about{
         width: 100%;
         overflow-y: auto;
@@ -39,6 +38,7 @@
             max-width: 1000px;
             h1{
                 font-size: 3rem;
+            
             }
             p{
                 width: 95%;
@@ -64,7 +64,6 @@
 
 
             .row{
-
                 display: flex;
                 width: 100%;
                 align-items: center;
@@ -329,6 +328,10 @@
                     &.mail{
                         color: #21759b;
                     }
+                    &.home{
+                        color: gray;
+                        
+                    }
                     }
                     label{
                         
@@ -356,6 +359,7 @@
                             cursor: pointer;
                             flex: 1;
                             font-weight: 600;
+                            font-size: medium;
                             @media screen and (max-width:760px) {
                                 font-size: 0.8rem;
                             }

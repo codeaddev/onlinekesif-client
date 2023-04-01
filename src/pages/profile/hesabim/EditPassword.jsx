@@ -41,9 +41,7 @@ if(loading){
     return <Loading title="İşleniyor" />
 }
     return (
-        <div className='formContainer'>
-            
-            <div className="inputContainer">
+        
             <form
             className='pass'
             onSubmit={handleSubmit}
@@ -113,8 +111,7 @@ if(loading){
                     >DEĞİŞTİR</button>
                 </div>
             </form>
-            </div>
-        </div>
+           
   )
 }
 

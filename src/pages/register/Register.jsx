@@ -16,7 +16,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { doc, setDoc } from 'firebase/firestore'
 import { Alert } from '@mui/material'
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-
+import "../login/login.scss"
 
 
 function Register() {
@@ -296,7 +296,7 @@ function Register() {
                               <input type="radio" id="metin" name="mrone" value="Aydınlatma Metnini okudum onaylıyorum." checked={regData.iGotit} onClick={()=>{setRegData({...regData,iGotit:!regData.iGotit})
                               
                               }}/>
-                              <label htmlFor="metin"><b><u>Aydınlatma Metnini</u></b> okudum onaylıyorum.</label>
+                              <label htmlFor="metin"><b><a href="https://onlinekesif.com/uyelik-sozlesmesi" target="_blank"><u>Aydınlatma Metnini</u></a></b> okudum onaylıyorum.</label>
                               </div>
                             </div>
               <button

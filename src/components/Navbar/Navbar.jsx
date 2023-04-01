@@ -28,7 +28,7 @@ function Navbar({setMainList,mainList,setChanged}) {
     {id:"01",label:"Kombi",set:{list:KombiData.questions,mainWish:KombiData.title}},
     {id:"02",label:"Kazan",set:{list:KazanData.questions,mainWish:"Kazan"}},
     {id:"03",label:"Klima",set:{list:KlimaData.questions,mainWish:"Klima"}},
-    {id:"04",label:"Doğalgaz Tesisatı",set:{list:DogalgazTesisat.questions,mainWish:"Doğalgaz Tesisatı"}},
+    {id:"04",label:"Jet Servisler",to:"jet-servisler",link:true},
   ]
 useEffect(()=>{
   setClassName("wide")
@@ -64,7 +64,9 @@ useEffect(()=>{
                     
   return (
    
-    <nav className={`navbar`}>
+    <nav 
+    style={{paddingBottom:0}}
+    className={`navbar`}>
       <PageModal
       open={alertMessage.visible}
       state={alertMessage}
@@ -90,7 +92,7 @@ useEffect(()=>{
                 }
               }}
               className="link">
-                <img className='logo' src={Logo} alt="logo"/>
+                <img className='nav-logo' src={Logo} alt="logo"/>
                
               </div>
             </div>
@@ -223,8 +225,10 @@ useEffect(()=>{
               
           </div>
         </div>
-        <div className="news-line">
-          <p>Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor.</p>
+        <div 
+        style={{marginBottom:0}}
+        className="news-line">
+          Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor.
         </div>
     </nav>
     

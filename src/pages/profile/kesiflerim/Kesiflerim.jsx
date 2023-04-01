@@ -17,6 +17,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { LocaleText } from '../../../components/data/dataTable/localeText'
 import { statues } from '../../../components/data/statues'
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import LaunchIcon from '@mui/icons-material/Launch';
+import BreadCrumb from '../BreadCrumb'
+
 function Kesiflerim({
   setMainList,
 
@@ -28,6 +31,7 @@ function Kesiflerim({
     window.scrollTo(0, 0)
   }, [])
 
+  let TLLocale=Intl.NumberFormat("tr-TR")
 
   const headerList = [
     { id: "01", label: "Tüm Teklifler", data: myJobs },
@@ -52,16 +56,22 @@ function Kesiflerim({
 
     display: "flex",
     bgcolor: 'background.paper',
-    p: 4,
+    p: 1,
     gap: 1,
+    alignItems:"center",
+    justifyContent:"center",
+    
 
 
   };
   const styleone = {
-    border: '2px solid #000',
+    border: '1px solid #000',
     display: "flex",
     bgcolor: 'background.paper',
-    p: 4,
+    p: 2,
+    borderRadius:1,
+    alignItems:"center",
+    justifyContent:"center",
     cursor: "pointer",
 
 
@@ -249,20 +259,7 @@ function Kesiflerim({
     },
   ];
   const columnsMobile = [
-    {
-      field: 'id',
-      headerName: 'Keşif ID',
-      headerAlign: 'center',
-      headerClassName: 'column-header',
-      align: "center",
-      maxWidth: 120,
-      renderHeader: () => {
-        return (
-          <div>Keşif ID</div>
-        )
-      },
-      flex: 1
-    },
+   
 
 
 
@@ -276,7 +273,7 @@ function Kesiflerim({
       sortable: false,
       align: "center",
       description: 'Hizmet talebinizin kategorisidir.',
-      flex: 0.7,
+      flex: 1,
       renderHeader: () => {
         return (
           <div>Keşif Kategorisi</div>
@@ -310,10 +307,10 @@ function Kesiflerim({
                 <span
                 className='offered-prices mobile'
                   key={i.id}
-                >{i.totalPrice} ₺</span>
+                >{ TLLocale.format(i.totalPrice)} ₺</span>
               )
             })
-            : <span>Henüz Teklif Yok</span>
+            : <span className='non-offered-prices'>Henüz Teklif Yok</span>
           }</div>
         )
       }
@@ -328,7 +325,7 @@ function Kesiflerim({
       headerClassName: 'column-header',
       align: "center",
       width: isMobile ? 150 : 100,
-      flex: isMobile ? 1.3 : 1,
+      flex: 1,
       renderHeader: () => {
         return (
           <div>Durum</div>
@@ -347,25 +344,29 @@ function Kesiflerim({
     },
 
     {
-      field: ' ',
+      field: 'doc',
       headerName: ' ',
       sortable: false,
-      width: isMobile ? 150 : 100,
-      flex: isMobile ? 1.3 : 1,
+      flex: isMobile?0.3:1,
       align: "center",
 
       renderCell: props => {
         return (
+          <>
           <NavLink
             to={`${props.row.mainWish + "-" + props.row.id}`} state={props.row}
             className='view-button'
-          >Görüntüle </NavLink>
+          >{isMobile?<LaunchIcon/>:Görüntüle}</NavLink>
+          </>
         )
       }
     },
   ];
 
-
+  const pages=[
+    {id:"01",label:"Profil",route:"/profil",link:true,after:true},
+    {id:"02",label:"Keşiflerim",route:"/profil/kesiflerim",link:true},
+  ]
 
   return (
 
@@ -386,7 +387,7 @@ function Kesiflerim({
         <Fade in={open}>
           <Box
             sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+            <Typography id="transition-modal-title" variant="h6" component="h2" align='center'>
               Servis İhtiyacınız Hangisi
             </Typography>
 
@@ -418,6 +419,7 @@ function Kesiflerim({
         <Hidden />
         <Sidebar />
         <div className="kesiflerim-inner-container">
+          <BreadCrumb pages={pages} />
           <KesifHeader
             setSelectedList={setSelectedList}
             selectedList={selectedList}
@@ -429,10 +431,16 @@ function Kesiflerim({
               rows={selectedList.list.filter(i => !i.cancelled)}
               columns={isMobile | window.innerWidth < 800 ? columnsMobile : columns}
               pageSize={7}
-              
+              getRowId={(row)=>row.id}
               pagination
-              rowsPerPageOptions={[]}
+              getRowHeight={()=>"auto"}
               autoHeight
+              onRowClick={(row)=>{
+                if(row){
+                  console.log(row.row.mainWish)
+                  navigate(`${row.row.mainWish + "-" + row.id}`,{state:row.row })
+                }
+                }}
               //checkboxSelection
               localeText={LocaleText}
               disableSelectionOnClick
@@ -446,3 +454,5 @@ function Kesiflerim({
 }
 
 export default Kesiflerim
+
+//LS6D3JGX 

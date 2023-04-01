@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 import React,{useContext, useEffect, useRef, useState} from 'react';
 import WishListAlt from "./components/wishlist/WishListAlt";
-
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Profile from "./pages/profile/Profile";
 import Kesiflerim from "./pages/profile/kesiflerim/Kesiflerim";
 import KesifSingle from "./pages/profile/kesiflerim/KesifSingle";
@@ -49,10 +49,15 @@ import { IconContext } from "react-icons/lib";
 import Kosullar from "./pages/kosullar/Kosullar";
 import TagtPage from "./pages/import/tedarikci-aydınlatma-ve-gizlilik-taahhutnamesi/Tagt";
 import Payment from "./pages/payment/Payment";
+import JetServices from "./pages/jetServices/JetServices";
+import Thanks from "./pages/Thanks/Thanks";
+import { IconButton } from "@mui/material";
+import ValidationPageFirst from "./pages/payment/ValidationPageFirst";
+import ValidationPage from "./pages/payment/ValidationPage";
 
 
 function App() {
-  const delay = 5;
+  const delay = 0.5;
   const [successMessage,setSuccessMessage]=useState("")
   const [errorMessage,setErrorMessage]=useState("")
   const [mainList,setMainList]=useState({})
@@ -119,6 +124,9 @@ useEffect(
     <Routes>
       <Route path="KVKK" element={<KvkkPage/>} />
       <Route path="odeme" element={<Payment/>} />
+      <Route path="tesekkurler" element={<Thanks/>} />
+      
+      <Route path="jet-servisler" element={<JetServices/>} />
       <Route path="KV-saklanmasi-ve-imha" element={<KvsiPage/>} />
       <Route path="uyelik-sozlesmesi" element={<Kosullar/>} />
       <Route path="Web-Sitesi-Gizlilik-Ve-Cerz-Politikasi" element={<WsgzpPage/>} />
@@ -142,6 +150,10 @@ useEffect(
       <Route path="blog">
           <Route index element={<Blog/>}/>
           <Route path=":blogId" element={<BlogSingle/>}/>
+      </Route>
+      <Route path="validasyon">
+          <Route index element={<ValidationPageFirst/>}/>
+          <Route path=":id" element={<ValidationPage/>}/>
       </Route>
       <Route path="hizmetler" element={<Services
       setMainList={setMainList}
@@ -205,16 +217,23 @@ useEffect(
     setChanged={setChanged}
     setMainList={setMainList}/>
  
-<div className="page">
+    <div className="page">
       <div className="progress_wrapper">
         <div className="progress_bar" id="bar"></div>
       </div>
-      <FaArrowUp 
-        className={showButton ? "showButton" : "hidden"}
-        onClick={scrollToTop}
-      />
     </div>
-  
+ 
+      <div
+        className={showButton ? "showScrollButton" : "hiddenScrollButton"}   
+      >
+      <IconButton>
+          <KeyboardArrowUpIcon
+            className="scrollTopIcon"
+            onClick={scrollToTop}        
+          />
+          </IconButton>
+      </div>
+    
    <CookieConsent
       //debug={true}
       location="bottom"
@@ -228,6 +247,7 @@ useEffect(
    reklamları ve içerikleri kişiselleştirmek için &nbsp;<a href="https://onlinekesif.com/Web-Sitesi-Gizlilik-Ve-Cerz-Politikasi">
    Çerez Politikası'ndan </a>&nbsp; yararlanıyoruz. 
    Aynı zamanda site kullanımınızla ilgili bilgileri; reklamcılık, sosyal medya ve analiz ortaklarımızla paylaşıyoruz.
+   
    </CookieConsent>  
   </BrowserRouter>
  

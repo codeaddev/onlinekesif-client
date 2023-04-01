@@ -56,7 +56,7 @@ function WishListAlt({
     }else {return}
   }
 
-  const {userData,user,register,popuplogin,getUserData}=useContext(AuthenticationContext)
+  const {userData,user,register,popuplogin,getUserData,gettingUser}=useContext(AuthenticationContext)
   //render edilmeden önceki bilgiler
   const ekstra="Ekstra Açıklama ve Talepler";
   var today=new Date()
@@ -81,7 +81,7 @@ function WishListAlt({
   const [basicInfo,setBasicInfo]=useState({
         city:"Bursa",
         region:userData?userData.region:"",
-        name:userData?userData.userName:"",
+        name:userData?userData.userName||userData.userNameAuth:"",
         phone:userData?userData.phone:"",
         email:userData?userData.email:"",
         adress:userData?userData.adress:"",

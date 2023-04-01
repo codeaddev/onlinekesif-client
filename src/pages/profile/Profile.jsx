@@ -8,6 +8,9 @@ import Hidden from './Hidden'
 import Column from './columns/Column'
 import { CloudContext } from '../../context/cloudContext'
 import { sendMail } from '../../context/mail'
+import BreadCrumb from './BreadCrumb'
+import { isMobile } from 'react-device-detect'
+import ProfileHeaderBar from './ProfileHeaderBar'
 
 
 function Profile({setMainList,}) {
@@ -21,19 +24,26 @@ function Profile({setMainList,}) {
     {id:"04",headBar:"DUYURULAR", data:[],svg:"AnyIcon"},
   ]
 
-
+const pages=[
+  {id:"01",label:"Profil",route:"/profil",link:true}
+]
   return (
     <div className='profile'>
       
       <div className="profile-container">
-        <Hidden/>
+        {/* <Hidden/> */}
         <Sidebar/>
 
         <div className="profile-inner-container">
+       
+        {/* <BreadCrumb pages={pages}/> */}
+       {isMobile&&<ProfileHeaderBar/>}
           <div className="top">
             <Widgets myJobs={myJobs}/>
           </div>
+          
           <div className="bottom">
+            
             {data.map(i=>{
               return(
                 <Column 
@@ -44,11 +54,11 @@ function Profile({setMainList,}) {
               )
             })}
           </div>
-          <div 
+          {/* <div 
           onClick={()=>sendMail("Faruk","farukkeskinsoy88@gmail.com","Deneme Başlık","Deneme içerik")}
           className="sendEmail">
             E-Posta gönder
-          </div>
+          </div> */}
         </div>
       </div>
       

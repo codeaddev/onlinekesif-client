@@ -7,6 +7,7 @@ import { auth } from '../../../firebase/firebase.config'
 import Districts from 'turkey-neighbourhoods/data/extra/districts_by_city.json'
 import Neighbourhood from 'turkey-neighbourhoods/data/extra/neighbourhoods_by_district_and_city.json'
 import { BursaDistricts, BursaNeighbourhoods,Bursa } from '../../data/bursa/ditricts'
+import { CircularProgress } from '@mui/material'
 
 const EndForm = ({
     questionData,
@@ -37,6 +38,7 @@ const EndForm = ({
 
 }) => {
 
+  const {gettingUser}=useContext(AuthenticationContext)
     
     const [willReg,setWillReg]=useState(true)
 
@@ -65,7 +67,7 @@ const EndForm = ({
     <div className='last-page'>
         
         <h4>Son birkaç bilgiye ihtiyacımız var</h4>
-        <div className='input-area'>
+       {gettingUser?<CircularProgress/>: <div className='input-area'>
           <div className="top">
           <textarea
                   placeholder='Eklemek ve belirtmek istediğiniz başka birşey varsa..'
@@ -126,7 +128,7 @@ const EndForm = ({
                 </div>
                 <textarea
                   
-                  placeholder='A dres'
+                  placeholder='Adres'
                   onChange={(e)=>setBasicInfo({...basicInfo,adress:e.target.value})}
                   value={basicInfo.adress} 
                   name='address'
@@ -229,7 +231,7 @@ const EndForm = ({
           </div>
          
           
-        </div>
+        </div>}
         
         
         

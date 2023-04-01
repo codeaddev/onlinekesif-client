@@ -12,11 +12,27 @@ module.exports=app=>{
             changeOrigin:true
         })
     )
+    app.use(
+        createProxyMiddleware("/EYV3DPay",
+        {
+            target:"https://posservice.esnekpos.com/api/pay/",
+            secure:false,
+            changeOrigin:true
+        })
+    )
+    app.use(
+        createProxyMiddleware("/ProcessQuery",
+        {
+            target:"https://posservice.esnekpos.com/api/services/",
+            secure:false,
+            changeOrigin:true
+        })
+    )
     
     app.use(
         createProxyMiddleware("/api",
         {
-            target:"http://localhost:3001",
+            target:"https://posservice.esnekpos.com/api/services/GetInstallments",
             changeOrigin:true,
             secure:false,
             

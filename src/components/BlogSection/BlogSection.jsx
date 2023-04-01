@@ -7,6 +7,7 @@ import SectionHeader from '../sectionHeaders/SectionHeader'
 import Slider from "react-slick"; 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { isMobile } from 'react-device-detect'
 
 const BlogSection = () => {
   const {wpBlogs}=useContext(CloudContext)
@@ -93,13 +94,14 @@ const BlogSection = () => {
     }
     //console.log(innerWidth)
     const settings = {
-      dots: true,
+      dots: isMobile?false:true,
       infinite: true,
+      
       slidesToShow: decideSlideToShow(),
       slidesToScroll: decideSlideToShow(),
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
-      
+      centerMode: true,
       //variableWidth: window.innerWidth>767?true:false,
       // centerMode: true,
       // responsive: [
@@ -137,8 +139,10 @@ const BlogSection = () => {
               
               >Online Keşif<strong><u>Bilgilendiriyor</u></strong></SectionHeader>
               {/* <MiniExplain>İhtiyacınızı anlamaya yönelik hazırlanan bloglardan faydalanın.</MiniExplain> */}
-              <div style={{width:"100%",padding:10}} >
-              <Slider {...settings}>
+              <div style={{width:"100%",padding:0}} >
+              <Slider 
+              arrows={false}
+              {...settings}>
               {wpBlogs.length>0&& wpBlogs?.map(i=>{
                 return(
                   <BlogItem

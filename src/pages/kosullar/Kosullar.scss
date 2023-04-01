@@ -19,8 +19,15 @@
         width: 100%;
         text-align: center;
     }
+    h4{
+        font-size: larger;
+    }
     a{
         color: black;
+        &:hover{
+            color: #2e2e2e;
+            transition: 500ms;
+        }
     }
     
     ol {

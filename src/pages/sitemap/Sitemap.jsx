@@ -74,17 +74,23 @@ function Sitemap({ setMainList, setChanged }) {
               <div className="buttons">
               {questionData.map(i => {
                 return (
-                  <div
+                  <>
+                  {i.title!=="Doğalgaz Tesisatı"&&<div
                   key={i.id}
                     onClick={() => {
                         handleRoute(i)
                     }}
                     className="button">
                     {i.title}
-                  </div>
+                  </div>}
+                  
+                  </>
                 )
               })}
-
+<div
+              onClick={()=>navigate("/jet-servisler")}
+              className='button'
+              >Jet Servisler</div>
             </div>
             </div>
             

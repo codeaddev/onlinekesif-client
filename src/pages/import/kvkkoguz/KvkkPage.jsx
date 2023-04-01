@@ -28,7 +28,7 @@ function KvkkPage() {
     return (
         <div className='kvsi-page'>
             <div className="kvsi-container">
-            <h1 style={{textAlign: "center"}}>
+            <h1 style={{textAlign: "center",fontSize:"25px"}}>
                 <h4>ONLİNE KEŞİF</h4>
              KİŞİSEL VERİLERİN İŞLENMESİ VE  KORUNMASI  POLİTİKASI
             </h1>
@@ -63,7 +63,7 @@ function KvkkPage() {
             
 
             
-            <h3>KİŞİSEL VERİLERİN KORUNMASI VE İŞLENMESİ POLİTİKASI</h3> <br />
+            <h3 style={{fontSize:"20px"}}>KİŞİSEL VERİLERİN KORUNMASI VE İŞLENMESİ POLİTİKASI</h3> <br />
 
             <ol>
             <li id="amac">
@@ -605,7 +605,7 @@ function KvkkPage() {
                                                         No: 19 Kat: 2 D: 4 Nilüfer – BURSA adresimize başvuru yapabilirsiniz.</p><br />
 
                                                         Yukarıda belirtilen haklarınız ile ilgili <button style={{border:"none", background:"white" ,cursor: "pointer"}}
-                                                         onClick={handleDownload}> <h3>başvuru formumuzu</h3> </button> ise  buradan indirebilirsiniz.
+                                                         onClick={handleDownload}> <span> başvuru formumuzu </span> </button> ise  buradan indirebilirsiniz.
                                          </ol>
             </div>
             

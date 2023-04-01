@@ -8,7 +8,7 @@ function Kosullar () {
    
     <div className='kosullar-page'>
         <div className='kosullar-container'>
-            <h1>ONLİNE KEŞİF KULLANICI/ÜYELİK SÖZLEŞMESİ</h1><br />
+            <h1 style={{textAlign: "center",fontSize:"25px"}}>ONLİNE KEŞİF KULLANICI/ÜYELİK SÖZLEŞMESİ</h1><br />
          
         <h4>1. TARAFLAR</h4> 
          <p> <br />
@@ -38,8 +38,8 @@ function Kosullar () {
                     Online Keşif tarafından hangi amaçlarla ve ne şekilde kullanılacağı 
                     gibi konular da dahil olmak üzere Online Keşif’in kişisel 
                     verilere ve çerez kullanımına ilişkin genel gizlilik politikasını
-                     düzenleyen ve Platform üzerinden <a href="https://onlinekesif.com/" target="_blank">
-                        <u>www.onlinekesif.com</u> </a> linkinden 
+                     düzenleyen ve Platform üzerinden 
+                   <u> www.onlinekesif.com</u> linkinden 
                      erişilebilecek olan metni ifade eder.</td>
             </tr>
 

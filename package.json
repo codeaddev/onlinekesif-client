@@ -2,7 +2,6 @@
   "name": "online_kesif_client",
   "version": "0.1.0",
   "private": true,
-  
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
     "@emotion/react": "^11.10.0",
@@ -28,6 +27,7 @@
     "file-saver": "^2.0.5",
     "firebase": "^9.14.0",
     "http-proxy-middleware": "^2.0.6",
+    "moment": "^2.29.4",
     "node-mailjet": "^5.1.1",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.6.4",
@@ -60,7 +60,6 @@
     "eject": "react-scripts eject",
     "server": "nodemon server.js"
   },
-  
   "eslintConfig": {
     "extends": [
       "react-app",

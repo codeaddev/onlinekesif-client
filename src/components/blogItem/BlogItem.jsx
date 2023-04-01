@@ -15,7 +15,7 @@ const BlogItem = ({item,source}) => {
     target="_blank"
     style={{backgroundImage:`url(${source})`}}
     className={`blog-card ${!source&&"empty"}`}>
-        <p className={`${!source&&"empty"}`}>{item?.title?.rendered}</p>
+        <div className={`${!source&&"empty"} summary`}>{item?.title?.rendered}</div>
         {<img src={source?source:logo} className="post-img" />}
         </a>
   

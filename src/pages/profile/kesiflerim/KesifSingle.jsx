@@ -27,13 +27,18 @@ import Loading from '../../../components/loading/Loading'
 import LaunchIcon from '@mui/icons-material/Launch';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import emailjs from '@emailjs/browser';
+import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import BreadCrumb from '../BreadCrumb'
+import { CircularProgress } from '@mui/material'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 
 function KesifSingle() {
   const {state}=useLocation()
   const [updating,setUpdating]=useState(false)
-  const [willBeUpdated,setWillBeUpdated]=useState(state.Offers)
-
+  const [willBeUpdated,setWillBeUpdated]=useState(state?.Offers)
+  const {servisId}=useParams()
   const sendConfirmEmailToUser = () => {
 
     var params={
@@ -196,12 +201,12 @@ const [alertmessage,setAlertMessage]=useState({
   handleFunction:"",
   functionText:""
 })
-  console.log(state)
   
+const [open, setOpen] = useState(false); 
 function Row({row}) {
 
-  const [open, setOpen] = React.useState(false);
 
+  console.log(open)
   const handleCancel=async(e,row)=>{
     e.preventDefault()
     await updateDoc(doc(db,"Jobs",state.doc),{
@@ -272,51 +277,54 @@ function Row({row}) {
     sendCompleteEmailToFirm(row)
     sendCompleteEmailToAdmin()
   }
+
+  let navigate=useNavigate()
   const handleAccept=async(e,row)=>{
     e.preventDefault()
-    await updateDoc(doc(db,"Jobs",state.doc),{
-      statue:3,
-      statueMap:{id:new Date().valueOf(),createdAt:new Date(),what:3,for:row.firm,who:auth?.currentUser?.uid},
-      Offers:[{
-        KPU:row.KPU,
-        accepted:true,
-        firm:row.firm,
-        firmName:row.firmName,
-        id:row.id,
-        email:row.email,
-        logo:row.logo,
-        refused:false,
-        relatedProducts:row.relatedProducts,
-        totalPrice:row.totalPrice,
-        createdAt:new Date(row.createdAt.seconds*1000),
-      }]
-    })
-    .then(()=>{
-      setAlertMessage({
-        visible:true,
-        isInfo:true,
-        isError:false,
-        title:"Tamamdır",
-        infoText:"Onayınız Firma Tarafına ve Online Keşif'e iletildi.",
-        functionText:"",
-        route:"/profil/kesiflerim",
-        handleFunction:"",
-      })
-    }).catch((e)=>{
-      setAlertMessage({
-        visible:true,
-        isInfo:true,
-        isError:true,
-        title:"Uyarı",
-        infoText:"Bir hata meydana geldi",
-        functionText:"",
-        route:"/profil/kesiflerim",
-        handleFunction:"",
-      })
-    })
-    sendConfirmEmailToUser()
-    sendConfirmEmailToFirm(row)
-    sendConfirmEmailToAdmin()
+    // await updateDoc(doc(db,"Jobs",state.doc),{
+    //   statue:3,
+    //   statueMap:{id:new Date().valueOf(),createdAt:new Date(),what:3,for:row.firm,who:auth?.currentUser?.uid},
+    //   Offers:[{
+    //     KPU:row.KPU,
+    //     accepted:true,
+    //     firm:row.firm,
+    //     firmName:row.firmName,
+    //     id:row.id,
+    //     email:row.email,
+    //     logo:row.logo,
+    //     refused:false,
+    //     relatedProducts:row.relatedProducts,
+    //     totalPrice:row.totalPrice,
+    //     createdAt:new Date(row.createdAt.seconds*1000),
+    //   }]
+    // })
+    // .then(()=>{
+    //   setAlertMessage({
+    //     visible:true,
+    //     isInfo:true,
+    //     isError:false,
+    //     title:"Tamamdır",
+    //     infoText:"Onayınız Firma Tarafına ve Online Keşif'e iletildi.",
+    //     functionText:"",
+    //     route:"/profil/kesiflerim",
+    //     handleFunction:"",
+    //   })
+    // }).catch((e)=>{
+    //   setAlertMessage({
+    //     visible:true,
+    //     isInfo:true,
+    //     isError:true,
+    //     title:"Uyarı",
+    //     infoText:"Bir hata meydana geldi",
+    //     functionText:"",
+    //     route:"/profil/kesiflerim",
+    //     handleFunction:"",
+    //   })
+    // })
+    // sendConfirmEmailToUser()
+    // sendConfirmEmailToFirm(row)
+    // sendConfirmEmailToAdmin()
+    navigate("/odeme",{state:{...row,rfn:state.rfn}})
   }
 
 
@@ -472,10 +480,32 @@ const handleRefuse=async(e,row)=>{
           </div>
       )
   }
+  const LikeToolTipInner=({item})=>{
+        
+    return(
+     
+        <div className='like-tooltip'>
+        {otherPrices.length>0?otherPrices.map(i=>{
+            var thisProduct=i.products.find(i=>i.id===item.id)
+            return(
+                <div className='row'>
+                  
+                    <span>{i.firmName} : </span>
+                    <span>{TLLocale.format(thisProduct.unitPrice)} ₺</span>
+                </div>
+            )
+        }):<p>{item.name}</p>}
+        </div>
+    )
+}
+  const handleDraw=()=>{
+    setOpen(pre=>!pre)
+  }
   return (
 
     <div className='body-row'>
-      <TableRow 
+      <TableRow
+      onClick={handleDraw} 
       className={`body-row-row ${row.refused?"refused":"alive"}`}
       sx={{ '& > *': { borderBottom: 'unset' } }}>
         
@@ -489,7 +519,7 @@ const handleRefuse=async(e,row)=>{
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
+            onClick={handleDraw}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
@@ -498,15 +528,24 @@ const handleRefuse=async(e,row)=>{
       <TableRow className='body-row-row right'>
         
       
-          <Collapse in={open} timeout="auto" 
+          <Collapse 
+          in={open}
+          
+          timeout="auto" 
           className='content-collapse'
-          unmountOnExit>
+          TransitionProps={{
+            mountOnEnter: true,
+            unmountOnExit: true,
+          }}
+          mountOnEnter
+          unmountOnExit
+          >
             <Box 
             className='content-box'
-            sx={{ margin: 0,padding:2}}>
-              <Typography variant="h6" gutterBottom component="div">
+            sx={{ margin: 0,padding:4}}>
+              {/* <Typography variant="h6" gutterBottom component="div">
                 Servis Harcamaları
-              </Typography>
+              </Typography> */}
               <table>
                 <tr>
                   <th className='index'>S.No</th>
@@ -517,6 +556,7 @@ const handleRefuse=async(e,row)=>{
                 </tr>
                 {row.relatedProducts.map((historyRow,index) => {
                     const product=state?.relatedProducts.find(i=>i.id===historyRow.id)
+                    const [showlikeTooltip,setShowLikeToolTip]=useState(false)
                     return(
                       
                       <tr>
@@ -532,19 +572,26 @@ const handleRefuse=async(e,row)=>{
                           </td>
                         <td className='amount'>{historyRow.amount}</td>
                         
-                        <td className='price' >
-                        <Tooltip 
+                        <td 
+                        onBlur={()=>setShowLikeToolTip(false)}
+                        className='price' >
+                        <Tooltip
+                        
                           TransitionComponent={Fade}
                           followCursor
                           placement='right'
                           TransitionProps={{ timeout: 600 }}
                           title={<ToolTipInner item={historyRow}/>} arrow>
                           <CompareArrowsIcon
-                          className='icon'
+                          
+                          onClick={()=>setShowLikeToolTip(pre=>!pre)} 
+                          className={`icon ${showlikeTooltip?"showed":"not-showed"}`}
                           /></Tooltip>
                           <span>
                           {TLLocale.format(historyRow.unitPrice)}</span></td>
-                        <td className='price last'>{TLLocale.format(historyRow.price)}</td>
+                        <td className='price last'>
+                          {showlikeTooltip&&<LikeToolTipInner item={historyRow} arrow />}
+                          {TLLocale.format(historyRow.price)}</td>
                       </tr>
                       
                     )
@@ -556,8 +603,8 @@ const handleRefuse=async(e,row)=>{
                   <div
                       className='total-price'
                     >
-                    <span>Genel Toplam (KDV Dahil)</span>
-                    <span>{TLLocale.format(row.totalPrice)} ₺</span>
+                    <span className='text-in-row' >Genel Toplam (KDV Dahil)</span>
+                    <span className='price-in-row'>{TLLocale.format(row.totalPrice)} ₺</span>
                   </div>
                   <p>Bu bir ön keşif formudur. Uygulama esnasında ek maliyetler çıkabilir. </p>
                  
@@ -597,7 +644,7 @@ const handleRefuse=async(e,row)=>{
     </div>
   );
 }
-  const wishDetail=Object.values(state.wishDetail).sort((a,b)=>{return a.id-b.id})
+  const wishDetail=state?Object.values(state.wishDetail).sort((a,b)=>{return a.id-b.id}):{}
 const handleClick=()=>{
 setIsCollapsed(pre=>pre==="closed"?"opened":"closed")
 }
@@ -659,7 +706,16 @@ return(
   <Loading title="Güncelleniyor" />
 )
 }
-
+const pages=[
+  {id:"01",label:"Profil",route:"/profil",link:true,after:true},
+  {id:"02",label:"Keşiflerim",route:`/profil/kesiflerim/`,link:true,after:true},
+  {id:"03",label:state.mainWish,route:`/profil/kesiflerim/${servisId}`,},
+]
+if(Object.keys(state.wishDetail).length<1){
+  return(
+    <CircularProgress/>
+  )
+}
   return (
     <div className='kesif'>
       <div className="kesif-container">
@@ -679,13 +735,14 @@ return(
         <Hidden/>
         <Sidebar/>
         <div className="kesif-inner-container">
+          <BreadCrumb pages={pages} />
         <button 
         onClick={handleClick}
-        type="button" className="collapsible">Talep Detaylarınız<ExpandMoreIcon/></button>
+        type="button" className="collapsible">Talep Detaylarınız{isCollapsed==="closed"?<KeyboardArrowDownIcon/>:<KeyboardArrowUpIcon/>}</button>
           
           <div id='collapsible-box' className={`content ${isCollapsed}`}>
             <p className='detail-title'>Hizmet İstek Detayınız</p>
-            {wishDetail.map(i=>{
+            {wishDetail?.map(i=>{
               return(
                 <div 
                 key={i.id}
@@ -704,7 +761,7 @@ return(
                 <TableHead className='table-head'>
                     <TableRow className='head-row'>
                     
-                    <TableCell className='head-cell first' align="center">{state.id}</TableCell>
+                    <TableCell className='head-cell first' align="center">Keşif ID {state.id}</TableCell>
                     <TableCell className='head-cell second' align="left">{state.mainWish}</TableCell>
                     <TableCell className='head-cell third' align="left">{state.adress} /{state.city}</TableCell>
                     <TableCell className='head-cell last' align="right">{new Date(state.createdAt.seconds*1000).toLocaleString()}</TableCell>

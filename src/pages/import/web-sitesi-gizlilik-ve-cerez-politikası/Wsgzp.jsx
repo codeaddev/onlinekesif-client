@@ -7,7 +7,7 @@ function WsgzpPage() {
     return (
         <div className='kvsi-page'>
             <div className="kvsi-container">
-            <h1>WEB SİTESİ GİZLİLİK VE ÇEREZ POLİTİKASI</h1>
+            <h1  style={{textAlign: "center",fontSize:"25px"}}>WEB SİTESİ GİZLİLİK VE ÇEREZ POLİTİKASI</h1><br />
             <h4>1. Veri sorumlusu</h4>
             <p>
             Biz Online Keşif Mühendislik ve Danışmanlık Anonim Şirketi , Üçevler Mah. Tanay Cad. No:19/4 Nilüfer/BURSA adresinde (bundan böyle “biz” olarak anılacaktır), 
