@@ -1,0 +1,148 @@
+@import "../../index.scss";
+
+.main {
+  height: 83vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.secondItem {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.plugins {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .leftSide {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-start;
+    .leftLine {
+      background-color: #f9d641;
+      width: 90%;
+      height: 16px;
+    }
+    .leftPlugin {
+      position: relative;
+      margin-right: -27px;
+      animation-name: leftPlugin;
+      animation-duration: 1s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+  .rightSide {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+    .rightLine {
+      background-color: #f9d641;
+      width: 90%;
+      height: 16px;
+    }
+    .rightPlugin {
+      position: relative;
+      margin-left: -27px;
+      animation-name: rightPlugin;
+      animation-duration: 1s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.thirdItem {
+  font-size: 26px;
+}
+
+.fourthItem {
+  .login-button {
+    background-color: #f9d641;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 37px;
+    cursor: pointer;
+    &:hover {
+      background: #2e2e2e;
+      transition: 500ms;
+    }
+  }
+}
+
+//Animations
+
+@keyframes leftPlugin {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 80px;
+  }
+}
+
+@keyframes rightPlugin {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 80px;
+  }
+}
+
+//Responsive
+@media screen and (max-width: 1280px) {
+  .main {
+    gap: 2rem;
+  }
+  .firstItem {
+    width: 280px;
+  }
+  .secondItem {
+    font-size: 30px;
+  }
+  .leftPlugin {
+    margin-right: -34px !important;
+    width: 139px;
+  }
+  .rightPlugin {
+    margin-left: -6px !important;
+    width: 100px;
+  }
+  .thirdItem {
+    font-size: 16px;
+  }
+
+  .login-button{
+    font-size: 15px !important;
+    padding: 0.50rem 1.5rem;
+  }
+
+  //Animations
+  @keyframes leftPlugin {
+    0% {
+      right: 0px;
+    }
+    100% {
+      right: 40px;
+    }
+  }
+  
+  @keyframes rightPlugin {
+    0% {
+      left: 0px;
+    }
+    100% {
+      left: 40px;
+    }
+  }
+}

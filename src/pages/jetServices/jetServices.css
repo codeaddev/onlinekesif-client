@@ -1,0 +1,122 @@
+.jet-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.jet-page-container .jet-services-page {
+  flex: 1;
+  min-height: 70vh;
+  max-width: 1500px;
+  align-self: center;
+  padding: 3rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+.jet-page-container .jet-services-page form.forms {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+@media screen and (max-width: 800px) {
+  .jet-page-container .jet-services-page form.forms {
+    flex-direction: column;
+  }
+}
+.jet-page-container .jet-services-page form.forms .left, .jet-page-container .jet-services-page form.forms .right {
+  padding: 1rem;
+}
+.jet-page-container .jet-services-page form.forms .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+.jet-page-container .jet-services-page form.forms .left .text-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid gainsboro;
+  border-radius: 0.3rem;
+  max-width: 300px;
+}
+.jet-page-container .jet-services-page form.forms .left .text-input.area {
+  resize: none;
+  height: 90px;
+}
+.jet-page-container .jet-services-page form.forms .left .select {
+  width: 100%;
+  max-width: 300px;
+}
+.jet-page-container .jet-services-page form.forms .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.jet-page-container .jet-services-page form.forms .right h3 {
+  text-align: center;
+}
+.jet-page-container .jet-services-page form.forms .right .choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+.jet-page-container .jet-services-page form.forms .right .choices .choice {
+  text-overflow: inherit;
+  border: 1px solid gainsboro;
+  border-radius: 0.5rem;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: white;
+}
+.jet-page-container .jet-services-page form.forms .right .choices .choice:hover {
+  border: none;
+  box-shadow: 2px 2px 9px 1px rgba(0, 0, 0, 0.5);
+}
+.jet-page-container .jet-services-page form.forms .right .choices .choice.selected {
+  border: none;
+  box-shadow: 2px 2px 9px 1px rgba(0, 0, 0, 0.5);
+}
+.jet-page-container .jet-services-page form.forms .right .iban-havale {
+  width: 100%;
+  margin: 0;
+  align-items: center;
+}
+.jet-page-container .jet-services-page form.forms .right .iban-havale .iban {
+  width: -moz-max-content;
+  width: max-content;
+}
+.jet-page-container .jet-services-page form.forms .right .iban-havale .havale {
+  width: -moz-max-content;
+  width: max-content;
+}
+.jet-page-container .jet-services-page form.forms .right input[type=submit] {
+  background-color: var(--yellow);
+  border: none;
+  padding: 1rem;
+  width: 50%;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+}
+.jet-page-container .jet-services-page form.forms .right input[type=submit]:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=jetServices.css.map */
