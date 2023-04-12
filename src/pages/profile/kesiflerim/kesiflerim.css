@@ -1,0 +1,260 @@
+.kesiflerim {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.kesiflerim .non-offered-prices {
+  text-align: center;
+  font-size: 0.8rem;
+}
+.kesiflerim .kesiflerim-container {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+}
+.kesiflerim .kesiflerim-container .hidden-menu {
+  display: none;
+}
+@media screen and (max-width: 760px) {
+  .kesiflerim .kesiflerim-container {
+    flex-direction: column;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu {
+    display: block;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .img-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: flex;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .img-container img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .img-container img.mini {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .drop {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .drop:hover {
+    cursor: pointer;
+    background-color: rgb(230, 225, 225);
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .submenu {
+    transition: display 500ms;
+    width: 100%;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .submenu.opened {
+    transition: 300ms;
+    padding: 2rem;
+    display: block;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .submenu.closed {
+    height: 0px;
+    transition: 300ms;
+  }
+  .kesiflerim .kesiflerim-container .hidden-menu .submenu.closed .links {
+    display: none;
+  }
+  .kesiflerim .kesiflerim-container .sidebar {
+    display: none;
+  }
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container {
+  flex: 6;
+  padding: 2rem;
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 10vh;
+  overflow-y: auto;
+}
+@media screen and (max-width: 760px) {
+  .kesiflerim .kesiflerim-container .kesiflerim-inner-container {
+    padding: 0.5rem;
+    gap: 4px;
+  }
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .offered-prices-list {
+  display: flex;
+  gap: 4px;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue {
+  text-align: center;
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin: 8px 0;
+  font-weight: 600;
+}
+@media screen and (max-width: 760px) {
+  .kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue {
+    padding: 0.1rem;
+    border-radius: 0.3rem;
+    width: -moz-max-content;
+    width: max-content;
+    font-size: 0.7rem;
+    font-weight: 500;
+    flex-wrap: wrap;
+    display: flex;
+    height: -moz-max-content;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+    width: 120%;
+    flex: 1.3;
+  }
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.new {
+  border: 1px solid #1921FA;
+  color: #1921FA;
+  background-color: rgba(25, 32, 250, 0.0901960784);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.explored {
+  border: 1px solid #505050;
+  color: var(--black);
+  background-color: rgba(80, 80, 80, 0.1098039216);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.offered {
+  border: 1px solid var(--yellow);
+  color: #b69503;
+  background-color: rgba(249, 215, 65, 0.2196078431);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.approved {
+  border: 1px solid #2490f6;
+  color: #2490f6;
+  background-color: rgba(36, 145, 246, 0.2588235294);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.refused {
+  border: 1px solid #505050;
+  color: var(--black);
+  background-color: rgba(80, 80, 80, 0.1098039216);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.cancelled {
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  background-color: rgba(237, 63, 36, 0.0941176471);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .statue.completed {
+  border: 1px solid #2DAB66;
+  color: #2DAB66;
+  background-color: rgba(45, 171, 102, 0.1215686275);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .column-header {
+  font-weight: bold;
+  border: none;
+}
+@media screen and (max-width: 760px) {
+  .kesiflerim .kesiflerim-container .kesiflerim-inner-container .column-header {
+    padding: 0.5rem;
+    gap: 4px;
+    height: 200px;
+  }
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .view-button {
+  background-color: rgb(235, 232, 232);
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .view-button:hover {
+  background-color: white;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto;
+}
+@media screen and (max-width: 767px) {
+  .kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header {
+    height: 100px;
+  }
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label {
+  font-weight: 600;
+  color: #505050;
+  height: -moz-max-content;
+  height: max-content;
+  cursor: pointer;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label:hover {
+  background-color: rgba(237, 63, 36, 0.1529411765);
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label.selected {
+  color: var(--orange);
+  transition: 500ms;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label.non-selected {
+  border: none;
+  transition: 500ms;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label .down-bar {
+  background-color: var(--orange);
+  transition: 500ms;
+  height: 5px;
+  border-radius: 1rem;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label .down-bar.selected {
+  width: 100%;
+  transition: width 350ms;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .left .header-label .down-bar.non-selected {
+  width: 0;
+  transition: width 350ms;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .add-new {
+  background-color: var(--yellow);
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--black);
+  font-weight: 600;
+}
+@media screen and (max-width: 767px) {
+  .kesiflerim .kesiflerim-container .kesiflerim-inner-container .kesif-header .add-new {
+    padding: 0.5rem;
+    min-width: 150px;
+    margin-left: 1rem;
+  }
+}/*# sourceMappingURL=kesiflerim.css.map */

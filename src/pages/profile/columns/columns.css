@@ -1,0 +1,72 @@
+.col-item {
+  display: flex;
+  background-color: white;
+  box-shadow: 9px 14px 21px -17px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  box-sizing: content-box;
+  border: 3px solid white;
+  transition: 500ms ease-in-out;
+}
+.col-item:hover {
+  background-color: #f7f7f7;
+  border: 3px solid grey;
+  box-shadow: 0;
+  transition: 500ms ease-in-out;
+}
+.col-item .col-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  flex: 1;
+  border-bottom: 0.5px solid rgb(201, 192, 192);
+  padding-bottom: 0.5rem;
+}
+.col-item .col-top .col-top-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.col-item .col-top .col-top-top .col-wish-indicator {
+  background-color: var(--yellow);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+}
+.col-item .col-top .col-top-top p {
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+.col-item .col-top-bottom {
+  font-weight: 400;
+  color: #505050;
+}
+.col-item .col-bottom {
+  display: flex;
+}
+.col-item .col-bottom .col-bottom-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #505050;
+  font-size: 0.8rem;
+}
+.col-item .col-bottom .col-bottom-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.col-item .col-bottom .col-bottom-right .moment {
+  color: var(--orange);
+  font-size: 12px;
+}/*# sourceMappingURL=columns.css.map */

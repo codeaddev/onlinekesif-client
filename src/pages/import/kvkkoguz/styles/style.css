@@ -1,0 +1,59 @@
+.kvsi-page {
+  padding: 0;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.kvsi-page a {
+  color: black;
+}
+.kvsi-page .kvsi-container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.kvsi-page .kvsi-container h2, .kvsi-page .kvsi-container h1 {
+  width: 100%;
+  text-align: center;
+}
+.kvsi-page .kvsi-container ol {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+}
+.kvsi-page .kvsi-container ol a {
+  color: black;
+  text-decoration: none;
+}
+.kvsi-page .kvsi-container ol > li {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0.6em;
+}
+.kvsi-page .kvsi-container span {
+  font-weight: bolder;
+}
+.kvsi-page .kvsi-container ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;
+}
+.kvsi-page .kvsi-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.kvsi-page .kvsi-container td, .kvsi-page .kvsi-container th {
+  border: 1px solid #a2a2a2;
+  text-align: left;
+  padding: 8px;
+  font-size: 11px;
+}
+.kvsi-page .kvsi-container tr:nth-child(even) {
+  background-color: #dddddd;
+}/*# sourceMappingURL=style.css.map */

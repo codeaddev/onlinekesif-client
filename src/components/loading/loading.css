@@ -1,0 +1,10 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.loading p {
+  font-weight: 500;
+}/*# sourceMappingURL=loading.css.map */
