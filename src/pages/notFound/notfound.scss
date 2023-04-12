@@ -30,7 +30,7 @@
     }
     .leftPlugin {
       position: relative;
-      margin-right: -27px;
+      margin-right: -55px;
       animation-name: leftPlugin;
       animation-duration: 1s;
       animation-delay: 0.5s;
@@ -49,7 +49,6 @@
     }
     .rightPlugin {
       position: relative;
-      margin-left: -27px;
       animation-name: rightPlugin;
       animation-duration: 1s;
       animation-delay: 0.5s;
@@ -110,21 +109,26 @@
   .secondItem {
     font-size: 30px;
   }
+  .leftLine {
+    height: 8px !important;
+  }
   .leftPlugin {
-    margin-right: -34px !important;
-    width: 139px;
+    margin-right: -28px !important;
+    width: 90px;
+  }
+  .rightLine {
+    height: 8px !important;
   }
   .rightPlugin {
-    margin-left: -6px !important;
-    width: 100px;
+    width: 65px;
   }
   .thirdItem {
     font-size: 16px;
   }
 
-  .login-button{
+  .login-button {
     font-size: 15px !important;
-    padding: 0.50rem 1.5rem;
+    padding: 0.5rem 1.5rem;
   }
 
   //Animations
@@ -136,7 +140,7 @@
       right: 40px;
     }
   }
-  
+
   @keyframes rightPlugin {
     0% {
       left: 0px;
