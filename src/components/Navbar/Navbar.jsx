@@ -13,6 +13,7 @@ import { CloudContext } from "../../context/cloudContext";
 import { PageModal } from "../Modal/PageModal";
 import UserInfoCard from "../userInfoCard/UserInfoCard";
 import { Button, Tab, Tabs, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
 function Navbar({ setMainList, mainList, setChanged }) {
   const { user } = useContext(AuthenticationContext);
@@ -37,6 +38,10 @@ function Navbar({ setMainList, mainList, setChanged }) {
     },
     { id: "04", label: "Jet Servisler", to: "jet-servisler", link: true },
   ];
+  const [linkWidth, setLinkWidth] = useState();
+  const [linkPosition, setLinkPosition] = useState();
+  const [selectionItem, setSelectionItem] = useState([]);
+
   useEffect(() => {
     setClassName("wide");
   }, [paged]);
@@ -62,6 +67,25 @@ function Navbar({ setMainList, mainList, setChanged }) {
     }
   };
   var route = useLocation().pathname;
+
+  const slideUnderline = (e) => {
+    setLinkWidth(e.target.offsetWidth);
+    setLinkPosition(e.target.offsetLeft - e.relatedTarget.offsetLeft);
+  };
+
+  const selectItem = () => {
+    setSelectionItem({ width: linkWidth, position: linkPosition });
+  };
+
+  const selectedItem = () => {
+    if (selectionItem.length !== 0) {
+      setLinkPosition(selectionItem.position);
+      setLinkWidth(selectionItem.width);
+    } else {
+      setLinkPosition(0);
+      setLinkWidth(0);
+    }
+  };
 
   return (
     <nav style={{ paddingBottom: 0 }} className={`navbar`}>
@@ -97,47 +121,47 @@ function Navbar({ setMainList, mainList, setChanged }) {
           </div>
         </div>
         <div className="navbarRightArea">
-          <div className="center">
-            {Links.map((i) => {
-              return (
-                <Typography
-                  className="headerItem"
-                  key={i.id}
-                  onClick={() => {
-                    if (route === "/hizmet-olustur") {
-                      setAlertMessage({
-                        ...alertMessage,
-                        visible: true,
-                        title: "Uyarı",
-                        infoText: "Yaptığınız Değişikler Kaybolmak Üzere",
-                        isInfo: false,
-                        isError: false,
-                        route: "/hizmet-olustur",
-                        handleFunction: () => handleRoute(i),
-                      });
-                    } else {
-                      handleRoute(i);
-                    }
-                  }}
-                  onMouseEnter={(event) => {
-                    event.target.style.setProperty(
-                      "--underline-width",
-                      `${event.target.offsetWidth}px`
-                    );
-                    event.target.style.setProperty(
-                      "--underline-offset-x",
-                      `${event.target.offsetLeft}px`
-                    );
-                  }}
-                  onMouseLeave={(event) =>
-                    event.target.style.setProperty("--underline-width", "0")
-                  }
-                >
-                  {i.label}
-                </Typography>
-              );
-            })}
+          <div className="menuArea">
+            <div className="menuLinks">
+              {Links.map((i) => {
+                return (
+                  <a
+                    className="linkItem"
+                    key={i.id}
+                    onClick={(e) => {
+                      selectItem();
+                      if (route === "/hizmet-olustur") {
+                        setAlertMessage({
+                          ...alertMessage,
+                          visible: true,
+                          title: "Uyarı",
+                          infoText: "Yaptığınız Değişikler Kaybolmak Üzere",
+                          isInfo: false,
+                          isError: false,
+                          route: "/hizmet-olustur",
+                          handleFunction: () => handleRoute(i),
+                        });
+                      } else {
+                        handleRoute(i);
+                      }
+                    }}
+                    onMouseEnter={(e) => slideUnderline(e)}
+                    onMouseLeave={selectedItem}
+                  >
+                    {i.label}
+                  </a>
+                );
+              })}
+            </div>
+            <div
+              className="underline"
+              style={{
+                width: `${linkWidth}px`,
+                marginLeft: `${linkPosition}px`,
+              }}
+            />
           </div>
+
           <div className="headerRight">
             <div
               onClick={() =>
@@ -153,26 +177,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
               </NavLink>
 
               {user && !user.isAnonymous ? (
-                <div
-                  onClick={() => {
-                    setClassName("wide");
-                    if (route === "/hizmet-olustur") {
-                      setAlertMessage({
-                        ...alertMessage,
-                        visible: true,
-                        title: "Uyarı",
-                        infoText: "Yaptığınız Değişikler Kaybolmak Üzere",
-                        isInfo: false,
-                        isError: false,
-                        route: "/hizmet-olustur",
-                        handleFunction: () => navigate("/profil"),
-                      });
-                    } else {
-                      navigate("/profil");
-                    }
-                  }}
-                  className="button logged"
-                >
+                <div className="button logged">
                   <UserInfoCard user={user} />
                 </div>
               ) : (
