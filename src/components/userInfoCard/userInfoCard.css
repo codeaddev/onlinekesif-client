@@ -1,1 +1,39 @@
-/*# sourceMappingURL=userInfoCard.css.map */
+a {
+  text-decoration: none !important;
+  color: #000 !important;
+  display: flex;
+  align-items: center;
+}
+
+.userCardArea .userCardBody {
+  background-color: var(--black) !important;
+  gap: 0.25rem;
+}
+.userCardArea .userCardBody .userCardAvatar {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--orange);
+}
+.userCardArea .userCardBody .userCardNameText {
+  font-weight: 700;
+  display: flex;
+}
+.userCardArea .userCardBody .userCardNumberText {
+  font-size: 12px;
+  display: flex;
+}
+.userCardArea .userCardBody .userCardMenu {
+  display: flex !important;
+}
+.userCardArea .userCardBody .userCardMenuIcon {
+  margin-right: 1rem;
+}
+.userCardArea .userCardBody .userCardMenuItem {
+  align-content: space-between !important;
+  text-decoration: none;
+}
+@media screen and (max-width: 760px) {
+  .userCardArea {
+    display: none;
+  }
+}/*# sourceMappingURL=userInfoCard.css.map */
