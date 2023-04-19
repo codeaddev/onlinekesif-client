@@ -1,9 +1,9 @@
 name: Deploy react project to FTP Client
 on:
   push:
-    branches: [ "devop" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "devop" ]
+    branches: [ "master" ]
 jobs:
   build:
     runs-on: ubuntu-latest
