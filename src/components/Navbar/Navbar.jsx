@@ -64,7 +64,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
     }
   };
   var route = useLocation().pathname;
-
+  
   const slideUnderline = (e) => {
     setLinkWidth(e.target.offsetWidth);
     setLinkPosition(e.target.offsetLeft - e.relatedTarget.offsetLeft);
@@ -264,7 +264,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
       <div style={{ marginBottom: 0 }} className="news-line">
         Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan
         yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı
-        sağlıyor.
+        sağlıyor .
       </div>
     </nav>
   );
