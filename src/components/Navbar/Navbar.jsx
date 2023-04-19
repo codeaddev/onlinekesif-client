@@ -9,15 +9,12 @@ import { auth } from "../../firebase/firebase.config";
 import { KombiData } from "../data/KombiDataBase";
 import { KazanData } from "../data/KazanDataBase";
 import { KlimaData } from "../data/KlimaDataBase";
-import { CloudContext } from "../../context/cloudContext";
 import { PageModal } from "../Modal/PageModal";
 import UserInfoCard from "../userInfoCard/UserInfoCard";
-import { Button, Tab, Tabs, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { Button, Typography } from "@mui/material";
 
 function Navbar({ setMainList, mainList, setChanged }) {
-  const { user } = useContext(AuthenticationContext);
-  const { blogs, questionData } = useContext(CloudContext);
+  const { user, userData } = useContext(AuthenticationContext);
   const [className, setClassName] = useState("wide");
   const [paged, setPaged] = useState(false);
   const Links = [
@@ -177,9 +174,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
               </NavLink>
 
               {user && !user.isAnonymous ? (
-                <div className="button logged">
-                  <UserInfoCard user={user} />
-                </div>
+                <UserInfoCard user={user} userData={userData} />
               ) : (
                 <div className="loginArea">
                   <Button

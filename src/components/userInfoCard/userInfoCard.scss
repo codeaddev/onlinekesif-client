@@ -1,0 +1,45 @@
+a {
+  text-decoration: none !important;
+  color: #000 !important;
+  display: flex;
+  align-items: center;
+}
+
+.userCardArea {
+  .userCardBody {
+    background-color: var(--black) !important;
+    gap: 0.25rem;
+
+    .userCardAvatar {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--orange);
+    }
+
+    .userCardNameText {
+      font-weight: 700;
+      display: flex;
+    }
+
+    .userCardNumberText {
+      font-size: 12px;
+      display: flex;
+    }
+
+    .userCardMenu {
+      display: flex !important;
+    }
+
+    .userCardMenuIcon {
+      margin-right: 1rem;
+    }
+
+    .userCardMenuItem {
+      align-content: space-between !important;
+      text-decoration: none;
+    }
+  }
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
+}

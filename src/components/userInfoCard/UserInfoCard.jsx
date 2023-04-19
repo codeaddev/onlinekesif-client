@@ -1,14 +1,125 @@
 import React from "react";
 import "./userInfoCard.scss";
-import { Box, Avatar } from "@mui/material";
+import { styled, alpha } from "@mui/material/styles";
+import { Box, Avatar, Typography, Menu, MenuItem, Button } from "@mui/material";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../../context/authentication";
+import { useState, useContext } from "react";
+import { KeyboardArrowDown, Logout, Person2 } from "@mui/icons-material";
 
-function UserInfoCard({ user }) {
-  console.log(user);
+const StyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "right",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  "& .MuiPaper-root": {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    color:
+      theme.palette.mode === "light"
+        ? "rgb(55, 65, 81)"
+        : theme.palette.grey[300],
+    boxShadow:
+      "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+    "& .MuiMenu-list": {
+      padding: "4px 0",
+    },
+    "& .MuiMenuItem-root": {
+      "& .MuiSvgIcon-root": {
+        fontSize: 18,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      "&:active": {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity
+        ),
+      },
+    },
+  },
+}));
+
+function UserInfoCard({ userData }) {
+  const { logout } = useContext(AuthenticationContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  let navigate = useNavigate();
+
   return (
-    <Box>
-      <Avatar />
-    </Box>
+    <div className="userCardArea">
+      <Button
+        className="userCardBody"
+        id="demo-customized-button"
+        aria-controls={open ? "demo-customized-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        variant="contained"
+        disableElevation
+        onClick={handleClick}
+      >
+        <Avatar className="userCardAvatar" src={userData.logo} />
+        <Box className="userCardText">
+          <Typography className="userCardNameText">{`${userData.userName} ${userData.lastName}`}</Typography>
+          <Typography className="userCardNumberText">{`Üye Numarası: ${userData.userUnique}`}</Typography>
+        </Box>
+      </Button>
+      <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          "aria-labelledby": "demo-customized-button",
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} disableRipple>
+          <NavLink className="userCardLink" to="/profil">
+            <Person2 />
+            Profil
+          </NavLink>
+        </MenuItem>
+        <MenuItem onClick={(e) => logout(e, navigate)} disableRipple>
+          <Logout />
+          Çıkış Yap
+        </MenuItem>
+      </StyledMenu>
+    </div>
   );
 }
 
 export default UserInfoCard;
+
+{
+  /* <Accordion>
+<AccordionSummary className="userCardBody" expandIcon={<ExpandMore />}>
+  <NavLink className="userCardLink" to="/profil">
+    <Avatar className="userCardAvatar" src={userData.logo} />
+    <Box className="userCardText">
+      <Typography className="userCardNameText">{`${userData.userName} ${userData.lastName}`}</Typography>
+      <Typography className="userCardNumberText">{`Üye Numarası: ${userData.userUnique}`}</Typography>
+    </Box>
+  </NavLink>
+</AccordionSummary>
+<AccordionDetails>
+  <Typography>Çıkış yap</Typography>
+</AccordionDetails>
+</Accordion> */
+}

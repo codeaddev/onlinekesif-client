@@ -87,12 +87,6 @@ function SideLinks() {
           );
         })}
       </div>
-      <div className="logoutButton">
-        <button onClick={(e) => logout(e, navigate)}>
-          <img src={LogoutIcon} alt="" className="icon" />
-          Çıkış
-        </button>
-      </div>
     </div>
   );
 }

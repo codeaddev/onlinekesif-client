@@ -161,7 +161,7 @@
   }
 
   .navbarWrapper {
-    width: 90%;
+    width: 97%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -316,11 +316,13 @@
         padding: 1rem;
         cursor: pointer;
         width: 100%;
-        max-width: 200px;
+        max-width: 300px;
         flex: 1;
 
         &.logged {
           background-color: var(--black);
+          height: 72px;
+          width: 220px;
         }
         &.firm {
           background-color: #bbbbba;
