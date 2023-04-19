@@ -5,15 +5,11 @@ name: Node.js CI
 
 on:
   push:
-    branches: 
-        -main
-        -devop
+    branches: [ "master", "devop" ]
         
   pull_request:
-    branches:
-        -main
-        -devop
-        
+    branches: [ "master", "devop" ]
+    
 env:
    NODE_VERSION: '16.x' 
    
