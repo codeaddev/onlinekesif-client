@@ -5,10 +5,10 @@ name: Deploy React app via FTP Client
 
 on:
   push:
-    branches: [ "main", "devop" ]
+    branches: [ main, devop ]
         
   pull_request:
-    branches: [ "main", "devop" ]
+    branches: [ main, devop ]
     
 env:
    NODE_VERSION: '16.x' 
