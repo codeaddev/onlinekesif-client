@@ -48,7 +48,7 @@
     padding: 0;
     gap: 20px;
     height: 100%;
-    align-items: start;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
     gap: 0px;
@@ -105,7 +105,7 @@
     align-self: flex-end;
     bottom: 0;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     box-shadow: 10px 10px 32px -3px rgba(0, 0, 0, 0.61);
     box-sizing: border-box;
     padding: 1rem 2rem;
@@ -319,7 +319,7 @@
     align-self: flex-end;
     bottom: 0;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     box-shadow: 10px 10px 32px -3px rgba(0, 0, 0, 0.61);
     padding: 1rem 2rem;
   }

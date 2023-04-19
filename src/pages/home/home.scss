@@ -393,7 +393,7 @@
                 padding: 3rem 1rem;
                 box-sizing: border-box;
                 width: 80%;
-               align-items: start;
+               align-items: flex-start;
                 .left{
                     
                     gap: 30px;
@@ -499,7 +499,7 @@
                         box-sizing: border-box;
                         text-align: center;
                         align-items: center;
-                        justify-content: start;
+                        justify-content: flex-start;
                     p{
                         color: var(--lblack);
                         font-size: 1.2rem;
@@ -771,7 +771,7 @@
                         flex: 1;
                         
                         display: flex;
-                        align-items: start;
+                        align-items: flex-start;
                         position: relative;
                         //height: 45%;
                         padding-bottom: 3rem;
@@ -810,7 +810,7 @@
                 background-color: transparent;
                 height: max-content;
                 align-items: flex-start;
-                justify-content: start;
+                justify-content: flex-start;
                 
                 
                 @media screen and (max-width:760px) {
@@ -967,7 +967,7 @@
 
             @media screen and (max-width:770px) {
                 padding: 0.5rem;
-                justify-content: start;
+                justify-content: flex-start;
                 gap: 8px;
                 h1{
                     font-size: 22px;
