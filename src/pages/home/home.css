@@ -521,7 +521,7 @@
   font-weight: bold;
   display: flex;
   gap: 10px;
-  align-items: end;
+  align-items: flex-end;
 }
 .home .homeContainer .section.how-works .top .left, .home .homeContainer .section.how-works .top .right, .home .homeContainer .section.how-works .bottom .left, .home .homeContainer .section.how-works .bottom .right {
   flex: 1;
@@ -631,7 +631,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 20px;
 }
 .home .homeContainer .section.we-do .top .left .right-foto {
@@ -684,7 +684,7 @@
   padding: 0;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   text-align: right;
   flex: 1;
 }
