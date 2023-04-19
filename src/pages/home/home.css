@@ -348,7 +348,7 @@
   padding: 3rem 1rem;
   box-sizing: border-box;
   width: 80%;
-  align-items: start;
+  align-items: flex-start;
 }
 .home .homeContainer .section.KPU .left {
   gap: 30px;
@@ -448,7 +448,7 @@
   box-sizing: border-box;
   text-align: center;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 .home .homeContainer .section.advantages .body .right .li-item p {
   color: var(--lblack);
@@ -705,7 +705,7 @@
 .home .homeContainer .section.we-do .bottom .right {
   flex: 1;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   position: relative;
   padding-bottom: 3rem;
 }
@@ -734,7 +734,7 @@
   height: -moz-max-content;
   height: max-content;
   align-items: flex-start;
-  justify-content: start;
+  justify-content: flex-start;
 }
 @media screen and (max-width: 760px) {
   .home .homeContainer .section.search {
@@ -888,7 +888,7 @@
 @media screen and (max-width: 770px) {
   .home .homeContainer .header {
     padding: 0.5rem;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 8px;
   }
   .home .homeContainer .header h1 {
