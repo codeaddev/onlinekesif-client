@@ -41,6 +41,8 @@ inputs:
   security:
     required: false
     description: "strict or loose"
+runs:
+  using: "node16"
 branding:
   icon: "upload-cloud"
   color: "orange"
