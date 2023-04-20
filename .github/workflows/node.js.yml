@@ -31,7 +31,7 @@ jobs:
         npm run build --if-present
         
     - name: Upload to devop via FTP
-      uses: CodeadGit/onlinekesif-client@devop
+      uses: CodeadGit/onlinekesif-client@main
       with:
         server: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USERNAME }}
