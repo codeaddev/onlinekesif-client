@@ -5,10 +5,10 @@ name: Deploy React app via FTP Client
 
 on:
   push:
-    branches: [ main, devop ]
+    branches: [ main ]
         
   pull_request:
-    branches: [ main, devop ]
+    branches: [ main ]
     
 env:
    NODE_VERSION: '16.x' 
@@ -17,10 +17,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
