@@ -18,7 +18,6 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       # Here is the deployment action
       - name: Upload from public_html via FTP
         uses: CodeadGit/onlinekesif-client@main
