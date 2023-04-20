@@ -41,9 +41,6 @@ inputs:
   security:
     required: false
     description: "strict or loose"
-runs:
-  using: "node16"
-  main: "dist/index.js"
 branding:
   icon: "upload-cloud"
   color: "orange"
