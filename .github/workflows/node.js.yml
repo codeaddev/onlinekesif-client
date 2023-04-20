@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v3
       # Here is the deployment action
       - name: Upload from public_html via FTP
-        uses: CodeadGit/onlinekesif-client@latest
+        uses: CodeadGit/onlinekesif-client@main
         with:
           server: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
