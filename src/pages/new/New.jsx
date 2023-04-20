@@ -1,10 +1,8 @@
-import React from 'react'
-import "./new.scss"
+import React from "react";
+import "./new.scss";
 
 function New() {
-  return (
-    <div className='list'>New</div>
-  )
+  return <div className="list">New</div>;
 }
 
-export default New
+export default New;

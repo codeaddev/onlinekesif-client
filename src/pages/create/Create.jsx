@@ -1,10 +1,8 @@
-import React from 'react'
-import "./create.scss"
+import React from "react";
+import "./create.scss";
 
 function Create() {
-  return (
-    <div className='create'>Create</div>
-  )
+  return <div className="create">Create</div>;
 }
 
-export default Create
+export default Create;

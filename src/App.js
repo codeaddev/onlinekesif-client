@@ -26,22 +26,16 @@ import SingleProduct from "./pages/products/SingleProduct";
 import Footer from "./components/footer/Footer";
 import Blog from "./pages/blog/Blog";
 import BlogSingle from "./pages/blog/BlogSingle";
-import Kvkk from "./pages/kvkk/Kvkk";
 import Sitemap from "./pages/sitemap/Sitemap";
-import { ColorLensOutlined, Policy } from "@mui/icons-material";
+import { Policy } from "@mui/icons-material";
 import Guidance from "./pages/guidance/Guidance";
 import About from "./pages/about/About";
 import Contact from "./pages/iletisim/Contact";
 import KvkkPage from "./pages/import/kvkkoguz/KvkkPage";
 import KvsiPage from "./pages/import/kisisel-veri-saklama-ve-imha-politikasi/KvsiPage";
 import WsgzpPage from "./pages/import/web-sitesi-gizlilik-ve-cerez-politikası/Wsgzp";
-import { CloudContext } from "./context/cloudContext";
 import WishListNew from "./components/wishlist/WishListNew";
 import CookieConsent from "react-cookie-consent";
-import { hover } from "@testing-library/user-event/dist/hover";
-import { color, style } from "@mui/system";
-import { FaArrowUp } from "react-icons/fa";
-import { IconContext } from "react-icons/lib";
 import Kosullar from "./pages/kosullar/Kosullar";
 import TagtPage from "./pages/import/tedarikci-aydınlatma-ve-gizlilik-taahhutnamesi/Tagt";
 import Payment from "./pages/payment/Payment";
@@ -59,7 +53,6 @@ function App() {
   const [mainList, setMainList] = useState({});
   const [show, setShow] = useState(false);
   const [changed, setChanged] = useState(false);
-  const { notification } = useContext(CloudContext);
   //scroll to top start
   const [showButton, setShowButton] = useState(true);
   const onScroll = () => {

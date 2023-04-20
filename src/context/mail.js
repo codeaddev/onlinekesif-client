@@ -1,30 +1,42 @@
-
-import base64 from "base-64"
+import base64 from "base-64";
 export function sendMail(name, email, subject, message) {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.set('Authorization', 'Basic ' + base64.encode('5a7e7ea76a98668cb3aea88d716298a7'+":" +'12e4b7c1a5875266ac264d3e0181589e'));
-  
-    const data = JSON.stringify({
-      "Messages": [{
-        "From": {"Email": "onlinekesif.com@gmail.com", "Name": "Online Keşif Destek Ekibi"},
-        "To": [{"Email": email, "Name": name}],
-        "Subject": subject,
-        "TextPart": message
-      }]
-    });
-  
-    const requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: data,
-    };
-  
-    fetch("https://api.mailjet.com/v3.1/send", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-  }
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.set(
+    "Authorization",
+    "Basic " +
+      base64.encode(
+        "5a7e7ea76a98668cb3aea88d716298a7" +
+          ":" +
+          "12e4b7c1a5875266ac264d3e0181589e"
+      )
+  );
+
+  const data = JSON.stringify({
+    Messages: [
+      {
+        From: {
+          Email: "onlinekesif.com@gmail.com",
+          Name: "Online Keşif Destek Ekibi",
+        },
+        To: [{ Email: email, Name: name }],
+        Subject: subject,
+        TextPart: message,
+      },
+    ],
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: data,
+  };
+
+  fetch("https://api.mailjet.com/v3.1/send", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+}
 // import Mailjet from "node-mailjet"
 // export const sendMail=()=>{
 //     Mailjet.apiConnect(
@@ -49,4 +61,3 @@ export function sendMail(name, email, subject, message) {
 //           console.log(err.statusCode)
 //         })
 // }
-

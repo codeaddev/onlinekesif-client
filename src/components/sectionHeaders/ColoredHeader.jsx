@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const ColoredHeader = ({children,bg}) => {
+const ColoredHeader = ({ children }) => {
   return (
-    <h3
-    className='colored'
-    style={{color:"#2cab67"}}
-    >{children}</h3>
-  )
-}
+    <h3 className="colored" style={{ color: "#2cab67" }}>
+      {children}
+    </h3>
+  );
+};
 
-export default ColoredHeader
+export default ColoredHeader;

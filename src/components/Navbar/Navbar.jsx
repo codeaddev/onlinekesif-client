@@ -42,7 +42,9 @@ function Navbar({ setMainList, mainList, setChanged }) {
   useEffect(() => {
     setClassName("wide");
   }, [paged]);
+
   let navigate = useNavigate();
+
   const [alertMessage, setAlertMessage] = useState({
     infoText: "",
     visible: false,
@@ -57,14 +59,14 @@ function Navbar({ setMainList, mainList, setChanged }) {
   const handleRoute = (i) => {
     if (!i.link) {
       setMainList({ list: i.set.list, mainWish: i.set.mainWish });
-      navigate("/hizmet-olustur");
+      useNavigate("/hizmet-olustur");
       setChanged((pre) => !pre);
     } else {
-      navigate(i.to);
+      useNavigate(i.to);
     }
   };
   var route = useLocation().pathname;
-  
+
   const slideUnderline = (e) => {
     setLinkWidth(e.target.offsetWidth);
     setLinkPosition(e.target.offsetLeft - e.relatedTarget.offsetLeft);
@@ -105,10 +107,10 @@ function Navbar({ setMainList, mainList, setChanged }) {
                     isInfo: false,
                     isError: false,
                     route: "/hizmet-olustur",
-                    handleFunction: () => navigate("/"),
+                    handleFunction: () => useNavigate("/"),
                   });
                 } else {
-                  navigate("/");
+                  useNavigate("/");
                 }
               }}
               className="link"
@@ -263,8 +265,8 @@ function Navbar({ setMainList, mainList, setChanged }) {
       </div>
       <div style={{ marginBottom: 0 }} className="news-line">
         Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan
-        yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı
-        sağlıyor .
+        yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor
+        .
       </div>
     </nav>
   );

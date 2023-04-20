@@ -5,7 +5,7 @@ import { Box, Avatar, Typography, Menu, MenuItem, Button } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../context/authentication";
 import { useState, useContext } from "react";
-import { KeyboardArrowDown, Logout, Person2 } from "@mui/icons-material";
+import { Logout, Person2 } from "@mui/icons-material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -61,8 +61,6 @@ function UserInfoCard({ userData }) {
     setAnchorEl(null);
   };
 
-  let navigate = useNavigate();
-
   return (
     <div className="userCardArea">
       <Button
@@ -96,7 +94,7 @@ function UserInfoCard({ userData }) {
             Profil
           </NavLink>
         </MenuItem>
-        <MenuItem onClick={(e) => logout(e, navigate)} disableRipple>
+        <MenuItem onClick={(e) => logout(e, useNavigate)} disableRipple>
           <Logout />
           Çıkış Yap
         </MenuItem>

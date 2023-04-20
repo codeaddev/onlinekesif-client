@@ -1,10 +1,8 @@
-import React from 'react'
-import "./howWorks.scss"
+import React from "react";
+import "./howWorks.scss";
 
 function HowWorks() {
-  return (
-    <div className='howWorks'>HowWorks</div>
-  )
+  return <div className="howWorks">HowWorks</div>;
 }
 
-export default HowWorks
+export default HowWorks;

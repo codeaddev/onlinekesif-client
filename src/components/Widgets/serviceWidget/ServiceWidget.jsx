@@ -1,24 +1,21 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import "./serviceWidget.scss"
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./serviceWidget.scss";
 
-function ServiceWidget({item}) {
-  
-  let navigate=useNavigate()
+function ServiceWidget({ item }) {
+  let navigate = useNavigate();
 
   return (
-    <div 
-    onClick={()=>navigate("kesiflerim")}
-    className='item'>
+    <div onClick={() => navigate("kesiflerim")} className="item">
       <div className="left">
-        <span className='label'>{item.label}</span>
-        <span className='data'>{item.data}</span>
+        <span className="label">{item.label}</span>
+        <span className="data">{item.data}</span>
       </div>
       <div className="right">
-        <img src={item.svg} alt="" className='icon' />
+        <img src={item.svg} alt="" className="icon" />
       </div>
     </div>
-  )
+  );
 }
 
-export default ServiceWidget
+export default ServiceWidget;

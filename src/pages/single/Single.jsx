@@ -1,10 +1,8 @@
-import React from 'react'
-import "./single.scss"
+import React from "react";
+import "./single.scss";
 
 function Single() {
-  return (
-    <div className='single'>Single</div>
-  )
+  return <div className="single">Single</div>;
 }
 
-export default Single
+export default Single;
