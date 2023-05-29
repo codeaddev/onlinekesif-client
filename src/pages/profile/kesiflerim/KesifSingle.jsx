@@ -1,6 +1,6 @@
 import { Fade, Hidden, Tooltip } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import "./kesif.scss";
 import Box from "@mui/material/Box";
@@ -29,6 +29,7 @@ import { CircularProgress } from "@mui/material";
 
 function KesifSingle() {
   const { state } = useLocation();
+  const { servisId } = useParams();
   const [updating, setUpdating] = useState(false);
 
   const sendCompleteEmailToUser = () => {

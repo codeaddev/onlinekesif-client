@@ -39,11 +39,10 @@ function Navbar({ setMainList, mainList, setChanged }) {
   const [linkPosition, setLinkPosition] = useState();
   const [selectionItem, setSelectionItem] = useState([]);
 
-  useEffect(() => {
-    setClassName("wide");
-  }, [paged]);
+  // useEffect(() => {
+  //   setClassName("wide");
+  // }, [paged]);
 
-  let navigate = useNavigate();
 
   const [alertMessage, setAlertMessage] = useState({
     infoText: "",
@@ -59,10 +58,10 @@ function Navbar({ setMainList, mainList, setChanged }) {
   const handleRoute = (i) => {
     if (!i.link) {
       setMainList({ list: i.set.list, mainWish: i.set.mainWish });
-      useNavigate("/hizmet-olustur");
+      navigate("/hizmet-olustur");
       setChanged((pre) => !pre);
     } else {
-      useNavigate(i.to);
+      navigate(i.to);
     }
   };
   var route = useLocation().pathname;
@@ -86,6 +85,8 @@ function Navbar({ setMainList, mainList, setChanged }) {
     }
   };
 
+  let navigate = useNavigate();
+
   return (
     <nav style={{ paddingBottom: 0 }} className={`navbar`}>
       <PageModal
@@ -107,10 +108,10 @@ function Navbar({ setMainList, mainList, setChanged }) {
                     isInfo: false,
                     isError: false,
                     route: "/hizmet-olustur",
-                    handleFunction: () => useNavigate("/"),
+                    handleFunction: () => navigate("/"),
                   });
                 } else {
-                  useNavigate("/");
+                  navigate("/");
                 }
               }}
               className="link"
