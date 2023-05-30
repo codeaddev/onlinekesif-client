@@ -7,7 +7,8 @@
 
   .nav-links {
     display: flex;
-    width: 90%;
+    margin: 0 2rem;
+    width: 100%;
 
     .link {
       text-decoration: none;
@@ -26,7 +27,7 @@
         color: var(--black) !important;
       }
       &.active {
-        color: var(--black) !important;
+        color: var(--yellow) !important;
         transition: 300ms;
       }
     }

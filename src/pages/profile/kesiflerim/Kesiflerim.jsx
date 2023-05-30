@@ -18,6 +18,7 @@ import { statues } from "../../../components/data/statues";
 import { isMobile } from "react-device-detect";
 import LaunchIcon from "@mui/icons-material/Launch";
 import BreadCrumb from "../BreadCrumb";
+import SideLinks from "../../../components/sidelinks/SideLinks";
 
 function Kesiflerim({ setMainList }) {
   const { myJobs } = useContext(CloudContext);
@@ -344,11 +345,6 @@ function Kesiflerim({ setMainList }) {
     },
   ];
 
-  const pages = [
-    { id: "01", label: "Profil", route: "/profil", link: true, after: true },
-    { id: "02", label: "Keşiflerim", route: "/profil/kesiflerim", link: true },
-  ];
-
   return (
     <div className="kesiflerim">
       <Modal
@@ -392,12 +388,10 @@ function Kesiflerim({ setMainList }) {
           </Box>
         </Fade>
       </Modal>
-
+      <SideLinks />
       <div className="kesiflerim-container">
         <Hidden />
-        <Sidebar />
         <div className="kesiflerim-inner-container">
-          <BreadCrumb pages={pages} />
           <KesifHeader
             setSelectedList={setSelectedList}
             selectedList={selectedList}

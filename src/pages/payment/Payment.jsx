@@ -12,6 +12,8 @@ import CreditCardForm from "./CreditCardForm";
 import Topbar from "./Topbar";
 import IbanEft from "./IbanEft";
 import { useLocation } from "react-router-dom";
+import Pay3D from "./Pay3D";
+import { Button } from "@mui/material";
 
 const Payment = () => {
   const { state } = useLocation();
@@ -35,16 +37,16 @@ const Payment = () => {
     data: data,
   };
 
-  useEffect(() => {
-    axios("/GetInstallments", config)
-      .then(function (response) {
-        setInstallments(response.data.INSTALLMENTS);
-        console.log("direk request cevabı", response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios("/GetInstallments", config)
+  //     .then(function (response) {
+  //       setInstallments(response.data.INSTALLMENTS);
+  //       console.log("direk request cevabı", response.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   const [selected, setSelected] = useState("credit");
 
@@ -73,51 +75,54 @@ const Payment = () => {
     PRODUCT_DESCRIPTION: "Hizmet",
     PRODUCT_AMOUNT: "1",
   });
-  const Pay = async () => {
-    var data = JSON.stringify({
-      Config: {
-        MERCHANT: "onlinekesif.com",
-        MERCHANT_KEY:
-          "xmRzaOKj6+rf6Fn/cxXgVUwiRO4pkKDVfaHaPE7bGfNICVHPS9YlNg==",
-        BACK_URL: "https://onlinekesif.com/tesekkurler",
-        PRICES_CURRENCY: "TRY",
-        ORDER_REF_NUMBER: "RFN0004",
-        ORDER_AMOUNT: "3",
-      },
-      CreditCard: {
-        ...card,
-      },
-      Customer: {
-        ...user,
-      },
-      Product: [
-        {
-          ...product,
-        },
-      ],
-    });
+  // const Pay = async () => {
+  //   var data = JSON.stringify({
+  //     Config: {
+  //       MERCHANT: "onlinekesif.com",
+  //       MERCHANT_KEY:
+  //         "xmRzaOKj6+rf6Fn/cxXgVUwiRO4pkKDVfaHaPE7bGfNICVHPS9YlNg==",
+  //       BACK_URL: "https://onlinekesif.com/tesekkurler",
+  //       PRICES_CURRENCY: "TRY",
+  //       ORDER_REF_NUMBER: "RFN0004",
+  //       ORDER_AMOUNT: "3",
+  //     },
+  //     CreditCard: {
+  //       ...card,
+  //     },
+  //     Customer: {
+  //       ...user,
+  //     },
+  //     Product: [
+  //       {
+  //         ...product,
+  //       },
+  //     ],
+  //   });
 
-    var config = {
-      method: "post",
-      url: "https://posservice.esnekpos.com/api/pay/EYV3DPay",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
+  //   var config = {
+  //     method: "post",
+  //     url: "https://posservice.esnekpos.com/api/pay/EYV3DPay",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     data: data,
+  //   };
 
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  //   axios(config)
+  //     .then(function (response) {
+  //       console.log(JSON.stringify(response.data));
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div className="page-container">
       <div className="page-wrapper">
+        <div className="payment">
+          <Button onClick={Pay3D}>Git</Button>
+        </div>
         <div className="payment-page">
           <Topbar selected={selected} setSelected={setSelected} />
           {selected === "credit" ? (

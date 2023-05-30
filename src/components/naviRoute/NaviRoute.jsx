@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Navbar/navbar.scss";
-import { useLocation, useParams } from "react-router-dom";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { NavLink } from "react-router-dom";
 
 function NaviRoute() {
   const [links, setLinks] = useState([]);
@@ -12,33 +13,37 @@ function NaviRoute() {
   ];
 
   const location = window.location.pathname.split("/");
+  const fullPath = window.location.pathname;
+  console.log(fullPath);
 
-  useEffect(() => {
-    console.log(location);
+  const breadcrumbs = location.map((item, index) => []);
 
-    const getLastLink =
-      location[1] !== "" ? location[location.length - 1] : "/";
-
-    // setLinks([
-    //   ...links,
-    //   {
-    //     id: "01",
-    //     label: `${getLastLink}`,
-    //     route: `/${getLastLink}`,
-    //     link: true,
-    //     after: true,
-    //   },
-    // ]);
-    console.log(location);
-  }, [location]);
-
-  return location.pathname === "" ? (
-    <div style={{ marginBottom: 0 }} className="news-line">
-      Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan
-      yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor .
+  return (
+    <div className="news-line">
+      {location[1] === "" ? (
+        <div>
+          Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan
+          yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı
+          sağlıyor .
+        </div>
+      ) : (
+        <>
+          <Typography className="breadcrumb">
+            <Link href={"/"}>Anasayfa</Link>
+            <Breadcrumbs
+              separator={<NavigateNextIcon fontSize="small" />}
+              aria-label="breadcrumb"
+            >
+              {location.map((item, index) => (
+                <Typography underline="hover" key={index} color="inherit">
+                  {item}
+                </Typography>
+              ))}
+            </Breadcrumbs>
+          </Typography>
+        </>
+      )}
     </div>
-  ) : (
-    <Breadcrumb pages={links} />
   );
 }
 
