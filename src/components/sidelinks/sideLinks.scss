@@ -11,7 +11,7 @@
 
     .link {
       text-decoration: none;
-      color: grey;
+      color: grey !important;
       gap: 0.5rem;
       font-weight: 600;
       //flex: 1;
@@ -23,10 +23,10 @@
       }
 
       &:hover {
-        color: var(--black);
+        color: var(--black) !important;
       }
       &.active {
-        color: var(--black);
+        color: var(--black) !important;
         transition: 300ms;
       }
     }

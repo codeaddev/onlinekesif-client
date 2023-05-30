@@ -1,12 +1,12 @@
 import Home from "./pages/home/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import Navbar from "./components/Navbar/Navbar";
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import WishListAlt from "./components/wishlist/WishListAlt";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Profile from "./pages/profile/Profile";
@@ -45,6 +45,7 @@ import { IconButton } from "@mui/material";
 import ValidationPageFirst from "./pages/payment/ValidationPageFirst";
 import ValidationPage from "./pages/payment/ValidationPage";
 import NotFound from "./pages/notFound/NotFound";
+import Loading from "./components/loading/Loading";
 
 function App() {
   const delay = 0.5;
@@ -84,7 +85,7 @@ function App() {
       clearTimeout(timer1);
     };
   });
-  const { user } = useContext(AuthenticationContext);
+  const { user, loading } = useContext(AuthenticationContext);
 
   document.addEventListener("visibilitychange", () => {
     if (auth.currentUser && !auth.currentUser.isAnonymous) {
@@ -96,7 +97,9 @@ function App() {
     }
   });
 
-  return (
+  return loading === true ? (
+    <Loading />
+  ) : (
     <BrowserRouter>
       <Navbar
         setMainList={setMainList}

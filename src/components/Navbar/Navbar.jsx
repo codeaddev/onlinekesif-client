@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./navbar.scss";
 import Logo from "./logo.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -12,11 +12,11 @@ import { KlimaData } from "../data/KlimaDataBase";
 import { PageModal } from "../Modal/PageModal";
 import UserInfoCard from "../userInfoCard/UserInfoCard";
 import { Button, Typography } from "@mui/material";
+import NaviRoute from "../naviRoute/NaviRoute";
 
 function Navbar({ setMainList, mainList, setChanged }) {
-  const { user, userData } = useContext(AuthenticationContext);
+  const { user } = useContext(AuthenticationContext);
   const [className, setClassName] = useState("wide");
-  const [paged, setPaged] = useState(false);
   const Links = [
     {
       id: "01",
@@ -39,10 +39,11 @@ function Navbar({ setMainList, mainList, setChanged }) {
   const [linkPosition, setLinkPosition] = useState();
   const [selectionItem, setSelectionItem] = useState([]);
 
+  const route = useLocation().pathname;
+
   // useEffect(() => {
   //   setClassName("wide");
   // }, [paged]);
-
 
   const [alertMessage, setAlertMessage] = useState({
     infoText: "",
@@ -64,7 +65,6 @@ function Navbar({ setMainList, mainList, setChanged }) {
       navigate(i.to);
     }
   };
-  var route = useLocation().pathname;
 
   const slideUnderline = (e) => {
     setLinkWidth(e.target.offsetWidth);
@@ -177,7 +177,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
               </NavLink>
 
               {user && !user.isAnonymous ? (
-                <UserInfoCard user={user} userData={userData} />
+                <UserInfoCard />
               ) : (
                 <div className="loginArea">
                   <Button
@@ -264,11 +264,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
           </div>
         </div>
       </div>
-      <div style={{ marginBottom: 0 }} className="news-line">
-        Online keşif sizlere evinizin konforundan ayrılmak zorunda kalmadan
-        yaptırmak istediğiniz tadilat için en uygun teklifleri almanızı sağlıyor
-        .
-      </div>
+      <NaviRoute />
     </nav>
   );
 }
