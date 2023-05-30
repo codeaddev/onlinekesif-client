@@ -26,6 +26,7 @@ import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 import BreadCrumb from "../BreadCrumb";
 import { CircularProgress } from "@mui/material";
+import SideLinks from "../../../components/sidelinks/SideLinks";
 
 function KesifSingle() {
   const { state } = useLocation();
@@ -717,6 +718,7 @@ function KesifSingle() {
   }
   return (
     <div className="kesif">
+      <SideLinks />
       <div className="kesif-container">
         <AppModal
           open={alertmessage.visible}
@@ -732,9 +734,7 @@ function KesifSingle() {
           route={alertmessage.route}
         />
         <Hidden />
-        <Sidebar />
         <div className="kesif-inner-container">
-          <BreadCrumb pages={pages} />
           <button onClick={handleClick} type="button" className="collapsible">
             Talep Detaylarınız
             {isCollapsed === "closed" ? (
