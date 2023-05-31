@@ -2,12 +2,14 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import React, { createContext, useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebase.config";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export const AuthenticationContext = createContext();
 
@@ -16,10 +18,36 @@ export const AuthenticationProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [loggining, setLogining] = useState(false);
   const [gettingUser, setGettingUser] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const handleErrorMessage = (err) => {
+    if (err === "Firebase: Error (auth/email-already-exists).") {
+      setAlertMessage(
+        "Sağlanan e-posta zaten mevcut bir kullanıcı tarafından kullanılıyor. Her kullanıcının benzersiz bir e-posta adresi olmalıdır"
+      );
+    } else if (err === "Firebase: Error (auth/id-token-expired).") {
+      setAlertMessage("kullanıcı hatırlama süresi doldu.");
+    } else if (err === "Firebase: Error (auth/internal-error).") {
+      setAlertMessage(
+        "Kimlik doğrulama sunucusu beklenmeyen bir hatayla karşılaştı. "
+      );
+    } else if (err === "Firebase: Error (auth/invalid-email).") {
+      setAlertMessage(
+        "email kullanıcı özelliği için sağlanan değer geçersiz. mail adresi, geçerli e-posta adresi olmalıdır."
+      );
+    } else if (err === "Firebase: Error (auth/wrong-password).") {
+      setAlertMessage("şifreyi yanlış girdiniz");
+    } else if (err === "Firebase: Error (auth/user-not-found).") {
+      setAlertMessage("Kullanıcı bulunamadı, kaydolun veya tekrar deneyin");
+    } else {
+      setAlertMessage("Bir hata meydana geldi, tekrar deneyin");
+    }
+  };
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-
+    setLoading(false);
     if (user && !user.isAnonymous) {
       updateDoc(doc(db, "Users", auth.currentUser.uid), {
         isOnline: true,
@@ -28,12 +56,13 @@ export const AuthenticationProvider = ({ children }) => {
     }
   });
 
-  const provider = new GoogleAuthProvider();
+  const providerG = new GoogleAuthProvider();
+  const providerF = new FacebookAuthProvider();
 
   const googlelogin = async (e) => {
     e.preventDefault();
 
-    const subs = await signInWithPopup(auth, provider);
+    const subs = await signInWithPopup(auth, providerG);
 
     await setDoc(doc(db, "Users", subs.user.uid), {
       userid: subs.user.uid,
@@ -58,6 +87,47 @@ export const AuthenticationProvider = ({ children }) => {
     }).then(() => setLogining(false));
     // This gives you a Google Access Token. You can use it to access the Google API.
     // The signed-in user info.
+  };
+
+  const facebooklogin = async (e) => {
+    e.preventDefault();
+
+    const subs = await signInWithPopup(auth, providerF);
+
+    await setDoc(doc(db, "Users", subs.user.uid), {
+      userid: subs.user.uid,
+      userName: "",
+      lastName: "",
+      phone: "",
+      email: subs.user.email,
+      provider: "facebook",
+      city: "",
+      regDevice: isMobile ? "mobile" : "desktop",
+      currentDevice: isMobile ? "mobile" : "desktop",
+      region: "",
+      adress: "",
+      createdAt: new Date(),
+      notification: "",
+      virgin: true,
+      isOnline: true,
+      firm: false,
+      client: true,
+      logo: "",
+      userUnique: new Date().valueOf().toString().substring(6),
+      updatedAt: "",
+      ZIP: "",
+      //new
+      orders: 0,
+      viewedProduct: false,
+      viewedBlog: false,
+      point: [],
+      readenBlogs: [],
+      readenProducts: [],
+      chatted: false,
+      lastLogin: new Date(),
+      likes: [],
+      comments: [],
+    }).then(() => navigate("/"));
   };
 
   const register = async (e, email, pass) => {
@@ -124,19 +194,17 @@ export const AuthenticationProvider = ({ children }) => {
     }
   }, [user]);
 
-  const login = async (e, mail, pass, navigate) => {
+  const loginEmail = async (e, mail, pass, navigate) => {
     e.preventDefault();
-
     try {
       await signInWithEmailAndPassword(auth, mail, pass)
         .then((user) => setUser(user))
         .then(() => setLogining(false))
-        .finally(() => navigate("/"))
         .catch((e) => {
-          alert(e.message);
+          handleErrorMessage(e.message);
         });
     } catch (error) {
-      alert(error.message);
+      handleErrorMessage(error.message);
     }
   };
 
@@ -158,13 +226,16 @@ export const AuthenticationProvider = ({ children }) => {
         user,
         setUser,
         userData,
-        login,
+        loginEmail,
         register,
         popuplogin,
         googlelogin,
+        facebooklogin,
         loggining,
+        alertMessage,
         getUserData,
         gettingUser,
+        loading,
       }}
     >
       {children}

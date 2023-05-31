@@ -1,9 +1,9 @@
 import { Hidden } from "@mui/material";
 import React from "react";
-import Sidebar from "../../../components/sidebar/Sidebar";
 import BreadCrumb from "../BreadCrumb";
 import EditForm from "./EditForm";
 import "./myaccount.scss";
+import SideLinks from "../../../components/sidelinks/SideLinks";
 
 function MyAccount() {
   const pages = [
@@ -12,12 +12,10 @@ function MyAccount() {
   ];
   return (
     <div className="hesabim">
+      <SideLinks />
       <div className="hesabim-container">
         <Hidden />
-        <Sidebar />
         <div className="hesabim-inner-container">
-          <BreadCrumb pages={pages} />
-
           <EditForm />
         </div>
       </div>

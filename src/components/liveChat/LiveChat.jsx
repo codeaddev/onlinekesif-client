@@ -35,7 +35,7 @@ const LiveChat = () => {
   /*adds click event to trigger the animations by adding or removing classes*/
   const audioPlayer = useRef(null);
   function playAudio() {
-    audioPlayer.current.play();
+    audioPlayer.current;
   }
 
   useEffect(() => {
