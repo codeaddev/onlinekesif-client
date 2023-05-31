@@ -1,0 +1,28 @@
+"<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><TP_WMD_UCDResponse xmlns="https://turkpos.com.tr/"><TP_WMD_UCDResult><Islem_ID>1407365569</Islem_ID><Islem_GUID>e94a4b61-8f1c-4763-bfbb-f92ed05c7ac1</Islem_GUID>
+<UCD_HTML>
+<html>
+<!-- troyStartSuccess.htm -->
+<title>GO</title>
+	<meta http-equiv="Content-Language" content="tr">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="now">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Author" content="Uygulama Gelistirme Asseco SEE tarafindan yapilmistir">
+	<script type="text/javascript" language="javascript">
+		function moveWindow() {
+			document.returnform.submit();
+		}
+	</script>  	
+</head>
+	<body onLoad="javascript:moveWindow()">
+	<form name="returnform" action="https://goguvenliodeme.bkm.com.tr/troy/approve" method="post" >
+		<input type="hidden" name="goreq" value="eyJ2ZXJzaW9uIjoiMC4wMyIsImV4cGlyeSI6IjI4MDEiLCJnb1N0YW1wIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKemRXSWlPaUl3TURBd01EQXdNREUwTVRJMU56UWlMQ0owYVcxbGIzVjBVMlZqYjI1a2N5STZORE15TURBd01EQXNJbkp2YkdWeklqb2lJaXdpWlhod0lqb3hOekk0TmpVMk1qazNmUS53TUZNTHo2Z2hoRHBKQzVocHNPTExkRDN2ek1xUTl5a09UYmhlZm9pUTBSWEcyeTVILXNKVWR3TGxuY01Dd2o3S2tZUWZubm84TVN5QTlZcUxpTU41USIsInRpbWUiOiIyMDIzMDUzMDE3MTgxNyIsIm1hYyI6IlRSb0ovSjF0dXI2TjZJRmJEcHV6aklJUURiNFQvM0RmMmxDWUY3UTZsUmMwQnIzTEorRVJ6TUpaQXNGQ1FpMWNnQVZuZ1RmOWJhRG5KR01rMWpaS2E2dUFoeE10aTVlanNVQldXNk5jZ0gxUEdFKzNpRmxQZW1xZ1h0UkNDREFUZXFOMDdvRkFvNXFBcFk4bnFYOTczYzJ3RVVBekRZTjQrdVI2Rk1pcVQ2Z2NSZm4zSm5jTWFHRmxiTWQzM3lrRDF6MXJYL29WWTNSdUdoMkpSOTQ0N2QvNzJPdlh0dWRTaVhRUHpDYkhmRkFYOHFMWUQxYUZFNE5SeGt0UmVYSTdTTEpYOFBJUXRWdmhGZWp3QXVVOFBkNHNqNG9NZWdxZ2xSV2wyN1ZPVkthWjdSRTZtbjdDbzZhcGFuNFdpL1hXampNL2NvdGFrSUluSk5jTEptanFUQVx1MDAzZFx1MDAzZCIsImlkIjoiMDAxMmNmZTM4ODk0LWFjZWItNGNkMy1iNjNmLWNiZDk5MTlkYzZlNyJ9">
+		<noscript>
+		<center>Devam etmek icin tiklayiniz.<br><br>
+		<input type="submit" name="submit" value="Submit" id="btnSbmt"></center>
+	</noscript>	
+	</form><img style="display:none" src="https://posws.param.com.tr/api/paramapi/status?SID=e94a4b61-8f1c-4763-bfbb-f92ed05c7ac1"/>
+	</body>
+</html>
+</UCD_HTML>
+<UCD_MD>eyJ2ZXJzaW9uIjoiMC4wMyIsImV4cGlyeSI6IjI4MDEiLCJnb1N0YW1wIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKemRXSWlPaUl3TURBd01EQXdNREUwTVRJMU56UWlMQ0owYVcxbGIzVjBVMlZqYjI1a2N5STZORE15TURBd01EQXNJbkp2YkdWeklqb2lJaXdpWlhod0lqb3hOekk0TmpVMk1qazNmUS53TUZNTHo2Z2hoRHBKQzVocHNPTExkRDN2ek1xUTl5a09UYmhlZm9pUTBSWEcyeTVILXNKVWR3TGxuY01Dd2o3S2tZUWZubm84TVN5QTlZcUxpTU41USIsInRpbWUiOiIyMDIzMDUzMDE3MTgxNyIsIm1hYyI6IlRSb0ovSjF0dXI2TjZJRmJEcHV6aklJUURiNFQvM0RmMmxDWUY3UTZsUmMwQnIzTEorRVJ6TUpaQXNGQ1FpMWNnQVZuZ1RmOWJhRG5KR01rMWpaS2E2dUFoeE10aTVlanNVQldXNk5jZ0gxUEdFKzNpRmxQZW1xZ1h0UkNDREFUZXFOMDdvRkFvNXFBcFk4bnFYOTczYzJ3RVVBekRZTjQrdVI2Rk1pcVQ2Z2NSZm4zSm5jTWFHRmxiTWQzM3lrRDF6MXJYL29WWTNSdUdoMkpSOTQ0N2QvNzJPdlh0dWRTaVhRUHpDYkhmRkFYOHFMWUQxYUZFNE5SeGt0UmVYSTdTTEpYOFBJUXRWdmhGZWp3QXVVOFBkNHNqNG9NZWdxZ2xSV2wyN1ZPVkthWjdSRTZtbjdDbzZhcGFuNFdpL1hXampNL2NvdGFrSUluSk5jTEptanFUQVx1MDAzZFx1MDAzZCIsImlkIjoiMDAxMmNmZTM4ODk0LWFjZWItNGNkMy1iNjNmLWNiZDk5MTlkYzZlNyJ9</UCD_MD><Sonuc>1</Sonuc><Sonuc_Str>İşlem Başarılı</Sonuc_Str><Banka_Sonuc_Kod>-1</Banka_Sonuc_Kod><Siparis_ID>1</Siparis_ID></TP_WMD_UCDResult></TP_WMD_UCDResponse></soap:Body></soap:Envelope>"

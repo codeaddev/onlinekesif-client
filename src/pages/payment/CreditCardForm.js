@@ -8,7 +8,7 @@ import "react-credit-cards-2/dist/es/styles-compiled.css";
 import useForm from "./useForm";
 import { Bursa, BursaDistricts } from "../../components/data/bursa/ditricts";
 
-const CreditCardForm = ({ state }) => {
+const CreditCardForm = ({ state,}) => {
   const {
     handleFocus,
     handleSubmit,
@@ -71,13 +71,16 @@ const CreditCardForm = ({ state }) => {
       <div className="formDiv">
         <Form
           className="form"
-          onSubmit={(e) => {
-            if (state.rfn) {
-              handleSubmit(e, state?.rfn);
-            } else {
-              alert("rfn yok");
-            }
+          onSubmit={()=>{
+            console.log("basıldı");
           }}
+          // onSubmit={(e) => {
+          //   if (state.rfn) {
+          //     handleSubmit(e, state?.rfn);
+          //   } else {
+          //     alert("rfn yok");
+          //   }
+          // }}
         >
           <div className="left">
             <Form.Group>

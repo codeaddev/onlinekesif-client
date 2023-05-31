@@ -21,6 +21,20 @@ module.exports = (app) => {
       changeOrigin: true,
     })
   );
+  app.use(
+    createProxyMiddleware("/service_turkpos_prod.asmx", {
+      target: "https://posws.param.com.tr/turkpos.ws/",
+      secure: false,
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    createProxyMiddleware("/service_turkpos_test.asmx", {
+      target: "https://test-dmz.param.com.tr:4443/turkpos.ws/",
+      secure: false,
+      changeOrigin: true,
+    })
+  );
 
   app.use(
     createProxyMiddleware("/api", {
