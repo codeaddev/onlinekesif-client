@@ -7,11 +7,12 @@
 
   .nav-links {
     display: flex;
-    width: 90%;
+    margin: 0 2rem;
+    width: 100%;
 
     .link {
       text-decoration: none;
-      color: grey;
+      color: grey !important;
       gap: 0.5rem;
       font-weight: 600;
       //flex: 1;
@@ -23,10 +24,10 @@
       }
 
       &:hover {
-        color: var(--black);
+        color: var(--black) !important;
       }
       &.active {
-        color: var(--black);
+        color: var(--yellow) !important;
         transition: 300ms;
       }
     }

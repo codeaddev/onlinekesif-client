@@ -50,8 +50,8 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-function UserInfoCard({ userData }) {
-  const { logout } = useContext(AuthenticationContext);
+function UserInfoCard() {
+  const { logout, userData } = useContext(AuthenticationContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -60,6 +60,8 @@ function UserInfoCard({ userData }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="userCardArea">
@@ -94,7 +96,7 @@ function UserInfoCard({ userData }) {
             Profil
           </NavLink>
         </MenuItem>
-        <MenuItem onClick={(e) => logout(e, useNavigate)} disableRipple>
+        <MenuItem onClick={(e) => logout(e, navigate)} disableRipple>
           <Logout />
           Çıkış Yap
         </MenuItem>
