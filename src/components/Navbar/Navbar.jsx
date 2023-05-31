@@ -13,6 +13,7 @@ import { PageModal } from "../Modal/PageModal";
 import UserInfoCard from "../userInfoCard/UserInfoCard";
 import { Button, Typography } from "@mui/material";
 import NaviRoute from "../naviRoute/NaviRoute";
+import MobileMenu from "../mobile/MobileMenu";
 
 function Navbar({ setMainList, mainList, setChanged }) {
   const { user } = useContext(AuthenticationContext);
@@ -171,6 +172,8 @@ function Navbar({ setMainList, mainList, setChanged }) {
             >
               <MenuIcon className="icon" />
             </div>
+            <MobileMenu />
+
             <div className="right-wrapper">
               <NavLink onClick={() => setClassName("wide")} to="/destek">
                 <Typography className="rightTextButton">DESTEK</Typography>
@@ -207,60 +210,6 @@ function Navbar({ setMainList, mainList, setChanged }) {
                 </div>
               )}
             </div>
-          </div>
-        </div>
-      </div>
-      <div className={`hidden-menu ${className}`}>
-        <div className="links">
-          {Links.map((i) => {
-            return (
-              <label
-                key={i.id}
-                className={`link ${
-                  i.label === mainList.mainWish ? "active" : "link"
-                }`}
-                onClick={() => {
-                  if (!i.link) {
-                    setMainList(i.set);
-                    setClassName("wide");
-                    navigate("/hizmet-olustur");
-                    setChanged((pre) => !pre);
-                  } else {
-                    navigate(i.to);
-                    setClassName("wide");
-                  }
-                }}
-              >
-                {i.label}
-              </label>
-            );
-          })}
-          <div className="button-area">
-            {user && !auth.currentUser.isAnonymous ? (
-              <NavLink
-                onClick={() => setClassName("wide")}
-                to="/profil"
-                className="button"
-              >
-                {user.displayName ? user.displayName : user.email}
-              </NavLink>
-            ) : (
-              <NavLink
-                onClick={() => setClassName("wide")}
-                to="/giris-yap"
-                className="button"
-              >
-                GİRİŞ YAP
-              </NavLink>
-            )}
-            <a
-              rel="noreferrer"
-              className="button firm"
-              href="http://firma.onlinekesif.com/"
-              target="_blank"
-            >
-              Firma Girişi
-            </a>
           </div>
         </div>
       </div>
