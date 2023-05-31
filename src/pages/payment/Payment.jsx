@@ -12,43 +12,44 @@ import CreditCardForm from "./CreditCardForm";
 import Topbar from "./Topbar";
 import IbanEft from "./IbanEft";
 import { useLocation } from "react-router-dom";
-import Pay3D from "./Pay3D";
-import { Button } from "@mui/material";
+import {Pay3DTest } from "./paramPosTest.api";
+import { Pay3D } from "./paramPos.api";
+
+
 
 const Payment = () => {
   const { state } = useLocation();
-  console.log(state.id);
-  console.log(state.rfn);
 
-  const [installments, setInstallments] = useState([]);
+  const [data, setData] = React.useState(null);
 
-  console.log(installments);
-
-  var data = JSON.stringify({
-    MERCHANT: "onlinekesif.com",
-    MERCHANT_KEY: "S7i1ax6Rg2GPZTpcR6Nv2XXQJIHoQYyXNGnpXWH7n013xo2VM2LDYg==",
+  React.useEffect(() => {
+    axios.get('/odeme')
+  .then(response => {
+    // Handle the response data here
+    console.log(response.data);
+  })
+  .catch(error => {
+    // Handle any errors here
+    console.error(error);
   });
-
-  var config = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: data,
+  }, []);
+  
+  const callBackendFunction = async () => {
+    const objectParam = { name: 'John', age: 25 }; // Replace with the actual object parameter
+    try {
+      const response = await axios.post('/odeme/3D', objectParam);
+      const result = response.data.result;
+      // Handle the result here
+      console.log(result);
+    } catch (error) {
+      // Handle any errors here
+      console.error(error);
+    }
   };
 
-  // useEffect(() => {
-  //   axios("/GetInstallments", config)
-  //     .then(function (response) {
-  //       setInstallments(response.data.INSTALLMENTS);
-  //       console.log("direk request cevabı", response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   const [selected, setSelected] = useState("credit");
+
 
   const [user, setUser] = useState({
     FIRST_NAME: "Faruk",
@@ -124,10 +125,20 @@ const Payment = () => {
           <Button onClick={Pay3D}>Git</Button>
         </div>
         <div className="payment-page">
+        <p>{!data ? "Loading..." : data}</p>
+          <div
+          onClick={callBackendFunction}
+          >Func çağır</div>
+          <div
+          onClick={Pay3DTest}
+          >Test Öde</div>
+          <div
+          onClick={Pay3D}
+          >Gerçek Öde</div>
           <Topbar selected={selected} setSelected={setSelected} />
           {selected === "credit" ? (
             <div className="payment-wrapper">
-              <CreditCardForm state={state} user={user} setUser={setUser} />
+              <CreditCardForm  state={state} user={user} setUser={setUser} />
               {/* {installments.length>0&&<Taksit installments={installments}/>} */}
             </div>
           ) : (
