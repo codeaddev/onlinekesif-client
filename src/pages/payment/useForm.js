@@ -5,6 +5,7 @@ import { auth } from "../../firebase/firebase.config";
 
 const useForm = () => {
   const { userData } = useContext(AuthenticationContext);
+  const [errors, setErrors] = useState({});
   const [values, setValues] = useState({
     cardName: "",
     cardNumber: "",
@@ -13,6 +14,72 @@ const useForm = () => {
     cardSecurityCode: "",
     cardPostalCode: "",
     focus: "",
+  });
+   ////////////////////T  E  S  T//////////////////////////////////////
+  const testFirm={
+    CLIENT_CODE:"10738",
+    CLIENT_USERNAME:"Test",
+    CLIENT_PASSWORD:"Test",
+    GUID:"0c13d406-873b-403b-9c09-a5766840d98c",
+    SanalPOS_ID:"1029",
+    Hata_URL:"http://localhost:3000/odeme",
+    Basarili_URL:"http://localhost:3000/odeme"
+  }
+  const testUser={
+    KK_Sahibi:"BEYTULLAH TAŞKIN",
+    KK_No:"4508034508034509",
+    KK_SK_Ay:"12",
+    KK_SK_Yil:"2026",
+    KK_CVC:"000",
+    KK_Sahibi_GSM:""
+  }
+  const [testProduct, setTestProduct] = useState({
+    Taksit:"1",
+    Islem_Tutar:"10,00",
+    Toplam_Tutar:"11,00",
+    Siparis_ID:"1"
+  });
+  const handleLoadTestCard = (e) => {
+    const { name, value } = e.target;
+    setCard(testUser);
+    setProduct({...product,Toplam_Tutar:"11,00"})
+  };
+  const handleSubmitTestPayment = async(e) => {
+    e.preventDefault();
+    const objectParam = { ...testFirm,...testUser,...testProduct }; // Replace with the actual object parameter
+    try {
+      const response = await axios.post('http://localhost:3001/odeme/3D', objectParam);
+      const result = response.data.result;
+      // Handle the result here
+      console.log(result)
+      window.open(JSON.parse(JSON.stringify(result)).split("<UCD_URL>")[1].split("</UCD_URL>")[0])
+    } catch (error) {
+      // Handle any errors here
+      console.error(error);
+    }
+  }
+  ///////////////////T  E  S  T   B  İ  T  İ  Ş///////////////////////////////
+  const realFirm={
+    CLIENT_CODE:process.env.REACT_APP_CLIENT_CODE,
+    CLIENT_USERNAME:process.env.REACT_APP_CLIENT_USERNAME,
+    CLIENT_PASSWORD:process.env.REACT_APP_CLIENT_PASSWORD,
+    GUID:process.env.REACT_APP_GUID,
+    Hata_URL:process.env.REACT_APP_Hata_URL,
+    Basarili_URL:process.env.REACT_APP_Basarili_URL
+  }
+  const realTestUser={
+    KK_Sahibi:process.env.REACT_APP_KK_Sahibi,
+    KK_No:process.env.REACT_APP_KK_No,
+    KK_SK_Ay:process.env.REACT_APP_KK_SK_Ay,
+    KK_SK_Yil:process.env.REACT_APP_KK_SK_Yil,
+    KK_CVC:process.env.REACT_APP_KK_CVC,
+    KK_Sahibi_GSM:process.env.REACT_APP_KK_Sahibi_GSM
+  }
+  const [product, setProduct] = useState({
+    Taksit:"1",
+    Islem_Tutar:"10,00",
+    Toplam_Tutar:"11,00",
+    Siparis_ID:"1"
   });
   const [user, setUser] = useState({
     FIRST_NAME: auth?.currentUser?.displayName,
@@ -25,28 +92,16 @@ const useForm = () => {
     CLIENT_IP: "191.101.231.155",
   });
   const [card, setCard] = useState({
-    CC_NUMBER: "",
+    KK_Sahibi:"",
+    KK_No:"",
+    KK_SK_Ay:"",
+    KK_SK_Yil:"",
+    KK_CVC:"",
+    KK_Sahibi_GSM:""
+  });
 
-    CC_CVV: "",
-    CC_OWNER: "",
-  });
-  const [product, setProduct] = useState({
-    PRODUCT_ID: "1",
-    PRODUCT_NAME: "Hizmet",
-    PRODUCT_CATEGORY: "Hizmet",
-    PRODUCT_DESCRIPTION: "Hizmet",
-    PRODUCT_AMOUNT: "1",
-  });
-  const [SKT, setSKT] = useState({
-    EXP_MONTH: "",
-    EXP_YEAR: "",
-  });
-  const [installment, setInstallment] = useState({
-    INSTALLMENT_NUMBER: "1",
-  });
-  const [RFNumber, setRFNumber] = useState(null);
+  
 
-  const [errors, setErrors] = useState({});
 
   const handleFocus = (e) => {
     setValues({
@@ -62,13 +117,7 @@ const useForm = () => {
       [name]: value,
     });
   };
-  const handleChangeInstallment = (e) => {
-    const { name, value } = e.target;
-    setInstallment({
-      ...installment,
-      [name]: value,
-    });
-  };
+  
   const handleChangeUser = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -83,6 +132,13 @@ const useForm = () => {
       [name]: value,
     });
   };
+  
+  const handleLoadRealTestCard = (e) => {
+    const { name, value } = e.target;
+    setCard(realTestUser);
+    setProduct({...product,Toplam_Tutar:"11,00"})
+
+  };
   const handleChangeProduct = (e) => {
     const { name, value } = e.target;
     setProduct({
@@ -90,84 +146,49 @@ const useForm = () => {
       [name]: value,
     });
   };
-  const handleChangeSKT = (e) => {
-    const { name, value } = e.target;
-    setSKT({
-      ...SKT,
-      [name]: value,
-    });
-  };
+  const handleLoadProductFromState=(state)=>{
+    setProduct({...product,Toplam_Tutar:String(state.totalPrice)+",00"})
+  }
+  const handleLoadTestProduct=()=>{
+    setProduct({...product,Toplam_Tutar:"11,00"})
+  }
 
-  const handleSubmit = (e, rfn) => {
+
+  
+  const handleSubmitPayment =async (e) => {
     e.preventDefault();
-    //setErrors(validateInfo(values))
-    var RFN = new Date().valueOf().toString(5);
-    setRFNumber(RFN);
-    var data = JSON.stringify({
-      Config: {
-        MERCHANT: "onlinekesif.com",
-        MERCHANT_KEY:
-          "S7i1ax6Rg2GPZTpcR6Nv2XXQJIHoQYyXNGnpXWH7n013xo2VM2LDYg==",
-        BACK_URL: `http://localhost:3001/validasyon/${rfn}`,
-        PRICES_CURRENCY: "TRY",
-        ORDER_REF_NUMBER: rfn,
-        ORDER_AMOUNT: "1",
-      },
-      CreditCard: {
-        ...card,
-        ...SKT,
-        ...installment,
-      },
-      Customer: {
-        ...user,
-        CLIENT_IP: "78.186.176.170",
-      },
-      Product: [
-        {
-          PRODUCT_ID: "1",
-          PRODUCT_NAME: "Ürün Adı 1",
-          PRODUCT_CATEGORY: "Elektronik",
-          PRODUCT_DESCRIPTION: "Test Ödemeleri",
-          PRODUCT_AMOUNT: "1",
-        },
-      ],
-    });
-
-    var config = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios("/EYV3DPay", config)
-      .then(function (response) {
-        console.log(response);
-        window.open(response.data.URL_3DS);
-      })
-      .catch(function (error) {
-        navigate("/error");
-        alert(error);
-      });
-  };
+    const objectParam = { ...realFirm,...realTestUser,...product }; // Replace with the actual object parameter
+    try {
+      const response = await axios.post('http://localhost:3001/odeme/3DPay', objectParam);
+      const result = response.data.result;
+      // Handle the result here
+      console.log(result)
+   
+    } catch (error) {
+      // Handle any errors here
+      console.error(error);
+    }
+  }
 
   return {
     handleChange,
     handleFocus,
-    handleSubmit,
     values,
-    errors,
     user,
     card,
     product,
-    SKT,
-    handleChangeSKT,
     handleChangeUser,
     handleChangeCard,
     handleChangeProduct,
-    handleChangeInstallment,
-    installment,
+    errors,
+    product,
+    handleLoadTestCard,
+    handleSubmitTestPayment,
+    handleLoadProductFromState,
+    handleSubmitPayment,
+    handleLoadRealTestCard,
+    handleLoadTestProduct
+
   };
 };
 

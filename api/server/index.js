@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
-const { myFunction } = require("../testPayment");
+const { testPayment } = require("../testPayment");
+const { payment3D } = require("../payment");
 
 
 const PORT = process.env.PORT || 3001;
@@ -15,12 +16,26 @@ app.get("/odeme", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
-app.post('/odeme/3D', (req, res) => {
-    const objectParam = req.body;
-    // Call your function with the object parameter
-    const result = myFunction(objectParam);
-    res.json({ result });
+
+app.post('/odeme/3D', async (req, res) => {
+    const param = req.body;
+    try {
+      const result = await testPayment(param);
+      res.json({ result });
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
   });
+app.post('/odeme/3DPay', async (req, res) => {
+    const param = req.body;
+    try {
+      const result = await payment3D(param);
+      res.json({ result });
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
+  
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

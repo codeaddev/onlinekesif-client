@@ -11,19 +11,24 @@ import { Bursa, BursaDistricts } from "../../components/data/bursa/ditricts";
 const CreditCardForm = ({ state,}) => {
   const {
     handleFocus,
-    handleSubmit,
     values,
     errors,
     user,
     card,
     handleChangeUser,
     handleChangeCard,
-    SKT,
-    handleChangeSKT,
-    handleChangeInstallment,
-    installment,
+    handleChangeProduct,
+    product,
+
+    handleLoadTestCard,
+    handleSubmitTestPayment,
+    handleLoadProductFromState,
+    handleSubmitPayment,
+    handleLoadRealTestCard
   } = useForm();
   var money = 100;
+
+  const [realTest,setRealTest]=useState(false)
   const taksits = [
     { id: "01", count: "1", payment: `${money} TL` },
     { id: "02", count: "2", payment: `${money * 0.19 + money / 2} TL` },
@@ -51,6 +56,7 @@ const CreditCardForm = ({ state,}) => {
     { id: "10", field: "yurtdısı", label: "Yurtdışı", svg: "" },
   ];
   const [checked, setChecked] = useState(false);
+  console.log(state?.totalPrice)
   const CheckedTarget = () => {
     return (
       <div className="target-page-link">
@@ -66,21 +72,17 @@ const CreditCardForm = ({ state,}) => {
   return (
     <div
       className="formDiv-container"
-      //className="box justify-content-center align-items-center"
+      
     >
       <div className="formDiv">
         <Form
           className="form"
-          onSubmit={()=>{
-            console.log("basıldı");
+          onSubmit={(e)=>{
+            e.preventDefault()
+            realTest?
+            handleSubmitPayment(e)
+            :handleSubmitTestPayment(e)
           }}
-          // onSubmit={(e) => {
-          //   if (state.rfn) {
-          //     handleSubmit(e, state?.rfn);
-          //   } else {
-          //     alert("rfn yok");
-          //   }
-          // }}
         >
           <div className="left">
             <Form.Group>
@@ -196,24 +198,29 @@ const CreditCardForm = ({ state,}) => {
                 {TLLocale.format(state?.totalPrice)} ₺
               </span>
             </div>
+            <div className="test-row" >
+              <Button onClick={()=>setRealTest(pre=>!pre)} >{realTest?"Şuan Gerçek Test Formatındasınız":"Şuan Test Formatındasınız"}</Button>
+            </div>
+            {!realTest&&<Button onClick={handleLoadTestCard} >Test kart yükle</Button>}
+            {realTest&&<Button onClick={handleLoadRealTestCard} >Gerçek test kart yükle</Button>}
             <div className="creditCard">
               <Cards
-                cvc={card.CC_CVV}
-                expiry={SKT.EXP_MONTH + SKT.EXP_YEAR}
+                cvc={card.KK_CVC}
+                expiry={card.KK_SK_Ay + card.KK_SK_Yil}
                 focused={values.focus}
-                name={card.CC_OWNER}
-                number={card.CC_NUMBER}
+                name={card.KK_Sahibi}
+                number={card.KK_No}
               />
             </div>
 
             <Form.Group>
               <Form.Control
                 type="text"
-                id="CC_OWNER"
-                data-testid="CC_OWNER"
-                name="CC_OWNER"
+                id="KK_Sahibi"
+                data-testid="KK_Sahibi"
+                name="KK_Sahibi"
                 placeholder="Kart Sahibinin İsmi"
-                value={card.CC_OWNER}
+                value={card.KK_Sahibi}
                 onChange={handleChangeCard}
                 onFocus={handleFocus}
                 isValid={errors.cname}
@@ -222,11 +229,11 @@ const CreditCardForm = ({ state,}) => {
             <Form.Group>
               <Form.Control
                 type="number"
-                id="CC_NUMBER"
-                data-testid="CC_NUMBER"
-                name="CC_NUMBER"
+                id="KK_No"
+                data-testid="KK_No"
+                name="KK_No"
                 placeholder="Kart Numarası"
-                value={card.CC_NUMBER}
+                value={card.KK_No}
                 onChange={handleChangeCard}
                 onFocus={handleFocus}
                 isValid={errors.cnumber}
@@ -237,12 +244,12 @@ const CreditCardForm = ({ state,}) => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    id="EXP_MONTH"
-                    data-testid="EXP_MONTH"
-                    name="EXP_MONTH"
+                    id="KK_SK_Ay"
+                    data-testid="KK_SK_Ay"
+                    name="KK_SK_Ay"
                     placeholder="SKT Ay"
-                    value={SKT.EXP_MONTH}
-                    onChange={handleChangeSKT}
+                    value={card.KK_SK_Ay}
+                    onChange={handleChangeCard}
                     onFocus={handleFocus}
                     isValid={errors.cexp}
                   />
@@ -252,12 +259,12 @@ const CreditCardForm = ({ state,}) => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    id="EXP_YEAR"
-                    data-testid="EXP_YEAR"
-                    name="EXP_YEAR"
+                    id="KK_SK_Yil"
+                    data-testid="KK_SK_Yil"
+                    name="KK_SK_Yil"
                     placeholder="SKT Yıl"
-                    value={SKT.EXP_YEAR}
-                    onChange={handleChangeSKT}
+                    value={card.KK_SK_Yil}
+                    onChange={handleChangeCard}
                     onFocus={handleFocus}
                     isValid={errors.cexp}
                   />
@@ -267,11 +274,11 @@ const CreditCardForm = ({ state,}) => {
                 <Form.Group>
                   <Form.Control
                     type="number"
-                    id="CC_CVV"
-                    data-testid="CC_CVV"
-                    name="CC_CVV"
+                    id="KK_CVC"
+                    data-testid="KK_CVC"
+                    name="KK_CVC"
                     placeholder="CVV"
-                    value={card.CC_CVV}
+                    value={card.KK_CVC}
                     onChange={handleChangeCard}
                     onFocus={handleFocus}
                     isValid={errors.ccvv}
@@ -284,8 +291,8 @@ const CreditCardForm = ({ state,}) => {
               data-testid="INSTALLMENT_NUMBER"
               name="INSTALLMENT_NUMBER"
               size="lg"
-              value={installment.INSTALLMENT_NUMBER}
-              onChange={handleChangeInstallment}
+              value={product.Taksit}
+              onChange={handleChangeProduct}
             >
               <option value="" disabled selected>
                 --taksit seçiniz--

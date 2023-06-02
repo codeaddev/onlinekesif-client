@@ -1,6 +1,6 @@
 import React from "react";
 
-const Topbar = ({ selected, setSelected }) => {
+const Topbar = ({ selected, setSelected,state }) => {
   return (
     <div className="topbar">
       <div
@@ -22,7 +22,7 @@ const Topbar = ({ selected, setSelected }) => {
           </div>
         </div>
       </div>
-      <div
+      {!state.onlinePos&&<div
         onClick={() => setSelected("debit")}
         className={`selector ${
           selected === "debit" ? "selected" : "nonselected"
@@ -40,7 +40,7 @@ const Topbar = ({ selected, setSelected }) => {
             Hesabınızdan EFT / Havale ile ödeme yapabilirsiniz
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

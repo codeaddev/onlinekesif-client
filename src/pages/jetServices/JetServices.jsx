@@ -9,7 +9,7 @@ import {
 } from "../../components/data/bursa/ditricts";
 import { useNavigate } from "react-router-dom";
 import CreditCardForm from "../payment/CreditCardForm";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
 import { CircularProgress } from "@mui/material";
 
@@ -34,10 +34,12 @@ const JetServices = () => {
     let a, b, c;
     var id = new Date().valueOf().toString().substring(6);
     try {
-      var ref = collection(db, "JetServices");
-      a = await addDoc(ref, {
+      var ref = doc(db, "JetServices",id);
+      a = await setDoc(ref, {
         ...info,
         id: id,
+        doc:id,
+        paid:false,
         createdAt: new Date(),
         mainWish: "Kombi Temizliği",
       });
@@ -111,13 +113,13 @@ const JetServices = () => {
       price: "600",
     },
     //{id:"02",label:"Kapıda Ödeme",onlinePos:false,paid:false},
-    {
-      id: "03",
-      label: "Kapıda Kredi Kartı ile Ödeme",
-      onlinePos: false,
-      paid: false,
-      price: "600",
-    },
+    // {
+    //   id: "03",
+    //   label: "Kapıda Kredi Kartı ile Ödeme",
+    //   onlinePos: false,
+    //   paid: false,
+    //   price: "600",
+    // },
     {
       id: "04",
       label: "Hemen Öde",
@@ -209,6 +211,7 @@ const JetServices = () => {
                               createdAt: new Date(),
                               mainWish: "Kombi Temizliği",
                               totalPrice: i.price,
+                              onlinePos:true,
                             },
                           });
                           //setInfo({...info,show:true,paymentType:"3D"})
@@ -229,7 +232,7 @@ const JetServices = () => {
                 })}
               </div>
               {info?.paymentType === "EFT / HAVALE" && <IbanEFTJet />}
-              {!info.show && <input type="submit" />}
+              {!info.show &&info?.paymentType === "EFT / HAVALE" && <input type="submit" />}
               {info.show && <CreditCardForm />}
             </div>
           </form>

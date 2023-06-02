@@ -14,6 +14,8 @@ import IbanEft from "./IbanEft";
 import { useLocation } from "react-router-dom";
 import {Pay3DTest } from "./paramPosTest.api";
 import { Pay3D } from "./paramPos.api";
+import { Button } from "@mui/material";
+
 
 
 
@@ -22,8 +24,31 @@ const Payment = () => {
 
   const [data, setData] = React.useState(null);
 
+  // React.useEffect(() => {
+  //   axios.get('http://localhost:3001/odeme')
+  // .then(response => {
+  //   // Handle the response data here
+  //   console.log(response.data);
+  // })
+  // .catch(error => {
+  //   // Handle any errors here
+  //   console.error(error);
+  // });
+  // }, []);
+  
+  // React.useEffect(() => {
+  //   axios.get('https://hraxpunq5i.execute-api.us-east-1.amazonaws.com/beta')
+  // .then(response => {
+  //   // Handle the response data here
+  //   console.log(response.data);
+  // })
+  // .catch(error => {
+  //   // Handle any errors here
+  //   console.error(error);
+  // });
+  // }, []);
   React.useEffect(() => {
-    axios.get('/odeme')
+    axios.get('http://devop.onlinekesif.com:3001/odeme')
   .then(response => {
     // Handle the response data here
     console.log(response.data);
@@ -34,18 +59,7 @@ const Payment = () => {
   });
   }, []);
   
-  const callBackendFunction = async () => {
-    const objectParam = { name: 'John', age: 25 }; // Replace with the actual object parameter
-    try {
-      const response = await axios.post('/odeme/3D', objectParam);
-      const result = response.data.result;
-      // Handle the result here
-      console.log(result);
-    } catch (error) {
-      // Handle any errors here
-      console.error(error);
-    }
-  };
+
 
 
   const [selected, setSelected] = useState("credit");
@@ -76,73 +90,36 @@ const Payment = () => {
     PRODUCT_DESCRIPTION: "Hizmet",
     PRODUCT_AMOUNT: "1",
   });
-  // const Pay = async () => {
-  //   var data = JSON.stringify({
-  //     Config: {
-  //       MERCHANT: "onlinekesif.com",
-  //       MERCHANT_KEY:
-  //         "xmRzaOKj6+rf6Fn/cxXgVUwiRO4pkKDVfaHaPE7bGfNICVHPS9YlNg==",
-  //       BACK_URL: "https://onlinekesif.com/tesekkurler",
-  //       PRICES_CURRENCY: "TRY",
-  //       ORDER_REF_NUMBER: "RFN0004",
-  //       ORDER_AMOUNT: "3",
-  //     },
-  //     CreditCard: {
-  //       ...card,
-  //     },
-  //     Customer: {
-  //       ...user,
-  //     },
-  //     Product: [
-  //       {
-  //         ...product,
-  //       },
-  //     ],
-  //   });
 
-  //   var config = {
-  //     method: "post",
-  //     url: "https://posservice.esnekpos.com/api/pay/EYV3DPay",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: data,
-  //   };
-
-  //   axios(config)
-  //     .then(function (response) {
-  //       console.log(JSON.stringify(response.data));
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
 
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        <div className="payment">
-          <Button onClick={Pay3D}>Git</Button>
-        </div>
+        
         <div className="payment-page">
-        <p>{!data ? "Loading..." : data}</p>
-          <div
-          onClick={callBackendFunction}
-          >Func çağır</div>
-          <div
+        {/* <p>{!data ? "Loading..." : data}</p>
+          <Button
+          size="sm"
+          color="warning"
+          onClick={callTestPayment}
+          >test Func çağır</Button>
+          <Button
+          onClick={call3DPayment}
+          >Gerçek Func çağır</Button>
+          <Button
           onClick={Pay3DTest}
-          >Test Öde</div>
-          <div
+          >Test Öde</Button>
+          <Button
           onClick={Pay3D}
-          >Gerçek Öde</div>
-          <Topbar selected={selected} setSelected={setSelected} />
+          >Gerçek Öde</Button> */}
+          <Topbar selected={selected} state={state} setSelected={setSelected} />
           {selected === "credit" ? (
             <div className="payment-wrapper">
               <CreditCardForm  state={state} user={user} setUser={setUser} />
               {/* {installments.length>0&&<Taksit installments={installments}/>} */}
             </div>
           ) : (
-            <IbanEft />
+            <IbanEft state={state} />
           )}
         </div>
       </div>

@@ -69,3 +69,12 @@
       gap: 1rem;
       
       }
+.test-row{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  button{
+    width: max-content;
+    background-color: blue;
+  }
+}

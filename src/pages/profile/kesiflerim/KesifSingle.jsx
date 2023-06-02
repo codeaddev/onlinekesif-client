@@ -27,10 +27,13 @@ import { useNavigate } from "react-router-dom";
 import BreadCrumb from "../BreadCrumb";
 import { CircularProgress } from "@mui/material";
 import SideLinks from "../../../components/sidelinks/SideLinks";
+import useForm from "../../payment/useForm";
 
 function KesifSingle() {
   const { state } = useLocation();
+  console.log(state)
   const { servisId } = useParams();
+  const {handleLoadProductFromState}=useForm()
   const [updating, setUpdating] = useState(false);
 
   const sendCompleteEmailToUser = () => {
@@ -296,7 +299,8 @@ function KesifSingle() {
       // sendConfirmEmailToUser()
       // sendConfirmEmailToFirm(row)
       // sendConfirmEmailToAdmin()
-      navigate("/odeme", { state: { ...row, rfn: state.rfn } });
+      handleLoadProductFromState(row)
+      navigate("/odeme", { state: { ...row,doc:state.doc,mainWish:state.mainWish} });
     };
 
     const handleRefuse = async (e, row) => {
@@ -474,9 +478,11 @@ function KesifSingle() {
         </div>
       );
     };
+
     const handleDraw = () => {
       setOpen((pre) => !pre);
     };
+
     return (
       <div className="body-row">
         <TableRow
