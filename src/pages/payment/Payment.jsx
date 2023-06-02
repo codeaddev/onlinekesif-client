@@ -14,7 +14,8 @@ import IbanEft from "./IbanEft";
 import { useLocation } from "react-router-dom";
 import {Pay3DTest } from "./paramPosTest.api";
 import { Pay3D } from "./paramPos.api";
-import { Button } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
+import useForm from "./useForm";
 
 
 
@@ -23,6 +24,10 @@ const Payment = () => {
   const { state } = useLocation();
 
   const [data, setData] = React.useState(null);
+
+  const {modalinner,handleClose}=useForm()
+
+  console.log(modalinner.open)
 
   // React.useEffect(() => {
   //   axios.get('http://localhost:3001/odeme')
@@ -48,7 +53,19 @@ const Payment = () => {
   // });
   // }, []);
   React.useEffect(() => {
-    axios.get('http://devop.onlinekesif.com:3001/odeme')
+    axios.get('https://devop.onlinekesif.com/odeme')
+  .then(response => {
+    // Handle the response data here
+    console.log(response.data);
+  })
+  .catch(error => {
+    // Handle any errors here
+    console.error(error);
+  });
+  }, []);
+  
+  React.useEffect(() => {
+    axios.get('https://devop.onlinekesif.com/odeme')
   .then(response => {
     // Handle the response data here
     console.log(response.data);
@@ -63,7 +80,18 @@ const Payment = () => {
 
 
   const [selected, setSelected] = useState("credit");
-
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  
 
   const [user, setUser] = useState({
     FIRST_NAME: "Faruk",
@@ -94,6 +122,22 @@ const Payment = () => {
 
   return (
     <div className="page-container">
+      <Modal
+         open={modalinner.open}
+         onClose={handleClose}
+         aria-labelledby="modal-modal-title"
+         aria-describedby="modal-modal-description"
+         
+       >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+       </Modal>
       <div className="page-wrapper">
         
         <div className="payment-page">
@@ -112,6 +156,9 @@ const Payment = () => {
           <Button
           onClick={Pay3D}
           >Gerçek Öde</Button> */}
+          
+         
+          
           <Topbar selected={selected} state={state} setSelected={setSelected} />
           {selected === "credit" ? (
             <div className="payment-wrapper">

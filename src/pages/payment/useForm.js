@@ -6,6 +6,12 @@ import { auth } from "../../firebase/firebase.config";
 const useForm = () => {
   const { userData } = useContext(AuthenticationContext);
   const [errors, setErrors] = useState({});
+  const [modalinner,setModalinner]=useState({
+    open:false,
+    content:null
+  })
+  const handleOpen = () => setModalinner({...modalinner,open:true});
+  const handleClose = () => setModalinner({...modalinner,open:false});
   const [values, setValues] = useState({
     cardName: "",
     cardNumber: "",
@@ -48,7 +54,7 @@ const useForm = () => {
     e.preventDefault();
     const objectParam = { ...testFirm,...testUser,...testProduct }; // Replace with the actual object parameter
     try {
-      const response = await axios.post('http://localhost:3001/odeme/3D', objectParam);
+      const response = await axios.post('https://devop.onlinekesif.com/odeme/3D', objectParam);
       const result = response.data.result;
       // Handle the result here
       console.log(result)
@@ -158,12 +164,29 @@ const useForm = () => {
   const handleSubmitPayment =async (e) => {
     e.preventDefault();
     const objectParam = { ...realFirm,...realTestUser,...product }; // Replace with the actual object parameter
+    
     try {
-      const response = await axios.post('http://localhost:3001/odeme/3DPay', objectParam);
+      const response = await axios.post('https://devop.onlinekesif.com/odeme/3DPay', objectParam);
+
       const result = response.data.result;
       // Handle the result here
       console.log(result)
-   
+      console.log((JSON.parse(JSON.stringify(result)).split("<UCD_HTML>")[1].split("</UCD_HTML>")[0]).replaceAll("&lt;","<").replaceAll("&gt;",">"))
+      const stringifiedHTML=(JSON.parse(JSON.stringify(result)).split("<UCD_HTML>")[1].split("</UCD_HTML>")[0]).replaceAll("&lt;","<").replaceAll("&gt;",">")
+      
+      setModalinner({
+        open:true,
+        content:stringifiedHTML
+      })
+      // Access the HTML content
+      var width = 600;
+      var height = 400;
+      var left = (screen.width - width) / 2;
+      var top = (screen.height - height) / 2;
+      var newTab = window.open("", "_blank", "width=" + width + ", height=" + height + ", left=" + left + ", top=" + top);
+      newTab.document.write(stringifiedHTML);
+      newTab.document.close();
+     
     } catch (error) {
       // Handle any errors here
       console.error(error);
@@ -187,7 +210,9 @@ const useForm = () => {
     handleLoadProductFromState,
     handleSubmitPayment,
     handleLoadRealTestCard,
-    handleLoadTestProduct
+    handleLoadTestProduct,
+    modalinner,
+    handleClose
 
   };
 };

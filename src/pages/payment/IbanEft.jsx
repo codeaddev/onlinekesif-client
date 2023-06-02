@@ -23,9 +23,10 @@ const onSubmit=async()=>{
   try {
     a=await updateDoc(docRef,{
       eft:true,
+      dealed:true,
     })
     setLoading(false)
-    navigate(`/profil` );
+    navigate(`/profil/kesiflerim/${state.mainWish}-${state.doc}`);
     
   } catch (error) {
     setLoading(false)

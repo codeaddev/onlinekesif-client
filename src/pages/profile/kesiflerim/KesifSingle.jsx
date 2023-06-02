@@ -1,5 +1,5 @@
 import { Fade, Hidden, Tooltip } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import "./kesif.scss";
@@ -17,7 +17,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useState } from "react";
 import MiniKpu from "./miniKpu.svg";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, collection, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase.config";
 import { AppModal } from "../../../components/Modal/Modal";
 import Loading from "../../../components/loading/Loading";
@@ -28,20 +28,55 @@ import BreadCrumb from "../BreadCrumb";
 import { CircularProgress } from "@mui/material";
 import SideLinks from "../../../components/sidelinks/SideLinks";
 import useForm from "../../payment/useForm";
+import { CloudContext } from "../../../context/cloudContext";
+
 
 function KesifSingle() {
   const { state } = useLocation();
-  console.log(state)
+
   const { servisId } = useParams();
+  const {myJobs}=useContext(CloudContext)
+  const [loadingThisPage,setLoadingThisPage]=useState(true)
+  const [thisPage,setThisPage]=useState({})
+
+
+
+  useEffect(()=>{
+
+    setLoadingThisPage(true)
+    var thisID=String(servisId).split("-")[1]
+
+    const thisDocument=doc(db,"Jobs",thisID);
+
+    getDoc(thisDocument)
+            .then((obj)=>{
+            if(obj.exists()){
+                setThisPage(obj.data())
+              }else{
+                setLoadingThisPage(false)
+            }
+            })
+            .finally(()=>{
+                setLoadingThisPage(false)})
+            
+   .catch((err)=>{
+            console.log(err.message)
+            setLoadingThisPage(false)
+        })
+    
+   
+},[])
+
+
   const {handleLoadProductFromState}=useForm()
   const [updating, setUpdating] = useState(false);
 
   const sendCompleteEmailToUser = () => {
     var params = {
-      subject: state?.mainWish + " Servis İşi",
+      subject: thisPage?.mainWish + " Servis İşi",
       user_email: auth?.currentUser?.email,
       user_name: "bilgi@onlinekesif.com",
-      message: `${state.mainWish} Servis Talebiniz tamamlanmıştır.`,
+      message: `${thisPage.mainWish} Servis Talebiniz tamamlanmıştır.`,
     };
 
     emailjs
@@ -62,10 +97,10 @@ function KesifSingle() {
   };
   const sendCompleteEmailToFirm = (item) => {
     var params = {
-      subject: state?.mainWish + " Servis Talebi İşiniz Hakkında",
+      subject: thisPage?.mainWish + " Servis Talebi İşiniz Hakkında",
       user_email: item.email,
       user_name: "bilgi@onlinekesif.com",
-      message: `Müşteri ${state?.id} no'lu ${state.mainWish} Servis Talebi işinizi tamamladığınızı onaylamıştır. Tarafınıza ödeme yapılacaktır.`,
+      message: `Müşteri ${thisPage?.id} no'lu ${thisPage.mainWish} Servis Talebi işinizi tamamladığınızı onaylamıştır. Tarafınıza ödeme yapılacaktır.`,
     };
 
     emailjs
@@ -86,10 +121,10 @@ function KesifSingle() {
   };
   const sendCompleteEmailToAdmin = () => {
     var params = {
-      subject: state?.mainWish + " Servis Talebi İşi",
+      subject: thisPage?.mainWish + " Servis Talebi İşi",
       user_email: "onlinekesif.com@gmail.com",
       user_name: "bilgi@onlinekesif.com",
-      message: `Müşteri ${auth?.currentUser?.email}, ${state.mainWish} Servis Talebi İşinin tamamlandığını onayladı.`,
+      message: `Müşteri ${auth?.currentUser?.email}, ${thisPage.mainWish} Servis Talebi İşinin tamamlandığını onayladı.`,
     };
 
     emailjs
@@ -110,10 +145,10 @@ function KesifSingle() {
   };
   const sendCancelEmailToUser = () => {
     var params = {
-      subject: state?.mainWish + " Servis Talebini İptali",
+      subject: thisPage?.mainWish + " Servis Talebini İptali",
       user_email: auth?.currentUser?.email,
       user_name: "bilgi@onlinekesif.com",
-      message: `${state.mainWish} Servis Talebiniz iptal edilmiştir.`,
+      message: `${thisPage.mainWish} Servis Talebiniz iptal edilmiştir.`,
     };
 
     emailjs
@@ -137,7 +172,7 @@ function KesifSingle() {
       subject: "Servis Talebi İptali",
       user_email: "onlinekesif.com@gmail.com",
       user_name: "bilgi@onlinekesif.com",
-      message: `Müşteri ${auth?.currentUser?.email}, ${state.mainWish} Servis Talebini iptal etti.`,
+      message: `Müşteri ${auth?.currentUser?.email}, ${thisPage.mainWish} Servis Talebini iptal etti.`,
     };
 
     emailjs
@@ -172,7 +207,7 @@ function KesifSingle() {
     console.log(open);
     const handleCancel = async (e, row) => {
       e.preventDefault();
-      await updateDoc(doc(db, "Jobs", state.doc), {
+      await updateDoc(doc(db, "Jobs", thisPage.doc), {
         statue: 4,
         statueMap: {
           id: new Date().valueOf(),
@@ -212,7 +247,7 @@ function KesifSingle() {
 
     const handleComplete = async (e) => {
       e.preventDefault();
-      await updateDoc(doc(db, "Jobs", state.doc), {
+      await updateDoc(doc(db, "Jobs", thisPage.doc), {
         completed: true,
         completedByClient: true,
         statue: 6,
@@ -300,16 +335,16 @@ function KesifSingle() {
       // sendConfirmEmailToFirm(row)
       // sendConfirmEmailToAdmin()
       handleLoadProductFromState(row)
-      navigate("/odeme", { state: { ...row,doc:state.doc,mainWish:state.mainWish} });
+      navigate("/odeme", { state: { ...row,doc:thisPage.doc,mainWish:thisPage.mainWish} });
     };
 
     const handleRefuse = async (e, row) => {
       e.preventDefault();
       setUpdating(true);
 
-      let newArray = state.Offers.filter((i) => i.id !== row.id);
+      let newArray = thisPage.Offers.filter((i) => i.id !== row.id);
 
-      await updateDoc(doc(db, "Jobs", state.doc), {
+      await updateDoc(doc(db, "Jobs", thisPage.doc), {
         Offers: [
           ...newArray,
           {
@@ -418,25 +453,9 @@ function KesifSingle() {
         route: "",
       });
     };
-    let newArray = state.Offers.filter((i) => i.id !== row.id);
-    var formatted = newArray.map((i) => {
-      var newObject = {
-        KPU: i.KPU,
-        accepted: false,
-        firm: i.firm,
-        firmName: i.firmName,
-        id: i.id,
-        logo: i.logo,
-        refused: true,
-        relatedProducts: i.relatedProducts,
-        totalPrice: i.totalPrice,
-        createdAt: new Date(i.createdAt.seconds * 1000),
-      };
-      return newObject;
-    });
-
+    
     let TLLocale = Intl.NumberFormat("tr-TR");
-    var othersList = state.Offers.filter((i) => i.firm !== row.firm);
+    var othersList = thisPage.Offers.filter((i) => i.firm !== row.firm);
     var otherPrices = othersList.map((i) => {
       return { products: i.relatedProducts, firmName: i.firmName };
     });
@@ -539,9 +558,7 @@ function KesifSingle() {
                   </th>
                 </tr>
                 {row.relatedProducts.map((historyRow, index) => {
-                  const product = state?.relatedProducts.find(
-                    (i) => i.id === historyRow.id
-                  );
+                 
                   const [showlikeTooltip, setShowLikeToolTip] = useState(false);
                   return (
                     <tr>
@@ -599,7 +616,7 @@ function KesifSingle() {
                   çıkabilir.{" "}
                 </p>
 
-                {state.statue !== 6 && (
+                {thisPage.statue !== 6 && (
                   <div className="button-area">
                     <button
                       onClick={(e) => handleCancelAlert(e, row)}
@@ -607,7 +624,7 @@ function KesifSingle() {
                     >
                       İşi İptal Et
                     </button>
-                    {state.statue !== 3 && (
+                    {thisPage.statue !== 3 && (
                       <button
                         onClick={(e) => handleRefuseAlert(e, row)}
                         className="refuse"
@@ -615,7 +632,7 @@ function KesifSingle() {
                         Teklifi Reddet
                       </button>
                     )}
-                    {state.statue !== 3 && (
+                    {thisPage.statue !== 3 && (
                       <button
                         onClick={(e) => handleAcceptAlert(e, row)}
                         className="accept"
@@ -623,7 +640,7 @@ function KesifSingle() {
                         Teklifi Kabul Et
                       </button>
                     )}
-                    {state.statue === 3 && (
+                    {thisPage.statue === 3 && (
                       <button onClick={handleCompleteAlert} className="accept">
                         İş Tamamlandı
                       </button>
@@ -637,8 +654,8 @@ function KesifSingle() {
       </div>
     );
   }
-  const wishDetail = state
-    ? Object.values(state.wishDetail).sort((a, b) => {
+  const wishDetail = !loadingThisPage
+    ? Object.values(thisPage.wishDetail).sort((a, b) => {
         return a.id - b.id;
       })
     : {};
@@ -650,7 +667,7 @@ function KesifSingle() {
   const handleCancel = async (e) => {
     e.preventDefault();
     setUpdating(true);
-    await updateDoc(doc(db, "Jobs", state.doc), {
+    await updateDoc(doc(db, "Jobs", thisPage.doc), {
       statue: 5,
       cancelled: true,
       statueMap: arrayUnion({
@@ -696,30 +713,16 @@ function KesifSingle() {
       title: "Uyarı",
       infoText:
         "Servis Talebinizi İptal Etmek Üzeresiniz. Bu işlem geri alınamaz!",
-      handleFunction: (e) => handleCancel(e, state),
+      handleFunction: (e) => handleCancel(e, thisPage),
       functionText: "Yine de İptal Et",
       route: "",
     });
   };
-  if (updating) {
+  if (updating||loadingThisPage) {
     return <Loading title="Güncelleniyor" />;
   }
-  const pages = [
-    { id: "01", label: "Profil", route: "/profil", link: true, after: true },
-    {
-      id: "02",
-      label: "Keşiflerim",
-      route: `/profil/kesiflerim/`,
-      link: true,
-      after: true,
-    },
-    {
-      id: "03",
-      label: state.mainWish,
-      route: `/profil/kesiflerim/${servisId}`,
-    },
-  ];
-  if (Object.keys(state.wishDetail).length < 1) {
+
+  if (Object.keys(thisPage.wishDetail).length < 1) {
     return <CircularProgress />;
   }
   return (
@@ -736,7 +739,7 @@ function KesifSingle() {
           handleFunction={alertmessage.handleFunction}
           functionText={alertmessage.functionText}
           alertstate={alertmessage}
-          state={state}
+          state={thisPage}
           route={alertmessage.route}
         />
         <Hidden />
@@ -761,7 +764,7 @@ function KesifSingle() {
               );
             })}
           </div>
-          {state?.Offers.length > 0 ? (
+          {thisPage?.Offers.length > 0 ? (
             <TableContainer className="table-container" component={Paper}>
               <Table
                 className="collapsible-table"
@@ -770,23 +773,23 @@ function KesifSingle() {
                 <TableHead className="table-head">
                   <TableRow className="head-row">
                     <TableCell className="head-cell first" align="center">
-                      Keşif ID {state.id}
+                      Keşif ID {thisPage.id}
                     </TableCell>
                     <TableCell className="head-cell second" align="left">
-                      {state.mainWish}
+                      {thisPage.mainWish}
                     </TableCell>
                     <TableCell className="head-cell third" align="left">
-                      {state.adress} /{state.city}
+                      {thisPage.adress} /{thisPage.city}
                     </TableCell>
                     <TableCell className="head-cell last" align="right">
                       {new Date(
-                        state.createdAt.seconds * 1000
+                        thisPage.createdAt.seconds * 1000
                       ).toLocaleString()}
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody className="table-body">
-                  {state.Offers.map((row) => (
+                  {thisPage.Offers.map((row) => (
                     <>
                       <Row key={row.id} row={row} />
                     </>
@@ -797,7 +800,7 @@ function KesifSingle() {
           ) : (
             <>
               <div className="empty-case">
-                {state.adminned ? (
+                {thisPage.adminned ? (
                   <p>Henüz Teklif Yapılmamıştır</p>
                 ) : (
                   <p>Henüz Keşif Oluşturulmamıştır</p>

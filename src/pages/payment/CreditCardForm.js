@@ -56,7 +56,7 @@ const CreditCardForm = ({ state,}) => {
     { id: "10", field: "yurtdısı", label: "Yurtdışı", svg: "" },
   ];
   const [checked, setChecked] = useState(false);
-  console.log(state?.totalPrice)
+
   const CheckedTarget = () => {
     return (
       <div className="target-page-link">

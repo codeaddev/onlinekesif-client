@@ -333,7 +333,7 @@ function Kesiflerim({ setMainList }) {
         return (
           <>
             <NavLink
-              to={`${props.row.mainWish + "-" + props.row.id}`}
+              to={`${props.row.mainWish + "-" + props.row.doc}`}
               state={props.row}
               className="view-button"
             >
@@ -419,7 +419,7 @@ function Kesiflerim({ setMainList }) {
               onRowClick={(row) => {
                 if (row) {
                   console.log(row.row.mainWish);
-                  navigate(`${row.row.mainWish + "-" + row.id}`, {
+                  navigate(`${row.row.mainWish + "-" + row.row.doc}`, {
                     state: row.row,
                   });
                 }

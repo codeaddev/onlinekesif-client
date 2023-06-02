@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require('cors');
 const { testPayment } = require("../testPayment");
 const { payment3D } = require("../payment");
+const { payment3DConfirm } = require("../payment3DConfirm");
 
 
 const PORT = process.env.PORT || 3001;
@@ -30,6 +31,15 @@ app.post('/odeme/3DPay', async (req, res) => {
     const param = req.body;
     try {
       const result = await payment3D(param);
+      res.json({ result });
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
+app.post('odeme/success', async (req, res) => {
+    const param = req.body;
+    try {
+      const result = await payment3DConfirm(param);
       res.json({ result });
     } catch (error) {
       res.status(500).json({ error: 'An error occurred' });
