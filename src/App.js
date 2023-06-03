@@ -46,6 +46,7 @@ import ValidationPageFirst from "./pages/payment/ValidationPageFirst";
 import ValidationPage from "./pages/payment/ValidationPage";
 import NotFound from "./pages/notFound/NotFound";
 import Loading from "./components/loading/Loading";
+import EsnekPayment from "./pages/payment/esnekPos/EsnekPayment";
 
 function App() {
   const delay = 0.5;
@@ -110,8 +111,10 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="KVKK" element={<KvkkPage />} />
-        <Route path="odeme" element={<Payment />} />
+        <Route path="odeme" element={<EsnekPayment />} />
+        {<Route path="odeme" element={<Payment />} />}
         <Route path="tesekkurler" element={<Thanks />} />
+        <Route path="dogrulama" element={<ValidationPage />} />
 
         <Route path="jet-servisler" element={<JetServices />} />
         <Route path="KV-saklanmasi-ve-imha" element={<KvsiPage />} />

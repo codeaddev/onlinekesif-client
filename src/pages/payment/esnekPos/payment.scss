@@ -1,0 +1,234 @@
+.payment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    
+    align-items: center;
+    justify-content: center;
+  
+}
+.page-wrapper{
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+
+}
+.payment-page{
+    width: 100%;
+    max-width: 1500px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    //border: 1px solid;
+}
+.payment-wrapper{
+    display: flex;
+    //border: 1px solid;
+    @media screen and (max-width:767px) {
+        flex-direction: column;
+    }
+    .taksit{
+        flex: 1;
+        .taksit-selector{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        select{
+            min-width: 300px;
+            max-width: 400px;
+            padding: 0.5rem 1rem;
+            appearance: none;
+            border:1px solid gainsboro;
+            border-radius: 0.5rem;
+            background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+          background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            calc(100% - 2.5em) 0.5em;
+          background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+          background-repeat: no-repeat;
+        }
+       
+
+
+select:focus {
+    margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  appearance: none;
+  -moz-appearance: none;
+  background-image:
+    linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+        table, th, td {
+            border: 1px solid gainsboro;
+            padding: 0.5rem;
+            min-width: 150px;
+        tr:nth-child(even){
+            background-color: #f5f5f5;
+        }  
+        }
+          table{
+            border-radius: 0.5px;
+        }
+        thead{
+            background-color: #f5f5f5;
+            
+        }
+        tr{
+            input[type='radio']:after {
+                width: 15px;
+                height: 15px;
+                border-radius: 15px;
+                top: -2px;
+                left: -1px;
+                position: relative;
+                background-color: white;
+                content: '';
+                display: inline-block;
+                visibility: visible;
+                border: 2px solid white;
+                
+            }
+        
+            input[type='radio']:checked:after {
+                width: 15px;
+                height: 15px;
+                border-radius: 15px;
+                top: -2px;
+                left: -1px;
+                position: relative;
+                background-color: salmon;
+                content: '';
+                display: inline-block;
+                visibility: visible;
+                border: 2px solid white;
+            }
+            &:hover{
+                background-color: #f5f5f5;
+                
+            }
+            &.selected{
+                color:salmon;
+            }
+        }
+        th{
+            font-weight: 600;
+        }
+    }
+}
+.topbar{
+ 
+    display: flex;
+    @media screen and (max-width:767px) {
+        flex-direction: column;
+    }
+    .selector{
+        flex: 1;
+        cursor: pointer;
+        border:1px solid gainsboro;
+        transition: border-color 300ms;
+        transition-timing-function: linear;
+        box-sizing: border-box;
+        padding: 1rem;
+        &:hover{
+            background-color: white
+        }
+        &.selected{
+            border-bottom: 3px solid salmon;
+            background-color: white;
+        }
+        &.nonselected{
+            border-bottom:3px solid gainsboro;
+            background-color: #f5f5f5;
+        }
+        .choice{
+            .title{
+                font-weight: bold;
+                color: #505050;
+                &.selected{
+                    color: salmon;
+                }
+            }
+            .text{
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+.paymentMethod{
+    display: flex;
+    gap: 1rem;
+    
+    .selector{
+        border-bottom: 3px solid gainsboro;
+        transition: border-color 300ms;
+        transition-timing-function: linear;
+        &.selected{
+            border-bottom: 3px solid salmon;
+        }
+        &.nonselected{
+            border-bottom:3px solid gainsboro;
+        }
+    }
+}
+.iban-havale{
+  
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+    
+    .iban,.havale{
+        border: 1px solid gainsboro;
+        padding: 1rem;
+
+        border-radius: 0.5rem;
+        width: 50%;
+        
+        @media screen and (max-width:767px) {
+            width: 100%;
+        }
+    }
+    .row-info{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    
+}

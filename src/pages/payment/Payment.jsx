@@ -42,7 +42,7 @@ const Payment = () => {
   // }, []);
   
   // React.useEffect(() => {
-  //   axios.get('https://hraxpunq5i.execute-api.us-east-1.amazonaws.com/beta')
+  //   axios('https://hoork9crqb.execute-api.us-east-1.amazonaws.com/beta')
   // .then(response => {
   //   // Handle the response data here
   //   console.log(response.data);
@@ -52,29 +52,30 @@ const Payment = () => {
   //   console.error(error);
   // });
   // }, []);
-  React.useEffect(() => {
-    axios.get('https://devop.onlinekesif.com/odeme')
-  .then(response => {
-    // Handle the response data here
-    console.log(response.data);
-  })
-  .catch(error => {
-    // Handle any errors here
-    console.error(error);
-  });
-  }, []);
+
+  // React.useEffect(() => {
+  //   axios.get('https://devop.onlinekesif.com/odeme')
+  // .then(response => {
+  //   //Handle the response data here
+  //   console.log(response.data);
+  // })
+  // .catch(error => {
+  //   //Handle any errors here
+  //   console.error(error);
+  // });
+  // }, []);
   
-  React.useEffect(() => {
-    axios.get('https://devop.onlinekesif.com/odeme')
-  .then(response => {
-    // Handle the response data here
-    console.log(response.data);
-  })
-  .catch(error => {
-    // Handle any errors here
-    console.error(error);
-  });
-  }, []);
+  // React.useEffect(() => {
+  //   axios.get('https://devop.onlinekesif.com/odeme')
+  // .then(response => {
+  //   //Handle the response data here
+  //   console.log(response.data);
+  // })
+  // .catch(error => {
+  //   //Handle any errors here
+  //   console.error(error);
+  // });
+  // }, []);
   
 
 
