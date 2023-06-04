@@ -3,8 +3,6 @@ import "./profile.scss";
 import Widgets from "../../components/Widgets/Widgets";
 import Column from "./columns/Column";
 import { CloudContext } from "../../context/cloudContext";
-import { isMobile } from "react-device-detect";
-import ProfileHeaderBar from "./ProfileHeaderBar";
 import SideLinks from "../../components/sidelinks/SideLinks";
 
 function Profile({ setMainList }) {
@@ -46,7 +44,6 @@ function Profile({ setMainList }) {
         {/* <Hidden/> */}
         <div className="profile-inner-container">
           {/* <BreadCrumb pages={pages}/> */}
-          {isMobile && <ProfileHeaderBar />}
           <div className="top">
             <Widgets myJobs={myJobs} />
           </div>

@@ -162,13 +162,13 @@ function Navbar({ setMainList, mainList, setChanged }) {
           </div>
 
           <div className="headerRight">
-            <div className="hidden-menu-bar">
-              <MenuIcon
-                className="icon"
-                onClick={() =>
-                  setClassName((pre) => (pre === "hide" ? "show" : "hide"))
-                }
-              />
+            <div
+              onClick={() =>
+                setClassName((pre) => (pre === "hide" ? "show" : "hide"))
+              }
+              className="hidden-menu-bar"
+            >
+              <MenuIcon className="icon" />
               <div className={`hidden-menu ${className}`}>
                 {className == "show" ? (
                   <MobileMenu

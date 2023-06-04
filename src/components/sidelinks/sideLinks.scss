@@ -9,14 +9,12 @@
     display: flex;
     margin: 0 2rem;
     width: 100%;
+    gap: 2rem;
 
     .link {
       text-decoration: none;
       color: grey !important;
-      gap: 0.5rem;
       font-weight: 600;
-      //flex: 1;
-      width: 10%;
 
       img {
         object-fit: contain;
