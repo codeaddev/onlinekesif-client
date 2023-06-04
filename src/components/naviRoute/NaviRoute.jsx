@@ -5,18 +5,12 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavLink } from "react-router-dom";
 
 function NaviRoute() {
-  const [links, setLinks] = useState([]);
-
   const pages = [
     { id: "01", label: "Profil", route: "/profil", link: true, after: true },
     { id: "02", label: "Keşiflerim", route: "/profil/kesiflerim", link: true },
   ];
 
   const location = window.location.pathname.split("/");
-  const fullPath = window.location.pathname;
-  console.log(fullPath);
-
-  const breadcrumbs = location.map((item, index) => []);
 
   return (
     <div className="news-line">

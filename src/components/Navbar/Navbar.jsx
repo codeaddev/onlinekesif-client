@@ -89,7 +89,7 @@ function Navbar({ setMainList, mainList, setChanged }) {
   let navigate = useNavigate();
 
   return (
-    <nav style={{ paddingBottom: 0 }} className={`navbar`}>
+    <nav className={`navbar`}>
       <PageModal
         open={alertMessage.visible}
         state={alertMessage}
@@ -97,28 +97,26 @@ function Navbar({ setMainList, mainList, setChanged }) {
       />
       <div className="navbarWrapper">
         <div className="navbarLeftArea">
-          <div className="left">
-            <div
-              onClick={() => {
-                if (route === "/hizmet-olustur") {
-                  setAlertMessage({
-                    ...alertMessage,
-                    visible: true,
-                    title: "Uyarı",
-                    infoText: "Yaptığınız Değişikler Kaybolmak Üzere",
-                    isInfo: false,
-                    isError: false,
-                    route: "/hizmet-olustur",
-                    handleFunction: () => navigate("/"),
-                  });
-                } else {
-                  navigate("/");
-                }
-              }}
-              className="link"
-            >
-              <img className="nav-logo" src={Logo} alt="logo" />
-            </div>
+          <div
+            onClick={() => {
+              if (route === "/hizmet-olustur") {
+                setAlertMessage({
+                  ...alertMessage,
+                  visible: true,
+                  title: "Uyarı",
+                  infoText: "Yaptığınız Değişikler Kaybolmak Üzere",
+                  isInfo: false,
+                  isError: false,
+                  route: "/hizmet-olustur",
+                  handleFunction: () => navigate("/"),
+                });
+              } else {
+                navigate("/");
+              }
+            }}
+            className="link"
+          >
+            <img className="nav-logo" src={Logo} alt="logo" />
           </div>
         </div>
         <div className="navbarRightArea">
@@ -164,15 +162,24 @@ function Navbar({ setMainList, mainList, setChanged }) {
           </div>
 
           <div className="headerRight">
-            <div
-              onClick={() =>
-                setClassName((pre) => (pre === "high" ? "wide" : "high"))
-              }
-              className="hidden-menu-bar"
-            >
-              <MenuIcon className="icon" />
+            <div className="hidden-menu-bar">
+              <MenuIcon
+                className="icon"
+                onClick={() =>
+                  setClassName((pre) => (pre === "hide" ? "show" : "hide"))
+                }
+              />
+              <div className={`hidden-menu ${className}`}>
+                {className == "show" ? (
+                  <MobileMenu
+                    setMainList={setMainList}
+                    setChanged={setChanged}
+                  />
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
-            <MobileMenu />
 
             <div className="right-wrapper">
               <NavLink onClick={() => setClassName("wide")} to="/destek">
