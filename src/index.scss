@@ -9,12 +9,10 @@
     --red:#a31400;
     --grey:#A5A5A5;
     --orange:#ed4024;
-    --background:#fffefc;
-
-    
+    --background:#fffefc;   
   }
 
-  $lnk-height:                 32px;
+$lnk-height:                 32px;
 $lnk-padding:                0 10px 0 20px;
 $lnk-first-and-last-padding: $lnk-height/2; 
 $lnk-after-before-border-width-1: $lnk-first-and-last-padding+1;
@@ -70,6 +68,7 @@ html,body{
         font-size: large;
     }
 }
+
 .headerText{
     color:#535353;
     font-size: 2rem;
@@ -104,19 +103,20 @@ html,body{
 
     
 }
-.section-header-text-mini{
+.section-header-text-mini {
     color: var(--lblack);
     text-align: center;
-    font-weight: 500;
-    font-size: 1.2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
     padding: 0;
     
     u{
-        text-decoration-color: var(--yellow);
-        
+        text-decoration-color: var(--yellow);      
     }
+
     @media screen and (max-width:760px) {
         padding: 0 1rem;
+        font-size: 1rem;
     }
     
 }
