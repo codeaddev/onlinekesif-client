@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const NewBlogSection = () => {
   const { wpBlogs } = useContext(CloudContext);
 
-  const [sliderRef, setSliderRef] = useState(null);
+  const [sliderRef, setSliderRef] = useState(null)
 
   const settings = {
     centerMode: false,
