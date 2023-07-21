@@ -1,7 +1,7 @@
 import React from "react";
 import "./new.scss";
 import Label1 from "./svg/label1.svg";
-// import Label2 from "./svg/label2.svg";
+import Label2 from "./svg/label2.svg";
 import Label3 from "./svg/label3.svg";
 import Label4 from "./svg/label4.svg";
 
