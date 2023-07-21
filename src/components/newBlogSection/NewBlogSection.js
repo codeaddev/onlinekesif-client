@@ -10,9 +10,37 @@ import logo from "../../components/Navbar/logo.svg";
 import { Link } from "react-router-dom";
 
 const NewBlogSection = () => {
+
   const { wpBlogs } = useContext(CloudContext);
 
-  const [sliderRef, setSliderRef] = useState(null)
+  const [sliderRef, setSliderRef] = useState(null);
+
+  const arr = [
+    {
+      id: 1,
+      title: "Kombiye Istıcı Bağlat 1",
+    },
+    {
+      id: 2,
+      title: "Kombiye Istıcı Bağlat 2",
+    },
+    {
+      id: 3,
+      title: "Kombiye Istıcı Bağlat 3",
+    },
+    {
+      id: 4,
+      title: "Kombiye Istıcı Bağlat 4",
+    },
+    {
+      id: 5,
+      title: "Kombiye Istıcı Bağlat 5",
+    },
+    {
+      id: 6,
+      title: "Kombiye Istıcı Bağlat 6",
+    },
+  ]
 
   const settings = {
     centerMode: false,
@@ -66,10 +94,24 @@ const NewBlogSection = () => {
       </div>
       <div className="blog-container-slider">
         <Slider ref={setSliderRef} {...settings}>
-          {wpBlogs?.map((item) => {
+          {/* {wpBlogs?.map((item) => {
+            return <NewBlogItem key={item.id} item={item} />;
+          })} */}
+             {arr?.map((item) => {
             return <NewBlogItem key={item.id} item={item} />;
           })}
         </Slider>
+      </div>
+      <div className="blog-container-buttons">
+          <button onClick={sliderRef?.slickPrev}>
+            <ArrowBackIosNewIcon />
+          </button>
+          <button className="see-all" type="button">
+            Hepsini Gör
+          </button>
+          <button onClick={sliderRef?.slickNext}>
+            <ArrowForwardIosIcon />
+          </button>
       </div>
     </div>
   );
@@ -81,7 +123,8 @@ const NewBlogItem = ({ item }) => {
   return (
     <Link to={`${item.link}`} target="_blank" className="item">
       <img src={logo} alt="" />
-      <p> {item?.title?.rendered}</p>
+      {/* <p> {item?.title?.rendered}</p> */}
+      <p> {item?.title}</p>
     </Link>
   );
 };

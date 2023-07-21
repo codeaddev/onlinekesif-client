@@ -1,32 +1,65 @@
 .new-container {
-//  border: 1px solid red;
   background-color: #f7f7f7;
   width: 100%;
   display: flex;
   justify-content: center;
-  // color: #fff;
 
   p {
     margin: 0;
   }
 
   &-content {
-    // border: 1px solid red;
     width: 1500px;
     display: flex;
     flex-direction: column;
     padding: 40px 50px;
     gap: 50px;
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1024px) {
         padding-inline: 0; 
     }
 
     &-header {
-    //   border: 1px solid red;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      h2 {
+        font-weight: 800;
+        font-size: 34px;
+
+        @media screen and (max-width: 1024px) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 420px) {
+          font-size: 1.6rem;
+        }
+      }
+
+      p {
+        font-weight: 600;
+        font-size: 1.4rem;
+
+        @media screen and (min-width: 769px)  and (max-width: 1024px) {
+          font-weight: 500;
+          width: 90%;
+          text-align-last: center;
+        }
+
+        @media screen and (max-width: 768px) {
+          font-weight: 500;
+        }
+
+        @media screen and (max-width: 420px) {
+          font-size: 1.1rem;
+        }
+      }
 
       @media screen and (max-width: 768px) {
         flex-direction: column;
@@ -65,28 +98,32 @@
     }
 
     &-info {
-    //   border: 1px solid red;
       display: flex;
       justify-content: space-between;
       width: 100%;
 
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 1024px) {
         width: 95%;
         margin: 0 auto;
-      }
-
-      @media screen and (max-width: 768px) {
         flex-direction: column;
         align-items: center;
         gap: 50px;
       }
 
       &-item {
-        height: 250px;
-        width: 30%;
+         height: 256px;
+         width: 30%;
 
-        @media screen and (max-width: 1100px) {
-            width: 32%;
+         p {
+          font-size: 1.1rem;
+
+          @media screen and (max-width: 420px) {
+            font-size: 1rem;
+          }
+         }
+
+        @media screen and (max-width: 1024px) {
+            width: 90%;
         }
 
         @media screen and (max-width: 768px) {
@@ -95,16 +132,23 @@
         }
 
         &-title {
-        //border: 1px solid red;
           display: flex;
           justify-content: space-between;
           height: 95px;
           margin-bottom: 25px;
 
+          img {
+
+            @media screen and (max-width: 420px) {
+
+              width: 4rem;}
+          }
+
           h3 {
             margin-top: 30px;
             margin-bottom: 0;
             height: fit-content;
+            font-weight: 600;
 
             @media screen and (max-width: 768px) {
                 font-weight: 600;
