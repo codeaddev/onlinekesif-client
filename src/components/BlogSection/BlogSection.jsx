@@ -12,7 +12,7 @@ const BlogSection = () => {
   const { wpBlogs } = useContext(CloudContext);
 
   //console.log("blogs",wpBlogs[0]?.link)
-  function SampleNextArrow(props) {
+  function SampleNextArrow(props) { 
     const { style } = props;
 
     return (
@@ -35,6 +35,7 @@ const BlogSection = () => {
           justifyContent: "center",
           color: "grey",
           position: "absolute",
+          border: "1px solid red",
           //boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)";
         }}
         //onClick={onClick}
@@ -103,7 +104,9 @@ const BlogSection = () => {
       currency: "₺",
     },
   ];
+  
   var innerWidth = window.innerWidth;
+
   var decideSlideToShow = () => {
     if (innerWidth > 767) {
       return 3;
