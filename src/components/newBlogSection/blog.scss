@@ -1,0 +1,281 @@
+.blog-container {
+  background-color: #f7f7f7;
+  width: 100%;
+  padding: 5rem 5rem 5rem 6rem;
+  display: flex;
+  gap: 4rem;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    padding: 3rem 2rem;
+  }
+
+  &-info {
+    // border: 1px solid red;
+    height: 22rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+        text-align: justify;
+    }
+
+    p,
+    h2 {
+      margin: 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+      gap: 2.5rem;
+
+      .titles {
+        text-align: center;
+
+        h2 {
+          &:first-child {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+
+      p {
+        // text-align: justify;
+        text-indent: 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    &-buttons {
+    //  border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 3rem;
+      height: 20%;
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+
+        svg {
+          font-size: 2rem;
+
+          @media screen and (max-width: 767px) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .see-all {
+        background-color: #000;
+        border: none;
+        border-radius: 5px;
+        color: yellow;
+        padding: 6px 18px;
+
+        @media screen and (max-width: 1024px) {
+          display: inline-block;
+          width: 25%;
+          padding: 0.75rem 0;
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 767px) {
+          width: 6rem;
+          font-size: 1rem;
+          padding: 0.5rem 0;
+        }
+      }
+
+      .icons-container {
+        //   border: 1px solid green;
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+
+        @media screen and (max-width: 1024px) {
+          width: 10%;
+          margin-right: 1rem;
+
+          svg {
+            font-size: 2rem;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          width: 20%;
+
+          svg {
+            font-size: 1rem;
+          }
+        }
+
+        button {
+          border: none;
+          background-color: transparent;
+        }
+
+        svg {
+          cursor: pointer;
+          transition: 0.3s color ease-in-out;
+
+          &:hover {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+  &-slider {
+    width: 75%;
+
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      height: 22rem;
+    }
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      height: 16rem;
+    }
+
+    .item {
+      height: 22rem;
+      text-align: center;
+      padding-top: 20%;
+      display: flex;
+      flex-direction: column;
+      margin-inline: 1rem;
+      background-color: #fff;
+      border-radius: 5px;
+
+      @media screen and (max-width: 768px) {
+        margin-inline: 0;
+        padding-top: 0;
+        justify-content: center;
+        height: 22rem;
+      }
+
+      @media screen and (max-width: 767px) {
+        height: 16rem;
+      }
+
+      p {
+        margin-top: 3rem;
+        padding-inline: 1.5rem;
+
+        @media screen and (max-width: 1024px) {
+          margin-top: 5.5rem;
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 767px) {
+          margin-top: 3.5rem;
+          font-size: 1.2rem;
+        }
+      }
+
+      img {
+        display: inline-block;
+        width: 80%;
+      }
+    }
+  }
+
+  &-buttons {
+    display: none;
+
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+
+      svg {
+        font-size: 2rem;
+
+        @media screen and (max-width: 767px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .see-all {
+      background-color: #000;
+      border: none;
+      border-radius: 5px;
+      color: yellow;
+      padding: 6px 18px;
+
+      @media screen and (max-width: 1024px) {
+        display: inline-block;
+        width: 25%;
+        padding: 0.75rem 0;
+        font-size: 1.3rem;
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 6rem;
+        font-size: 1rem;
+        padding: 0.5rem 0;
+      }
+    }
+
+    .icons-container {
+      width: 25%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+
+      @media screen and (max-width: 1024px) {
+        width: 10%;
+        margin-right: 1rem;
+
+        svg {
+          font-size: 2rem;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 20%;
+
+        svg {
+          font-size: 1rem;
+        }
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+      }
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .block {
+    display: block;
+  }
+}

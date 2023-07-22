@@ -411,9 +411,12 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-        @media screen and (max-width: 767px) {
+
+        @media screen and (max-width: 768px) {
           padding: 2rem 0;
+          gap: 10px;
         }
+
         .header-bar {
           display: flex;
           flex-direction: column;
@@ -423,6 +426,10 @@
           padding: 1rem;
           gap: 1rem;
           box-sizing: border-box;
+
+          h3 {
+          margin: 0;
+          }
         }
         .body {
           display: flex;
@@ -430,25 +437,27 @@
           align-items: center;
           justify-content: center;
           padding: 1rem;
-          display: flex;
-
-          align-items: center;
           box-sizing: border-box;
           gap: 50px;
-          @media screen and (max-width: 1000px) {
-            flex-direction: column;
-            width: 95%;
-          }
 
-          .right {
+          .items {
             flex: 1;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 40px;
-            .li-item {
+            gap: 60px;
+
+            @media screen and (max-width: 1000px) {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              justify-items: center;
+              gap: 0;
+            }
+
+            .li-item {         
               //width: 33%;
+              width: fit-content;
               min-height: 200px;
               padding: 1rem;
               display: flex;
@@ -458,14 +467,18 @@
               text-align: center;
               align-items: center;
               justify-content: flex-start;
+
               p {
+                margin: 0;
                 color: var(--lblack);
                 font-size: 1.2rem;
+
                 @media screen and (max-width: 760px) {
                   font-size: 1rem;
                   gap: 6px;
                 }
               }
+
               .circle {
                 width: 150px;
                 height: 150px;
@@ -477,12 +490,14 @@
                 border: 7px solid var(--green);
                 font-size: 2rem;
                 font-weight: 600;
+
                 @media screen and (max-width: 1000px) {
                   width: 100px;
                   height: 100px;
 
                   font-size: 1.3rem;
                 }
+
                 img {
                   width: 50%;
                 }
@@ -491,6 +506,7 @@
           }
         }
       }
+
       &.how-works {
         display: flex;
         padding: 3rem 1rem;
@@ -565,8 +581,7 @@
 
             box-sizing: border-box;
             border-right: 1px solid var(--orange);
-            p {
-            }
+
             @media screen and (max-width: 760px) {
               border: none;
             }
@@ -1053,9 +1068,11 @@
         }
         .card-item {
           background-color: white;
-          -webkit-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
-          -moz-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
-          kutu-gölge: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
+          // -webkit-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
+          // -moz-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
+          box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
+          box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
+          // kutu-gölge: 11px 14px 32px -7px rgba(0, 0, 0, 0.1);
           max-width: 500px;
           height: 100%;
           min-height: 300px;
@@ -1072,9 +1089,11 @@
           padding-bottom: 1rem;
           //box-sizing: border-box;
           &:hover {
-            -webkit-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
-            kutu-gölge: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
+            // -webkit-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
+            // -moz-box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
+            box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
+            box-shadow: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
+            // kutu-gölge: 11px 14px 32px -7px rgba(0, 0, 0, 0.3);
             transition: 300ms;
             .divider {
               p {

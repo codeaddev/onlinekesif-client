@@ -1,7 +1,7 @@
 import React from "react";
 import MiniExplain from "../sectionHeaders/MiniExplain";
 import SectionHeader from "../sectionHeaders/SectionHeader";
-import Tick from "./tick.svg";
+// import Tick from "./tick.svg";
 import Trust from "./trust.svg";
 import Happy from "./happy.svg";
 import Time from "./timesave.svg";
@@ -47,7 +47,7 @@ const Advantages = () => {
         <MiniExplain>Kaliteyi keşfetmenizi sağlıyoruz</MiniExplain>
       </div>
       <div className="body">
-        <div className="right">
+        <div className="items">
           {list.map((i) => {
             return (
               <div key={i.id} className="li-item">

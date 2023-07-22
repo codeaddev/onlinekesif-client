@@ -5,11 +5,13 @@ import { CloudContext } from "../../context/cloudContext";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
 import HomeAlert from "../../components/homeAlert/HomeAlert";
 import WhatWeDo from "../../components/whatWeDo/WhatWeDo";
-import HowWeDo from "../../components/howWeDo/HowWeDo";
+// import HowWeDo from "../../components/howWeDo/HowWeDo";
 import Advantages from "../../components/advantages/Advantages";
 import BlogSection from "../../components/BlogSection/BlogSection";
 import MainSlider from "../../components/MainSlider/MainSlider";
 import JestServiceComponent from "../../components/JetService/JestServiceComponent";
+import NewHowWeDo from "../../components/newHowWeDo/NewHowWeDo";
+import NewBlogSection from "../../components/newBlogSection/NewBlogSection";
 
 function Home({
   setErrorMessage,
@@ -50,9 +52,11 @@ function Home({
 
         <JestServiceComponent />
         <WhatWeDo />
-        <HowWeDo />
+        {/* <HowWeDo /> */}
+        <NewHowWeDo />
         <Advantages />
-        <BlogSection />
+        {/* <BlogSection /> */}
+        <NewBlogSection />
         <backToButton />
         {/* <KPUSection/> */}
         {/* <LastJobs/>  */}
